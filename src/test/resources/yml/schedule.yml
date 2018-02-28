@@ -1,0 +1,74 @@
+-
+  date: "2018-03-15"
+  dateReadable: "15 marca"
+  tracks:
+    - {title: "Warsztaty", color: "#e91e63"}
+    - {title: "Deep dive", color: "#03a9f4"}
+  timeslots:
+    - {
+      startTime: "09:00",
+      endTime: "10:00",
+      singles: [41]
+    }
+    - {
+      startTime: "10:00",
+      endTime: "10:30",
+      singles: [1001]
+    }
+    - {
+      startTime: "10:30",
+      endTime: "13:00",
+      sessionIds: [47, 17],
+      workshopsIds: [11, 28, 15, 6, 16, 5, 44, 35, 30]
+    }
+    - {
+      startTime: "13:00",
+      endTime: "14:00",
+      singles: [1002]
+    }
+    - {
+      startTime: "14:00",
+      endTime: "16:30",
+      sessionIds: [1, 13],
+      workshopsIds: [33, 38, 42, 18, 45, 40, 31, 46, 19]
+    }
+    - {
+      startTime: "16:30",
+      endTime: "19:00",
+      singles: [1003]
+    }
+-
+  date: "2014-03-16"
+  dateReadable: "16 marca"
+  tracks:
+    - {title: "Warsztaty", color: "#e91e63"}
+    - {title: "Deep dive", color: "#03a9f4"}
+  timeslots:
+    - {
+      startTime: "9:00",
+      endTime: "11:30",
+      sessionIds: [39, 12],
+      workshopsIds: [43, 27, 21, 25, 8, 32, 22, 29, 20]
+
+    }
+    - {
+      startTime: "11:30",
+      endTime: "12:30",
+      singles: [1002]
+    }
+    - {
+      startTime: "12:30",
+      endTime: "15:00",
+      sessionIds: [4, 24],
+      workshopsIds: [34, 14, 26, 10, 37, 23, 9, 2, 36]
+    }
+    - {
+      startTime: "15:00",
+      endTime: "15:30",
+      singles: [1001]
+    }
+    - {
+      startTime: "15:30",
+      endTime: "16:30",
+      singles: [3]
+    }

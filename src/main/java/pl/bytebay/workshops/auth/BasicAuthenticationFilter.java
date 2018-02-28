@@ -1,5 +1,6 @@
 package pl.bytebay.workshops.auth;
 
+import spark.Filter;
 import spark.FilterImpl;
 import spark.Request;
 import spark.Response;
@@ -11,7 +12,7 @@ import java.util.function.Supplier;
 
 import static spark.Spark.halt;
 
-public class BasicAuthenticationFilter extends FilterImpl {
+public class BasicAuthenticationFilter implements Filter {
     private static final String BASIC_AUTHENTICATION_TYPE = "Basic";
     private static final int NUMBER_OF_AUTHENTICATION_FIELDS = 2;
     private static final String ACCEPT_ALL_TYPES = "*";
@@ -19,11 +20,6 @@ public class BasicAuthenticationFilter extends FilterImpl {
     private final AuthenticationDetails authenticationDetails;
 
     public BasicAuthenticationFilter(final AuthenticationDetails authenticationDetails) {
-        this(SparkUtils.ALL_PATHS, authenticationDetails);
-    }
-
-    public BasicAuthenticationFilter(final String path, final AuthenticationDetails authenticationDetails) {
-        super(path, ACCEPT_ALL_TYPES);
         this.authenticationDetails = authenticationDetails;
     }
 

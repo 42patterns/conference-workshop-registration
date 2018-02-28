@@ -1,0 +1,601 @@
+- id: 3
+  name: "Jarosław"
+  surname: "Pałka"
+  company: "Symentis"
+  title: "Główny trener, Architect"
+  bio: "Od ponad 20 lat w branży IT, jako administrator baz danych, programista, architekt, manager i 'inżynier od spraw katastrof'. Brałem udział w małych, średnich i nonsensownie dużych projektach, prowadzonych zgodnie zasadami 'waterfall', Agile oraz przy braku jakichkolwiek metodyk, z tym samym zawsze skutkiem. To doprowadziło mnie do wniosku, że nieważne co robisz, tak długo, jak robisz to dobrze, w najprostszy z możliwych sposobów i używasz właściwych narzędzi, które wykonają pracę za Ciebie. W międzyczasie dałem się porwać ideą TDD oraz Software Craftmanship, do granic możliwości wyeksploatować tak piękne w swej prostocie pomysły jak REST i NoSQL, by potem porzucić je by zgłębić tajniki 'system thinking' i zachwycić się siłą jaką niesie z sobą 'metafora' oraz odkryć, że rządzą nami te same prawa 'natury'.
+
+  Niepokorny wyznawca kościoła JVM, badacz bytecode'u i JIT oraz wszelkiej maści parserów, interpeterów i kompilatorów. "
+  thumbnailUrl: jarek_palka.jpg
+  rockstar: true
+  ribbon:
+    - {abbr: "Symentis", title: "Symentis", url: "https://symentis.pl"}
+    - {abbr: "Allegro", title: "Allegro Group", url: "https://tech.allegro.pl"}
+  social:
+    - {name: "site", link: "http://geekyprimitives.wordpress.com/"}
+    - {name: "twitter", link: "https://twitter.com/j_palka"}
+
+- id: 5
+  name: "Sławomir"
+  surname: "Sobótka"
+  company: "Bottega IT Minds"
+  title: "Główny trener / architekt"
+  bio: "Jest trenerem i konsultantem w firmie Bottega IT Minds, specjalizuje się w technologiach Java EE. W codziennej pracy integruje Domain Driven Design, wzorce, style architektoniczne, zwinne procesy wytwórcze i zdrowy rozsądek. Stosuje nadrzędną zasadę: rozpoznać klasę problemu z jaką ma się do czynienia i dobrać do niej odpowiednią klasę narzędzia. Hobbystycznie interesuje się psychologią pozytywną i kognitywistyką. Lubi myśleć o sobie jako entuzjaście Software Craftsmanship."
+  thumbnailUrl: slawek_sobotka.jpg
+  rockstar: true
+  ribbon:
+    - {abbr: "Bottega", title: "Bottega IT Minds", url: "https://bottega.com.pl"}
+  social:
+    - {name: "site", link: "http://art-of-software.blogspot.com/"}
+    - {name: "twitter", link: "https://twitter.com/bottega_it"}
+
+- id: 6
+  name: "Mariusz"
+  surname: "Gil"
+  company: "Bottega IT Minds"
+  title: "Architect"
+  bio: "Software architect i trener, z branżą IT związany od ponad 16 lat. Pasjonuje się projektowaniem i implementacją systemów o złożonych wymaganiach biznesowych, machine-learningiem i dostarczaniem wartości biznesowej klientom. Speaker i organizator eventów dla developerów, chcących rozwijać swoje umiejętności zawodowe."
+  thumbnailUrl: mariusz_gil.jpg
+  ribbon:
+    - {abbr: "Bottega", title: "Bottega IT Minds", url: "https://bottega.com.pl"}
+    - {abbr: "Source Ministry", title: "Source Ministry", url: "https://sourceministry.com/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/mariuszgil"}
+
+- id: 9
+  name: "Daniel"
+  surname: "Pokusa"
+  company: "Onwelo"
+  title: "Technical Team Leader"
+  bio: "Zapalony zwolennik zwinnych metodyk prowadzenia projektów, automatyzacji i efektywności. Z jednej strony programista, ściśle związany z rodziną języków JVM oraz kierownik projektów, z drugiej trener zajmujący się wsparciem w zakresie jakości projektów, organizacji zespołu, rekrutacji i rozwoju personalnego. Każdego dnia stara się obalić mit programisty we flanelowej koszuli nie posiadającego zdolności interpersonalnych, a jedynie wiedzę techniczną. Wierzy, że istotą wytwarzania dobrego oprogramowania jest komunikacja, współpraca i umiejętność dzielenia się wiedzą. Współtwórca konferencji SpreadIT oraz aktywny uczestnik wydarzeń ze światka IT. Bloguje na http://software-empathy.pl"
+  thumbnailUrl: daniel_pokusa.jpg
+  ribbon:
+    - {abbr: "Onwelo", title: "Onwelo", url: "https://onwelo.pl/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/dpokusa"}
+
+- id: 53
+  name: "Piotr"
+  surname: "Bucki"
+  thumbnailUrl: "piotr_bucki.png"
+  rockstar: true
+  bio: "Od 17 lat pomaga ludziom szlifować komunikację w różnych obszarach. Zawsze bazuje przy tym na psychologii poznawczej, neuro-naukach i psycholingwistyce. Sprawdza teorię w praktyce współpracując z firmami w Chile, Słowenii, Mołdawii, Azerbejdżanie, Austrii, Australii i Polsce. Współautor i redaktor merytoryczny Startup Manual (Wolves Summit 2015), autor i opiekun serii BuckiAcademi wydanej z wydawnictwem 4 Głowy (2016). Publikuje regularnie na InnPoland oraz stronie www.bucki.pro. Pisze dla Malemana, Dolce Vita, Madame, Marketing w Praktyce i wielu innych. Autor książek „Porozmawiajmy o komunikacji”, „Life's a pitch and then you die” oraz „Złap równowagę”. Przetłumaczył 12 książek z zakresu psychologii i poradnictwa. Współpracuje z najlepszymi ośrodkami startupowymi w Polsce – m.in. LPNT, Inkubator Starter, GPNT i PPNT, a także z największym rządowym programem na świecie Startup Chile i Inkubatorami w Słowenii i Austrii. Występował m.in. na Wolves Summit, Davos Communication Forum, PODIM Słowenia, Internet Beta, Social Media Convent, Inspiration Day w Szczecinie, PMI Congress w Antwerpii i wielu wielu innych konferencjach w kraju i na świecie."
+  social:
+    - {name: "site", link: "http://bucki.pro"}
+
+
+- id: 4
+  name: "Wiktor"
+  surname: "Sztajerowski"
+  company: "Symentis"
+  title: "Programista, trener"
+  bio: 'Programista z ponad 5-cio letnim stażem, trener i konsultant w Symentis.pl, aspirujący mówca konferencyjny, znany między innymi z konferencji 4Developers i Confitura. Obecnie Java Developer w Smart Coders, entuzjasta NoSQL’a i orędownik wykorzystywania więcej niż jednej bazy danych w systemach w słusznych celach, dla sławy i zysku. Prywatnie jeden z liderów łódzkiego JUG’a oraz Zwinnej Łodzi, grupy pasjonatów metody „agile”, a także współinicjator spotkań, Software Architecture & Design Debate, platformy nowego, ciekawego i szerszego spojrzenia na architekturę systemów IT.'
+  thumbnailUrl: wiktor_sztajerowski.jpg
+  ribbon:
+    - {abbr: "Symentis", title: "Symentis", url: "https://symentis.pl"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/wsztajerowski"}
+
+- id: 8
+  name: "Grzegorz"
+  surname: "Dyrda"
+  company: "Geeky Devs"
+  title: "Full Stack Mobile Developer"
+  bio: "Programista od ponad 15 lat. Przedsiębiorca od trzech. Minimalista i pragmatyk - stąd pewnie nieskrywana miłość do Kotlina :) Od 5 lat związany głównie z rynkiem apek mobilnych. Na co dzień tworzy i sprzedaje własne apki, czym zarabia na chleb i wczasy na Kanarach :) Prywatnie - snuje plany na milionowe imperium, czyta, bloguje, chodzi po górach, gra na gitarze i zaraża innych swoją pasją :)"
+  thumbnailUrl: grzegorz_dyrda.jpg
+  ribbon:
+    - {abbr: "Geeky Devs", title: "Geeky Devs", url: "https://geekydevs.com"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/grzegorzdyrda"}
+    - {name: "site", link: "http://geekydevs.com/"}
+
+- id: 16
+  name: "Zbyszko"
+  surname: "Papierski"
+  company: "Dynatrace"
+  title: "Programista"
+  bio: "Inżynier, z silnym uzależnieniem od produktowej warstwy rozwiązania. Związany w przeszłości z Allegro, Jirą a ostatnio Dynatrace. Wszędzie gdzie się da szuka ciekawych danych, szczególnie takich bez struktury, Po godzinach zajmuje się inicjatywami trójmiejskiego JUGa, takimi jak Hackengarten, a także ostatnio próbuje nauczyć się swojego pierwszego (i najprawdodopodobniej ostatniego) języka orientalnego."
+  thumbnailUrl: zbyszko_papierski.jpg
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/zpapierski"}
+
+- id: 22
+  name: "Wiktor"
+  surname: "Bachnik"
+  company: "Dynatrace"
+  title: "Chief Software Architect"
+  bio: "Programista lubiący wyzwania. Oprócz aspektów technicznych, zainteresowany również społeczną stroną rozwoju oprogramowania."
+  thumbnailUrl: "Wiktor_Bachnik.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+
+- id: 23
+  name: "Jakub"
+  surname: "Słota"
+  company: "Dynatrace"
+  title: "Programista"
+  bio: "Programista full-stack specjalizujący się w technologii Java, od początku kariery zawodowej związany z firmą Dynatrace. Jeden z pierwszych członków zespołu Log Analytics, rozwijającego projekt służący do szeroko pojętej analizy logów. Entuzjastycznie nastawiony do paradygmatów programowania, wzorców projektowych oraz dobrych praktyk, prowadzących do zwiększenia czytelności i testowalności kodu.
+
+  W czasie wolnym od komputera można go spotkać na koncertach muzyki filmowej, w kinie lub na szlaku górskim. Stara się równoważyć stacjonarny charakter wykonywanej pracy, przestrzegając zasad zdrowego stylu życia."
+  thumbnailUrl: "Jakub_Slota.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com"}
+
+- id: 24
+  name: "Kasper"
+  surname: "Kulikowski"
+  company: "Dynatrace"
+  title: "Software Engineer"
+  bio: "Absolwent ETI, Programista i trener Java, lokalny patriota. Od 3 lat w Dynatrace, gdzie pracowałem przy kilku projektach, aktualnie przy module do analizy logów.
+
+  Po pracy prowadzę warsztaty z programowania i podnoszę ciężkie rzeczy."
+  thumbnailUrl: "Kasper_Kulikowski.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com"}
+  social:
+    - {name: "github", link: "https://github.com/Kulikowski"}
+    - {name: "linkedin", link: "https://www.linkedin.com/in/kasper-kulikowski/"}
+
+- id: 25
+  name: "Przemysław"
+  surname: "Delewski"
+  company: "Dynatrace"
+  title: "Senior Software Engineer"
+  bio: "Interesuje mnie redukowanie luki pomiędzy problemem a rozwiązaniem. Ponadto wszystko co jest związanie z projektowaniem oprogramowania, językami domain specific, kompilatorami i generowaniem kodu."
+  thumbnailUrl: "Przemyslaw_Delewski.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com"}
+  social:
+    - {name: "github", link: "https://github.com/PDelak"}
+
+- id: 26
+  name: "Dominika"
+  surname: "Makuch"
+  company: "Dynatrace"
+  title: "Software Developer"
+  bio: "Programistka i wielbicielka języka Java oraz technologii okołowyszukiwarkowych, ostatnio pilnie zgłębiająca zagadnienia wokół machine learningu i big data. W ciągu ostatnich 10 lat zdarzało jej się pracować jako software developer, software architect, cloud software engineer, team leader czy technical project manager i zajmować się backendami serwerów wyszukiwawczych, CMSów, platformy mailingowej czy big data'owej platformy będącej częścią projektu autonomicznego samochodu. Obecnie, w Dynatrace, pracuje nad rozwojem zaawansowanych systemów monitorujących.
+
+  Poza pracą dzieli się wiedzą w ramach trójmiejskiego JUGa i w InfoShare Academy a jej prezentacja nt. machine learningu była top3 speakerów konferencji JDD2016."
+  thumbnailUrl: "Dominka_Makuch.jpg"
+  rockstar: true
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/dominika-makuch-703b0a57/"}
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+
+- id: 27
+  name: "Grzegorz"
+  surname: "Witczak"
+  company: "Dynatrace"
+  title: "Software developer"
+  bio: "Od niemal czterech lat w Dynatrace zajmuję się rozwijaniem narzędzia do monitorowania baz danych, ułatwiając życie programistom i devopsom na całym świecie.
+
+  Po godzinach gadżeciarz i pasjonat bezpieczeństwa IT, buduję różne cuda z wykorzystaniem Raspberry Pi."
+  thumbnailUrl: "Grzegorz_Witczak.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+
+  social:
+    - {name: "stack-overflow", link: "https://stackoverflow.com/users/1061543/greg-witczak"}
+    - {name: "github", link: "https://github.com/greg-witczak"}
+    - {name: "linkedin", link: "https://pl.linkedin.com/in/gwitczak"}
+
+- id: 29
+  name: "Marcin"
+  surname: "Okraszewski"
+  company: "Dynatrace"
+  title: "Chief Software Architect"
+  bio: "Od ponad 10 lat pracuję w firmie Dynatrace, obecnie na stanowisku architekta. W trakcie mojej przygody z Dynatrace miałem okazję rozwijać diametralnie różne produkty - od analizatora ruchu sieciowego w C++ o ogromnych wymaganiach wydajnościowych, przez aplikację desktopową w .Net i pluginy dla platformy Eclipse, po rozwiązania SaaS z użyciem Big Data pracujące w chmurze Amazon. A po godzinach wychowuję kolejne pokolenie informatyków."
+  thumbnailUrl: "marcin_okraszewski.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/okrasz/"}
+
+
+- id: 28
+  name: "Michał"
+  surname: "Weyer"
+  company: "Dynatrace"
+  title: "Software developer"
+  bio: "Siedem lat kariery spędziłem w bankach, gdzie błędy łatwo przeliczało się na pieniądze. Od dwóch lat w Dynatrace pracuję nad tym, żeby praca developerów była mniej stresująca i bardziej widoczna."
+  thumbnailUrl: "Michal_Weyer.jpg"
+  ribbon:
+    - {abbr: "Dynatrace", title: "Dynatrace", url: "https://www.dynatrace.com/"}
+  social:
+    - {name: "site", link: "http://codeinanger.com"}
+
+
+- id: 7
+  name: "Michał"
+  surname: "Michaluk"
+  company: "Bottega IT Minds"
+  title: "Trainer, Craftsman"
+  bio: "Doświadczony w wytwarzaniu nowego oprogramowania zarówno dla startup-ów o skrajnie zwinnym kontekście, jak i zbiurokratyzowanych korporacji z klasycznym modelem. Po tych doświadczeniach jest pewien, że skupienie na wartości dostarczanej przez oprogramowanie klientowi i prostota rozwiązania są kluczem do sukcesu projektów. Kilkuletnia kariera w globalnej korporacji, począwszy od programisty skończywszy na technicznym architekcie grupy projektów, była dla niego doskonałą lekcją wieloletniego utrzymanie oraz rozwoju oprogramowania w olbrzymiej skali. Wtedy poznał dwa kluczowe punkty do zrównoważonego rozwoju oprogramowania i zespołu. Testowanie i refaktoryzacja oprogramowania legacy w środowisku korporacyjnym kiedy \"nie mamy czasu na jakość\", przynosi zysk dla organizacji i daje wiele satysfakcji programistom do tej pory zmęczonym projektem. Doskonałość warsztatu programistycznego i biegłość w technologiach indywidualnych programistów promieniuje na cały zespól i przynosi wyraźne korzyści dla projektu i organizacji. Ma oryginalne spojrzenie na wytwarzanie oprogramowania: rozwój oprogramowania to inwestycja, a praktyki Agile i Domain-Driven Design pozwalają podążać optymalną ścieżką do osiągnięcia szybkiego zwrotu z tej inwestycji."
+  thumbnailUrl: michal_michaluk.jpg
+  ribbon:
+    - {abbr: "Bottega", title: "Bottega IT Minds", url: "https://bottega.com.pl"}
+
+- id: 10
+  name: "Łukasz"
+  surname: "Szydło"
+  company: "Bottega"
+  title: "Trener, Software Craftsman"
+  bio: "Programista pasjonat, fan “Software Craftsmanship” i zwinnego podejścia do wytwarzania oprogramowania.
+
+  Lubi proste rozwiązania skomplikowanych problemów.  Na codzień zajmuje się tematami z zakresu architektury aplikacji biznesowych, Domain-Driven Design, Continuous Delivery, technologii Java oraz testowania automatycznego. Prywatnie mąż, ojciec piątki dzieci."
+  thumbnailUrl: lukasz_szydlo.jpg
+  ribbon:
+    - {abbr: "Bottega", title: "Bottega IT Minds", url: "https://bottega.com.pl"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/lszydlo"}
+
+- id: 11
+  name: "Wojciech"
+  surname: "Oczkowski"
+  company: "IT Kontekst"
+  title: "Trener, Architekt"
+  bio: "Prowadzący własną działalność specjalista do spraw trudnych, zawodowo rozwiązuje problemy związane z projektowaniem architektury systemów, integracją, wydajnością i jakością kodu. Znajduje obsesyjną wręcz przyjemność w wynajdowaniu sensu w cudzym kodzie. Prywatnie rozwiązuje problemy związane z wychowaniem 2-ki dzieciaków i znajdowaniem czasu na żeglowanie i czytanie literatury fantastycznej."
+  ribbon:
+    - {abbr: "IT Kontekst", title: "IT Kontekst", url: "http://itkontekst.pl/"}
+  thumbnailUrl: wojtek_oczkowski.jpg
+
+- id: 12
+  name: "Łukasz"
+  surname: "Łuczak"
+  company: "Symentis"
+  title: "Projektant programista poliglota"
+  bio: "Projektant programista poliglota żyjący w cyfrowym świecie, który ponad połowę życia spędził tworząc oprogramowanie, a przez ostatnią dekadę dostarczając rozwiązania komercyjne (nierzadko klasy enterprise*). Pasjonat dla którego nie ma rzeczy niemożliwych, a każdy projekt stanowi wyzwanie oraz szansę rozwoju. Wyznawca metodyk Agile i TQM. Umie napisać poprawnie działającą aplikację w środowisku serwerowym, przeglądarkowym, mobilnym czy też pulpitowym wykorzystując przy tym różne języki i narzędzia. Tworzył rozwiązania na systemy zintegrowane oraz poczynił kilka implementacji na procesory sygnałowe. Piastował role analityczne, programistyczne, architektoniczne a także liderskie, mentorskie i audytorskie. Od kilku lat udowadnia, że javascript to nie tylko gwiazdki latające za kursorem ale przede wszystkim ekosystem który wyprzedził swój czas pozwalając na tworzenie cudów. Zapytany o proste rzeczy potrafi poczynić wielogodzinny wykład zahaczając przy tym o różne dziedziny nauki. Na codzień programista w Vistex, trener i konsultant w Symentis.pl a także autor i mentor w eduweb.pl 
+
+  * - enterprise w znaczeniu \"nie ma na świecie osoby, który zrozumie dlaczego to działa\""
+  thumbnailUrl: lukasz_luczak.jpg
+  ribbon:
+    - {abbr: "Vistex", title: "Vistex Poland", url: "https://www.vistex.com/about-us/"}
+    - {abbr: "Symentis", title: "Symentis", url: "https://symentis.pl"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/lukasz_luczak"}
+
+- id: 13
+  name: "Paweł"
+  surname: "Kapała"
+  company: "kapware.com"
+  title: "Business Driven Developer"
+  bio: "Inżynier, business driven developer, programista Clojure, przedsiębiorca w kapware.com. Współorganizator Toruń JUG. Pozostający w długoletnim związku małżeńskim z JVM od 2006 roku."
+  thumbnailUrl: pawel_kapala.jpg
+  ribbon:
+    - {abbr: "kapware.com", title: "kapware.com", url: "https://kapware.com"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/kapware"}
+    - {name: "site", link: "http://kapware.com/"}
+
+- id: 15
+  name: "Paweł"
+  surname: "Włodarski"
+  company: "Idemia"
+  title: "Starszy Inżynier Oprogramowania"
+  bio: 'Od kilku lat w ramach łódzkiego JUGa (czyli grupy miłośników technologii już nie tylko okołojavowywch) organizuję wykłady, warsztaty i ćwiczenia – tak zwana praca u podstaw społeczności IT. Co roku także trochę pomagam przy organizacji chyba największej w Łodzi konferencji skupiającej się na technologiach mobilnych – \"Mobilization\". Komercyjnie już od ponad 10 lat programuję w Javie a ostatnio doszła do tego i Scala.'
+  thumbnailUrl: pawel_wlodarski.jpg
+  ribbon:
+    - {abbr: "Idemia", title: "Idemia", url: "https://www.idemia.com/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/PawelWlodarski"}
+
+- id: 17
+  name: "Bartłomiej"
+  surname: "Witczak"
+  company: "DayOne"
+  title: "Unicorn"
+  bio: "Codziennie uczę się nowych rzeczy i testuje rożne narzędzia, żeby nie wkręcać śruby młotkiem. Pracowałem w małych, średnich i dużych firmach - teraz realizuję marzenia i zdobyte doświadczenia wykorzystuję rozwijając własną firmę - DayOne. Wkręciłem się w programowanie funkcyjne - Haskell, Elm, Elixir - staram się czerpać, co się da w codziennej pracy. "
+  thumbnailUrl: bartek_witczak.jpg
+  ribbon:
+    - {abbr: "DayOne", title: "DayOne", url: "https://dayone.pl/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/bartekwitczak"}
+
+- id: 18
+  name: "Maciej"
+  surname: "Krajewski"
+  company: "Yameo"
+  title: "Managing Director / Trener"
+  bio: "Maciej jest trenerem w Infoshare Accademy i dyrektorem zarządzającym w Yameo, Devops z wieloletnim doświadczeniem. Elokwentny, lubi pracować z energią własną i grupową. Ma wieloletnie doświadczenie w zarządzaniu zespołami developerskimi. Zjadł zęby na realizacji projektów informatycznych w metodologiach klasycznych (certyfikacja PMP oraz PRINCE2) i realizowanych zwinnie (LeSS). Przez 7 lat zarządzał jednym z głównych produktów firmy od strony technologicznej, wspierając zespół jako devops, a następnie dyrektor techniczny. Wielki fanboy docker’a :slightly_smiling_face:. Obecnie dyrektor zarządzający w Yameo Sp. z o.o. Prywatnie, Ironman wannabe…"
+  thumbnailUrl: maciej_krajewski.jpg
+  ribbon:
+    - {abbr: "Yameo", title: "Yameo", url: "http://yameo.pl"}
+    - {abbr: "iSA", title: "infoShare Academy", url: "http://infoshareacademy.com"}
+  social:
+    - {name: "Linkedin", link: "https://www.linkedin.com/in/maciejkrajewski/"}
+- id: 19
+  name: "Michał"
+  surname: "Miszczyszyn"
+  company: "Type of Web"
+  title: "Full Stack JavaScript Developer"
+  bio: "Michał jest programistą JavaScript z wieloma latami profesjonalnego doświadczenia. Obecnie za pośrednictwem X-Team współpracuje z zespołami w USA gdzie tworzy aplikacje internetowe. Organizator meet.js Summit i meet.js Gdańsk. Bloger na typeofweb.com, a okazyjnie także prelegent."
+  thumbnailUrl: michal_miszczyszyn.jpg
+  ribbon:
+    - {abbr: "Type of Web", title: "Type of Web", url: "https://typeofweb.com/"}
+    - {abbr: "X-Team", title: "X-Team", url: "https://x-team.com/"}
+  social:
+    - {name: "site", link: "https://typeofweb.com/"}
+    - {name: "twitter", link: "https://twitter.com/mmiszy"}
+
+- id: 54
+  name: "Aleksander"
+  surname: "Gozdek"
+  company: "Software Development Academy"
+  bio: "Starszy programista od ponad 5 lat pracujący z technologiami .NET, Scrum Master i trener w Software Development Academy w jednej osobie. Uwielbia dzielić się wiedzą i usprawniać komunikację w zespołach. Dba o wysoką jakość szkoleń nie tylko pod względem merytorycznym, ale także warsztatu trenerskiego. W ramach warsztatów opowie o tym jak profesjonalnie przygotować szkolenie i sprawić by nudne tematy stały się dla uczestników interesującym doświadczeniem."
+  thumbnailUrl: aleksander_gozdek.jpg
+  ribbon:
+    - {abbr: "SDA", title: "Software Development Academy", url: "http://sdacademy.pl"}
+
+- id: 55
+  name: "Piotr"
+  surname: "Mariański"
+  company: "Software Development Academy"
+  bio: "Programista z 8 letnim doświadczeniem, samouk – życiowo programista od zawsze. Na co dzień zajmuję się kodowaniem w PHPie oraz technologiach frontendowych, a także przekazywaniem wiedzy przyszłym programistom prowadząc zajęcia w ramach kursów programowania Software Development Academy – to nie praca to pasja. Zawodowo pracuje z kontrahentami pochodzącymi z zupełnie różnych od siebie branż, łącząc kropki w każdym ze światów, dla których trzeba stworzyć właściwe oprogramowanie, które ułatwia życie i prace ludziom. Prywatnie interesuję się wszystkim – od mechaniki kwantowej, przez sprawy codzienne związane z polityką i sportem (szczególnie piłką nożną), po szeroko pojętą kulturę masową."
+  thumbnailUrl: piotr_marianski.jpg
+  ribbon:
+    - {abbr: "SDA", title: "Software Development Academy", url: "http://sdacademy.pl"}
+  social:
+    - {name: "site", link: "http://webpros.pl/"}
+
+
+
+- id: 20
+  name: "Marcin"
+  surname: "Stożek"
+  company: "Collective Sense"
+  title: "Senior Devops Engineer"
+  bio: "Za dnia jestem programistą i devopsem, po nocach czytam co słychać na Hacker News. Wierny fan pracy zdalnej. Brałem udział w wielu projektach z różnych dziedzin, od bezpieczeństwa w kolejkach po Hadoopa, od monolitu do mikroserwisów.
+
+  Wyznaję automatyzację oraz wierzę, że Linux to najlepsza rzecz pod słońcem. No, może druga w kolejności zaraz po Vim ;)"
+  thumbnailUrl: marcin.stozek.jpg
+  ribbon:
+    - {abbr: "Collective Sense", title: "Collective Sense", url: "https://www.collective-sense.com"}
+  social:
+    - {name: "site", link: "https://perk.pl"}
+    - {name: "twitter", link: "https://twitter.com/marcinstozek"}
+
+- id: 30
+  name: "Rafał"
+  surname: "Borowiec"
+  company: "Goyello"
+  bio: "Rafał o sobie: Profesjonalista IT, entuzjasta open source oraz zwinnych metodyk wytwarzania oprogramowania, developer, wykładowca i trener IT, sporadycznie bloger"
+  thumbnailUrl: "rafal_borowiec.jpg"
+  ribbon:
+    - {abbr: "Goyello", title: "Goyello", url: "https://www.goyello.com/pl"}
+  social:
+    - {name: "site", link: "http://blog.codeleak.pl/"}
+    - {name: "twitter", link: "https://twitter.com/kolorobot"}
+
+- id: 31
+  name: "Maciej"
+  surname: "Koziara"
+  company: "Goyello"
+  bio: "Karierę rozpoczął 3 lata temu od przygody z GWT. Potem przyszedł Spring Boot razem z Javą 8 i od tamtej pory skupia się głównie na stronie backendowej, okazjonalnie wspomagając i poznając frontend. Jest fanem czystego kodu, prostych rozwiązań i dużej ilości testów."
+  thumbnailUrl: "maciej_koziara.jpg"
+  ribbon:
+    - {abbr: "Goyello", title: "Goyello", url: "https://www.goyello.com/pl"}
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/maciej-koziara-40247211a/"}
+
+- id: 32
+  name: "Krzysztof"
+  surname: "Mejka"
+  company: "Travactory"
+  bio: "Aktualnie Senior Java Developer w Travactory.com. Fan mikroserwisów i wypróbowywania nowych technologii. Próbuje każdego przekonać do konsekwentnego podejścia do pracy i programowania. Stara trzymać się  najlepszych praktyk i nie iść na skróty podczas rozwiązywania skomplikowanych problemów."
+  thumbnailUrl: "krzysztof_mejka.jpg"
+  ribbon:
+    - {abbr: "Travactory", title: "Travactory", url: "http://travactory.com/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/krzysztofmejka"}
+
+- id: 33
+  name: "Andrzej"
+  surname: "Janczak"
+  company: "Scalac"
+  bio: "Programista Scali z 3 letnim doświadczeniem produkcyjnym. Miłośnik podejścia funkcyjnego. Lubię czysty kod, catsy, proste rozwiązania skomplikowanych problemów i dobrą kawę. Specjalista Scali, Akki oraz innych narzędzi ze stacku Scali. Na chwilę obecną rozwijam się w programowaniu funkcyjnym (tak, cały czas) oraz rozproszonym. Interesuje mnie także architektura systemów oraz tematy Big/Fast data."
+  thumbnailUrl: "andrzej_janczak.jpg"
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/andrzej-janczak/"}
+
+- id: 34
+  name: "Norbert"
+  surname: "Wójtowicz"
+  bio: "Norbert Wójtowicz is a recovering empty-stack developer, whose magic 8-ball predicts that Clojure and ClojureScript will be in your future toolbox. You can find his code and ramblings in various corners of the internet, under the felicitous handle @pithyless."
+  thumbnailUrl: "norbert_wojtowicz.jpg"
+  social:
+    - {name: "twitter", link: "https://twitter.com/pithyless"}
+
+- id: 35
+  name: "Michał"
+  surname: "Gryko"
+  company: "Nordea"
+  thumbnailUrl: "michal_gryko.jpg"
+  bio: "Od dziecka zainteresowany elektroniką. Często rozkładałem rzeczy na części aby sprawdzić jak działają. Absolwent Elektroniki na Politechnice Gdańskiej, od 12 lat pracuję jako ... (tu wstaw aktualny buzzword określający sysadmina). Obecnie zatrudniony jako senior Site Reliability Engineer w Nordea Trading Technology. "
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+  social:
+    - {name: "site", link: "https://justdoit.tech"}
+
+
+- id: 36
+  name: "Bartek"
+  surname: "Nowakowski"
+  company: "Nordea"
+  thumbnailUrl: "bartek_nowakowski.jpg"
+  bio: "Absolwent informatyki i MBA, od 5 lat pełni role managerskie w sektorze IT. Pracował w firmach o różnej wielkości: od małych startupów po korporacje, które zajmowały się różnymi dziedzinami IT (firmware, sterowniki sprzętu, mobile, eCommerce, social media, big data, rynki finansowe). Aktualnie Java developer w Nordea Capital Markets dostarczającym narzędzia dla rynków finansowych. Zaangażowany w organizację Trójmiejskiego Java User Group. Interesuje się ekonomią behawioralną i psychologią."
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+  social:
+    - {name: "site", link: "http://bnowakowski.pl/"}
+
+- id: 37
+  name: "Tomasz"
+  surname: "Mazur"
+  company: "Nordea"
+  bio: "<br /><br /><br />"
+  thumbnailUrl: "tomasz_mazur.jpg"
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+
+- id: 38
+  name: "Tomasz"
+  surname: "Wnorowski"
+  company: "Nordea"
+  bio: "<br /><br /><br />"
+  thumbnailUrl: "tomasz_wnorowski.jpg"
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+
+- id: 39
+  name: "Adam"
+  surname: "Marczyk"
+  company: "Nordea"
+  thumbnailUrl: "adam_marczyk.jpg"
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+
+- id: 40
+  name: "Łukasz"
+  surname: "Szweda"
+  company: "Nordea"
+  bio: "Software developer z 15-letnim stażem. Piastował stanowiska developerskie oraz managerskie zarówno w polskich jak i zagranicznych firmach. Pracował z róznymi technologiami (embedded, mobile, full stack). Entuzjasta Pythona. Obecnie Expert Developer w Nordea odpowiedzialny za rozwój i utrzymanie narzędzi do testowania platformy Big Data."
+  thumbnailUrl: lukasz_szweda.jpg
+  ribbon:
+    - {abbr: "Nordea", title: "Nordea", url: "http://nordea.pl/it"}
+
+- id: 41
+  name: "Przemysław"
+  surname: "Bykowski"
+  title: "CEO"
+  company: "senteli.pl"
+  bio: "Programista z zawodu i pasji. CEO w senteli.pl oraz nauczyciel akademicki w Akademii Marynarki Wojennej. W wolnym czasie prowadzi bloga oraz pomaga początkującym programistom wejść na rynek IT."
+  thumbnailUrl: "przemyslaw_bykowski.jpg"
+  social:
+    - {name: "site", link: "http://senteli.pl/"}
+
+- id: 42
+  name: "Patryk"
+  surname: "Makuch"
+  company: "EPAM"
+  bio: "Współautor serwera wyszukiwawczego obsługującego miliony zarówno userów jak i requestów dziennie w WP.PL, gdzie zdobywał doświadczenie programistyczne przez wiele lat. Tworzył różnorodne aplikacje od wspomagania dla tłumaczy do aplikacji low latency dla banku i zajmował standardowe stanowiska takie jak programista, team leader czy architekt. Aktualnie w EPAM Systems członek Search Competency Center - zespołu pomagającego projektować, implementować i optymalizować wyszukiwanie w projektach tworzonych we wszystkich oddziałach firmy.
+
+  Zwolennik głębokiej wiedzy w czasach ślizgania się stackoverflowem po API-powierzchniach. Uczestnik dziesiątków konferencji. Prelegent i prowadzący warsztaty m.in. w ramach TJUG.
+
+  Wielbiciel porządnej, jasno-palonej arabiki z Kenii. Wyznawca prawdy, że \"życie jest zbyt krótkie, żeby pić złą kawę\", szczególnie jeśli pijesz jej tyle co programista."
+  thumbnailUrl: "patryk_makuch.jpg"
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/patryk-makuch-7318772b/"}
+
+- id: 43
+  name: "Jędrzej"
+  surname: "Andrykowski"
+  title: "Senior Software Developer & Team Leader"
+  company: "cinkciarz.pl"
+  bio: "Na co dzień Software Developer oraz Team Leader w firmie Cinkciarz.pl. Związany głównie ze środowiskiem Java. Pasjonat szeroko pojętej automatyzacji testów oraz narzędzi z nią związanych. Entuzjasta Domain-Driven Design. Poza IT - gitarzysta i wielbiciel muzyki ekstremalnej."
+  thumbnailUrl: "jedrzej_andrykowski.jpg"
+
+- id: 44
+  name: "Karol"
+  surname: "Lotkowski"
+  company: "Travactory"
+  thumbnailUrl: "karol_lotkowski.jpg"
+  bio: "Karol to programista z 10-letnim doświadczeniem. Dostarczał rozwiązania dla branż takich jak: e-commerce, turystyka online, ubezpieczeniowa, telekomunikacyjna, bankowa, informacyjna oraz media społecznościowe. Związany z techniczną oraz biznesową stroną realizowanych projektów. Pełnił wiele ról od software developera, team leadera, scrum mastera, trenera po architekta i ewangelistę nowych technologii. Entuzjasta metodyk Agile (certyfikowany Scrum Master) oraz zwolennik firm o płaskiej strukturze.
+
+  Pasjonat edukacji online, rekrutacji w IT oraz technik zarządzania czasem. Uzależniony od słuchania podcastów oraz audiobooków.
+
+  Obecnie rozwija oprogramowanie realizujące rezerwację oraz sprzedaż biletów lotniczych w Travactory N.V.. Jako trener infoShare Academy przekazuje zdobyte doświadczenie osobom rozpoczynającym swoją przygodę z programowaniem."
+  ribbon:
+    - {abbr: "Travactory", title: "Travactory", url: "http://travactory.com/"}
+  social:
+    - {name: "site", link: "https://www.linkedin.com/in/karollotkowski/"}
+
+- id: 45
+  name: "Jarek"
+  surname: "Bela"
+  company: "Travactory"
+  thumbnailUrl: "jarek_bela.jpg"
+  bio: "Jestem programistą od ponad 10 lat od początku związanym z JVM. Dotychczas w swojej karierze zawodowej miałem okazję i (nie zawsze) przyjemność pracować między innymi z EJB3, Spring Framework >= 3, AngularJS, nodeJS, RoR oraz programować w Java, Kotlin, Scala, Ruby, TypeScript, Groovy i Python.
+
+  Obecnie w firmie Travactory jestem odpowiedzialny za rozwój systemu w architekturze mikro serwisowej. Dbam o to aby tworzony przez nas produkt spełniał najwyższe standardy systemu rozproszonego. W tym celu wykorzystuję m. in. narzędzia dostarczane przez Spring Cloud, Netflix oraz Docker Cloud.
+
+  Poza pracą dla Travactory współtworzę firmę MIJA Software specjalizującą się w technologiach związanych z JVM oraz Python. W czasie wolnym poświęcam się grze w koszykówkę."
+  ribbon:
+    - {abbr: "Travactory", title: "Travactory", url: "http://travactory.com/"}
+  social:
+    - {name: "linkedin", link: "https://www.linkedin.com/in/jarosław-bela"}
+
+- id: 46
+  name: "Bartosz"
+  surname: "Markowski"
+  company: "Travactory"
+  thumbnailUrl: "bartosz_markowski.png"
+  bio: "Programista od 5 lat, od 3,5 związany z travactory. Na co dzień programista Javascriptu/RoR, okazjonalnie Javy. Po godzinach fan Elixira, komiksów i planszówek."
+  ribbon:
+    - {abbr: "Travactory", title: "Travactory", url: "http://travactory.com/"}
+
+- id: 47
+  name: "Marek"
+  surname: "Piechut"
+  company: "DayOne"
+  title: "Unicorn"
+  bio: "Programista od zawsze. Zawodowo od ponad 10 lat związany z Javą, Groovym, Javascriptem i wszystkim wokół. W małych i dużych firmach tworzyłem systemy, od których zależało bardzo wiele i takie od których prawie nic. Ciągle w poszukiwaniu nowej wiedzy i technologii a także wygrzebywania diamentów z tego wszystkiego, co już było. Uwielbiam kasowanie setek linii kodu i zastępowanie go 1 regexpem. Od kilku lat zakochany w programowaniu funkcyjnym i nowoczesnym Javascripcie."
+  thumbnailUrl: marek_piechut.jpg
+  ribbon:
+    - {abbr: "DayOne", title: "DayOne", url: "https://dayone.pl/"}
+  social:
+    - {name: "twitter", link: "https://twitter.com/bartekwitczak"}
+
+- id: 48
+  name: "Piotr"
+  surname: "Pasich"
+  bio: "Senior software developer, specjalizuje się w tworzeniu aplikacji klasy enterprise opartych o frameworki Symfony 2, Zend i Laravel. Ekspert w optymalizacji kodu oraz baz danych. Aktywny członek społeczności PHP, szkoleniowiec, prelegent i bloger. Zend Certified Engineer i SensioLabs Certified Symfony Developer."
+  thumbnailUrl: piotr_pasich.jpg
+
+- id: 49
+  name: "Marcin"
+  surname: "Dymek"
+  company: "Radmor"
+  bio: "Marcin jest projektantem i programistą aplikacji natywnych oraz wbudowanych, używanych zarówno na rynku cywilnym jak i zbrojeniowym. Od 8 lat pracuje w Biurze Rozwoju RADMOR S.A. należącym do grupy firm WB Group - największej prywatnej grupy przemysłowej pracującej na rzecz obronności państwa."
+  thumbnailUrl: marcin_dymek.jpg
+  ribbon:
+    - {abbr: "Radmor", title: "Radmor", url: "http://www.radmor.com.pl/pol/Praca"}
+
+- id: 50
+  name: "Mateusz"
+  surname: "Ostaszewski"
+  company: "Radmor"
+  bio: "Mateusz jest programistą w Biurze Rozwoju w firmie RADMOR S.A. Lubi uczyć się nowych rzeczy a także dzielić się swoją wiedzą z innymi. Prywatnie lubi podróżować oraz odwiedzać zapomniane miejsca historyczne."
+  thumbnailUrl: mateusz_ostaszewski.jpg
+  ribbon:
+    - {abbr: "Radmor", title: "Radmor", url: "http://www.radmor.com.pl/pol/Praca"}
+
+- id: 51
+  name: "Wojciech"
+  surname: "Kozłowski"
+  company: "Radmor"
+  thumbnailUrl: "wojciech_kozlowski.jpg"
+  bio: "Wojciech Kozłowski jest kierownikiem pracowni Testowania oprogramowania w Biurze Rozwoju  RADMOR. Mówi o sobie krótko: \"Elastyczność, optymalizacja i niezawodność to cele, do których dążę w pracy nad rozwojem oprogramowania\". Głównym obszarem moich doświadczeń i zainteresowań jest szeroko pojęte \"Quality Assurance\" i \"Continuous integration\". Prywatnie jestem pasjonatem sportu i górskich wędrówek."
+  ribbon:
+    - {abbr: "Radmor", title: "Radmor", url: "http://www.radmor.com.pl/pol/Praca"}
+
+- id: 52
+  name: "Kamil"
+  surname: "Szymański"
+  company: "Pragmatic Coders"
+  thumbnailUrl: "kamil_szymanski.png"
+  bio: "Software developer, entuzjasta JVM i open-source, rozwija platformę inwestycyjną D2C @ Pragmatic Coders"
+
+- id: 56
+  name: "Paweł"
+  surname: "Szczerbicki"
+  company: "Arc Software"
+  title: "Software Architect"
+  bio: "Programista skupiający się głównie na technologiach WEB opartych na chmurze, zarówno od strony front-endowej jak i back-endowej. Prywatnie zajmuje się prowadzeniem szkoleń oraz tworzeniem aplikacji webowych zarówno dla klientów zewnętrznych jak i realizację własnych pomysłów, w takich obszarach jak: Java, Spring, Angular, NodeJs, Microservices, Serverless oraz Cloud, a także Software architecture czy NoSQL Databases, W wolnych chwilach uczy się latać"
+  thumbnailUrl: pawel_szczerbicki.jpg
+  social:
+    - {name: "twitter", link: "https://twitter.com/SzczerbickiP"}
+    - {name: "github", link: "https://github.com/pawelszczerbicki"}
+    - {name: "linkedin", link: "https://www.linkedin.com/in/szczerbicki-pawel/"}

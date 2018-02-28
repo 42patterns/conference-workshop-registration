@@ -1,0 +1,87 @@
+-
+  group: "Partnerzy platynowi"
+  elements:
+    - {
+        name: "Dynatrace",
+        description: "Dynatrace",
+        text: "Dynatrace Polska jest światowym liderem na rynku zarządzania wydajnością aplikacji (ang. Application Performance Management). Rozwiązuje problemy wtedy, kiedy ma to znaczenie – w czasie rzeczywistym, umożliwiając wgląd w wydajność aplikacji w sposób, który pozwoli osiągnąć cyfrowy sukces. Oprogramowanie Dynatrace wyznacza nowy standard w dziedzinie wydajności aplikacji komputerowych, dostarczając kompleksowe rozwiązanie wspierane przez sztuczną inteligencję.
+
+        Technologiczny oddział Dynatrace powstał w Gdańsku w 1997 roku i przez lata urósł do wielkości blisko 200 inżynierów. Obecnie stacjonuje w biurze Alchemia Platinum.",
+        link: "http://jobs.dynatrace.pl/",
+        imageUrl: "dynatrace.png"
+      }
+    - {
+        name: "Nordea",
+        description: "Nordea Bank AB SA Oddział w Polsce",
+        text: "Nordea Bank AB SA Oddział w Polsce wchodzi w skład Grupy Nordea, największej skandynawskiej instytucji finansowej, zatrudniającej ponad 30 000 osób na całym świecie.
+
+        W skład polskiego oddziału wchodzi pion IT, zlokalizowany w Trójmieście oraz centrum operacyjne w Łodzi, obsługujące transakcje dla skandynawskich jednostek banku. Liczba pracowników w obydwu pionach wynosi ponad 2000 osób. wchodzi Od października uruchomiliśmy także biuro w Warszawie.
+
+        Pion IT w Nordea na co dzień realizuje projekty, których uczestnicy są ulokowani w różnych miejscach w Europie – w Kopenhadze,  Sztokholmie, Helsinkach i Oslo.  IT w Polsce dostarcza kompleksowe rozwiązania w zakresie utrzymania i rozwoju platform i systemów informatycznych, a obecnie uczestniczy we wdrożeniu jednego z trzech największych systemów bankowych na świecie.
+
+        Nordea Bank AB SA Oddział w Polsce planuje dalszy wzrost zatrudnienia. Wśród poszukiwanych kandydatów są zarówno absolwenci studiów wyższych rozpoczynający ścieżkę kariery, jak i eksperci o ugruntowanej wiedzy informatycznej",
+        link: "http://nordea.pl/it/",
+        imageUrl: "nordea.png"
+      }
+
+-
+  group: "Partner merytoryczny"
+  elements:
+    - {name: "Travactory", description: "Travactory", link: "http://www.travactory.com/#job-offer", imageUrl: "travactory.png"}
+
+-
+  group: "Partner srebrny"
+  elements:
+    - {
+      name: "Radmor",
+      description: "Radmor",
+      text: "RADMOR to przedsiębiorstwo o długoletniej historii sięgających 1947 roku. Prowadzi działalność na potrzeby obronności i bezpieczeństwa państwa. To producent i dostawca nowoczesnych urządzeń łączności dla wojska, w tym radiostacji programowalnych SDR, i radiotelefonów dla służb cywilnych. Od 2011r RADMOR wchodzi w skład WB GROUP - największej prywatnej grupy kapitałowej w polskim przemyśle obronnym.
+
+      RADMOR uczestniczy w europejskich programach badawczych. Między innymi bierze udział w europejskim programie ESSOR (European Secure Software defined Radio) mającym za zadanie opracowanie standardu europejskiego radia programowalnego, umożliwiającego współpracę systemów łączności wojsk różnych państw UE.
+
+      Wielokrotnie firma stawiana była w gronie najbardziej innowacyjnych firm. Specyficzne wymagania klientów krajowych i zagranicznych, postęp w elektronice, narzuca konieczność ciągłej nauki, zmian i podnoszenia jakości oferowanego sprzętu.",
+      link: "http://www.radmor.com.pl/pol/Praca",
+      imageUrl: "WB_Radmor_logoRGB.jpg"
+    }
+    - {name: "Alior Bank", description: "Alior Bank", link: "https://www.aliorbank.pl/dodatkowe-informacje/kariera/aktualne-oferty-pracy.html", imageUrl: "alior.png"}
+    - {name: "Software Development Academy", description: "Software Development Academy", link: "http://sdacademy.pl/zostan-trenerem-sda/", imageUrl: "sda.png"}
+
+-
+  group: "Patronat honorowy"
+  elements:
+    - {name: "Marszałek Województwa Pomorskiego", description: "Patronat Honorowy Marszałka Województwa Pomorskiego", link: "http://pomorskie.eu", imageUrl: "marszalek.png"}
+-
+  group: "Patroni medialni"
+  elements:
+    - {name: "investGDA", description: "investGDA", link: "https://investgda.pl", imageUrl: invest_gda.png}
+    - {name: "Live More", description: "Live more", link: "http://livemorepomerania.com/", imageUrl: live_more.png}
+    - {name: "JUG Toruń", description: "JUG Toruń", link: "https://www.meetup.com/pl-PL/Torun-JUG/", imageUrl: jug_torun.png}
+    - {name: "JUG Trójmiasto", description: "JUG Trójmiasto", link: "http://twitter.com/JUGTricity/", imageUrl: jug-trojmiasto.png}
+    - {name: "Inkubator Starter", description: "Inkubator Starter", link: "http://www.inkubatorstarter.pl/", imageUrl: "starter.png"}
+    - {name: "Magazyn Programista", description: "Magazyn Programista", link: "https://programistamag.pl/", imageUrl: "magazyn-programista.jpg"}
+    - {name: "Programista na Swoim", description: "Programista na Swoim", link: "http://programistanaswoim.pl/", imageUrl: "programista-na-swoim.png"}
+    - {name: "Radio Gdańsk", description: "Radio Gdańsk", link: "https://radiogdansk.pl/", imageUrl: "radio_gdansk.png"}
+    - {name: "Trójmiasto.pl", description: "Trójmiasto.pl", link: "https://trojmiasto.pl/", imageUrl: "trojmiasto_pl.png"}
+    - {name: "Crossweb", description: "Crossweb", link: "https://crossweb.pl/", imageUrl: "crossweb.png"}
+    - {name: "Just Join IT", description: "Just Join IT", link: "https://justjoin.it/", imageUrl: "jjit.png"}    
+    - {name: "itfind", description: "itfind", link: "https://itfind.pl/", imageUrl: "itfind.png"}
+    - {name: "Gazeta Wyborcza", description: "Gazeta Wyborcza", link: "https://gazeta.pl/", imageUrl: "wyborcza.png"}
+
+# -
+#   group: "With support of"
+#   elements:
+#     - {name: "Google", description: "Google", link: "https://www.google.com.ua/intl/en/about/", imageUrl: "google.svg", width: "120px"}
+#     - {name: "GDG Lviv", description: "GDG Lviv - Open and volunteer geek community", link: "http://lviv.gdg.org.ua", imageUrl: "gdg-lviv.svg", width: "120px"}
+#     - {name: "GDG[x]", description: "GDG[x] - Yeah, we can fix that", link: "https://github.com/gdg-x", imageUrl: "gdg-x.svg", width: "120px"}
+# -
+#   group: "Information partners"
+#   elements:
+#     - {name: "Google", description: "Google", link: "https://www.google.com.ua/intl/en/about/", imageUrl: "google.svg"}
+#     - {name: "GDG Lviv", description: "GDG Lviv - Open and volunteer geek community", link: "http://lviv.gdg.org.ua", imageUrl: "gdg-lviv.svg"}
+#     - {name: "GDG[x]", description: "GDG[x] - Yeah, we can fix that", link: "https://github.com/gdg-x", imageUrl: "gdg-x.svg"}
+#     - {name: "Google", description: "Google", link: "https://www.google.com.ua/intl/en/about/", imageUrl: "google.svg"}
+#     - {name: "GDG Lviv", description: "GDG Lviv - Open and volunteer geek community", link: "http://lviv.gdg.org.ua", imageUrl: "gdg-lviv.svg"}
+#     - {name: "GDG[x]", description: "GDG[x] - Yeah, we can fix that", link: "https://github.com/gdg-x", imageUrl: "gdg-x.svg"}
+#     - {name: "Google", description: "Google", link: "https://www.google.com.ua/intl/en/about/", imageUrl: "google.svg"}
+#     - {name: "GDG Lviv", description: "GDG Lviv - Open and volunteer geek community", link: "http://lviv.gdg.org.ua", imageUrl: "gdg-lviv.svg"}
+#     - {name: "GDG[x]", description: "GDG[x] - Yeah, we can fix that", link: "https://github.com/gdg-x", imageUrl: "gdg-x.svg"}

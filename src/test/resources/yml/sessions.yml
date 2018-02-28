@@ -1,0 +1,772 @@
+meta:
+  complexity:
+      - {title: "Wprowadzenie"}
+      - {title: "Coś już tam trzeba wiedzieć"}
+      - {title: "Rozpracowujemy niuanse"}
+      - {title: "Expert - krew, pot i łzy"}
+  sessiontype:
+      - {title: "Warsztat", color: "#90be4e"}
+      - {title: "Deep dive", color: "#03a9f4"}
+      - {title: "Keynote", color: "#e91e63"}
+list:
+  - id: 1001
+    title: "Przerwa kawowa"
+    place: "Atom Club"
+    service: true
+    description: "Kawa, napoje oraz przekąski bądą także dostępne podczas przerw w sesjach (w połowie czasu trwania sesji)"
+    tags: []
+  - id: 1002
+    title: "Przerwa lunchowa"
+    place: "Atom Club"
+    service: true
+    tags: []
+  - id: 1003
+    title: "Meet & Greet"
+    place: "T29"
+    service: true
+    tags: []
+    description: "To ten moment gdy łapiesz piwo i rozmawiasz z uczestnikami, trenerami."
+  - id: 9990
+    title: "Keynote"
+    place: "Atom Club"
+    type: 2
+    tags: []
+    service: true
+  - id: 9991
+    title: "Sesja Deep Dive #1"
+    place: ""
+    type: 1
+    tags: []
+    service: true
+  - id: 9992
+    title: "Sesja Deep Dive #2"
+    place: ""
+    type: 1
+    tags: []
+    service: true
+  - id: 9993
+    title: "Sesja warsztatowa"
+    place: "Skybox - loże biznesowe"
+    type: 0
+    tags: []
+    service: true
+
+  - id: 41
+    title: "Masz 168 godzin, co z nimi zrobisz?"
+    description: "Masz 168 godzin w tygodniu. Co z nimi robisz? Czy wiesz jak spędzasz czas? A może masz tylko iluzję i wrażenie, że czas ucieka. Pora coś z tym zrobić. NIE uczyć się zarządzania czasem, ale uczyć się świadomego, uważnego, rozważnego korzystania z czasu. Z każdej chwili. Tak, by doprowadzić do sytuacji, gdy każda minuta będzie twoim świadomym wyborem. Nie nauczę cię sztuczek, bo w nie nie wierzę. Wierzę w naukę i naukowe sposoby szlifowania rzeczywistości. Nie dowiesz się więc niczego o wielozadaniowości i wyskrobywaniu minut w ciągu dnia. Dowiesz się wiele o tym, co jest ważne dla ciebie. I jak na to znaleźć świadomie czas. Poznasz mechanizmy pro-krastynacji, dowiesz się dlaczego sama motywacja to zdecydowanie za mało i dlaczego wizualizowanie sukcesu, to najgłupsza technika, którą propagują bieda-coachowie."
+    type: 2
+    speakers: [53]
+    complexity: 0
+    tags: []
+
+  - id: 3
+    title: "Co gryzie świadomego programistę DDD?"
+    description: "W swojej pracy spotykając dziesiątki zespołów zauważam wzorce pytań/dylematów/rozterek jakie pojawiają wraz ze wzrostem doświadczenia i świadomości zespołu. Na pewnym poziomie zaawansowania wszyscy zadają te same pytania:
+
+      - jak określić granicę agregatów?
+
+      - jak opracować stabilne API?
+
+      - czym kierować się przy modularyzacji?
+
+      - a co ze smutnym CRUDem, którego też mamy?
+
+      - dlaczego byznes nie chce z nami rozmawiać?
+
+      - jak być partnerem a nie podwykonawcą?
+
+      Tak na prawdę pytania te są ogólne a metodyki (jak np. DDD) jedynie szybciej do nich doprowadza. Podczas prezentacji przyjrzymy się tym typowym pytaniom na poziomie modelu, architektury i organizacji - spróbuję odpowiedzieć na nie w postaci konkretnych technik i rozwiązań."
+    type: 2
+    speakers: [5]
+    tags: []
+
+  - id: 1
+    title: "JVM: przez dziurkę od klucza"
+    description: "JVM to złożona maszyna, która napędza nasze systemy. Codziennie w pocie czoła przerzuca terabajty obiektów pomiędzy kolejnymi generacjami w GC, generuje strumienie optymalnego kodu skompilowanego przez jeden z kompilatorów JIT, w międzyczasie próbując dogadać się z systemem operacyjnym. Jednak nie zawsze w naszej maszynowni wszystko przebiega zgodnie z planem. Gdzie szukać informacji? Jak odczytywać i interpretować wartości metryk? Kiedy winny jest JVM, nasza aplikacja, a w jakim przypadku system operacyjny?
+
+    Podczas tej sesji postaram się pokazać dostępne narzędzia, magiczne przełączniki i dostępne rozwiązania potrzebne w pracy każdego \"kryminologa\" JVM. Sesja będzie przeznaczona dla osób, które zaczynają przygodę z optymalizacją JVM. Porozmawiamy o zapisywaniu zdarzeń z JVM, narzędziach ukrytych w JDK,w tym także Java Mission Control i Flight Recorder i zobaczymy jak Java płonie :). Nie zapomnimy też o narzędziach dostępnych w systemie operacyjnym Linux."
+    type: 1
+    speakers: [3]
+    tags: [Java, JVM, "Machine code", "Assembly", "Wydajność aplikacji"]
+    complexity: 3
+
+  - id: 2
+    title: "O optymalizacji MongoDB przykładów kilka"
+    description: "MongoDB to w ostatnich latach jedna z najpopularniejszych NoSQL'owych baz danych. Jak każda baza obiecuje być szybka, niezawodnia i skalowalna. Jednak jak pokazuje Problem Wyciekającej Abstrakcji (https://en.wikipedia.org/wiki/Leaky_abstraction) nie da się tego osiągnąć bez znajomości niuansów i wewnętrznej implementacji (a przynajmniej wiedzy o tym, jak działa dane narzędzie poniżej publicznego api).
+
+    Na warsztacie przyjrzymy się temu jak poszukiwać wąskie gardła, jak czytać explain() i na co zwracać uwagę. Dokładnie przyjrzymy się indeksom. Dowiemy się jak najlepiej wykorzystywać indeksy do sortowania, dlaczego tak ważna jest kolejność pól w indeksie oraz jakie są zasady, którymi powinniśmy się kierować tworząc indeksy.
+
+    Aby dodać łyżkę dziegciu do beczki miodu rzucimy okiem na ciemniejszą stronę indeksów - zasobożerność i to jak wpływają na wydajność zapisów.
+
+    Oprócz tego zobaczymy kilka trików z klastrami (replica set) oraz na co zwrócić uwagę przy używaniu shardingu."
+    type: 0
+    speakers: [4]
+    tags: [NoSQL, "Bazy danych", "Wydajność aplikacji"]
+    complexity: 2
+
+  - id: 4
+    title: "Wprowadzenie do Domain-Drived Design na przykładach"
+    description: "Przejdziemy przez przykład aplikacji DDD na podstawie, której wytłumaczę najważniejsze koncepty Domain-Drived Design oraz popularne techniki towarzyszące jak:
+    <ul>
+    <li>CQRS
+    <li>CRUD segregation
+    <li>Hexagonal Architecture
+    <li>Knowledge Crunching
+    <li>Event Storming
+    <li>Domain Story
+    <li>Ubiquitous language
+    <li>Domain Model
+    <li>Invariant
+    <li>Aggregate
+    <li>Domain Event
+    <li>Value Object
+    <li>Bounded Context
+    <li>Context Map
+    </ul>"
+    type: 1
+    speakers: [7]
+    tags: [Architektura, DDD]
+    complexity: 1
+
+  - id: 5
+    title: "Sesja Event Storming-u"
+    description: "Na sesji zapoznam was z notacją Event Storming-u, rolą warsztatów ES w procesie zwinnego wytwarzania oprogramowania oraz możliwymi zastosowaniami w waszej codziennej pracy.
+
+    Zastosujemy Event Storming Big Picture, Design Level oraz przyjrzymy się relacji modelu ES z kodem źródłowym."
+    type: 0
+    speakers: [7]
+    tags: [Architektura, DDD]
+    complexity: 1
+
+  - id: 6
+    title: "Docker - wstępniaczek"
+    description: "Dzięki zastosowaniu dockera możemy w prosty sposób zapewnić izolację serwisów, zwiększając tym samym bezpieczeństwo i stabilność aplikacji. Podejście kontenerowe umożliwia nam sprawne i pełne odtworzenie środowisk produkcyjnych w każdym miejscu (nawet na swoim laptopie). Poznasz technologię, która rozwiąże większość problemów, jakie masz dzisiaj ze środowiskami dev/test i prod. W prosty i łatwy sposób będziesz w stanie dostarczać kolejne \"paczki\" z softem do klienta oraz co najważniejsze, będziesz miał pewność, że jak \"działa lokalnie to zadziała też na produkcji\" :)
+
+    Trener ma ponad 3 letnie doświadczenie z dockerem, był odpowiedzialny za zdockeryzowanie aplikacji czasu rzeczywistego opartej na javie składającej się z kilkudziesięciu różnych kontenerów. Nie ma pytania z docker’a na które nie zna odpowiedzi.
+
+    Podczas warsztatu poruszymy następujące kwestie:
+    <ul>
+    <li>Czym jest Docker
+    <li>Tworzenie kontenerów
+    <li>Zarządzanie kontenerami
+    <li>Dokeryzowanie aplikacji
+    <li>Zarządzanie obrazami Dockera
+    <li>Budowanie skalowalnej aplikacji
+    </ul>
+
+    <b>Oczekiwany poziom:</b> Podstawowa wiedza z zakresu linuxa - poruszanie się po konsoli, instalowanie paczek itd. Doświadczenie z dockerem mile widziane, gwarantuje że poznasz go lepiej."
+    prereq: {title: "Co trzeba mieć na kompie", list: [
+      "zainstalowaną najnowszą wersję <a href=\"https://docs.docker.com/engine/installation/\"dockera (Community Edition)</a>",
+      "<a href=\"https://docs.docker.com/compose/install/\">docker-compose</a>",
+      "zlecany linux lub os x"
+    ]}
+    type: 0
+    speakers: [18]
+    tags: [Docker, DevOps]
+    complexity: 0
+
+  - id: 8
+    title: "Clojure Koans & REST assured"
+    description: "<b>Clojure Koans</b>
+
+    Nie znasz Clojure? Nie ma problemu! Przy użyciu prostych przykładów, rozwiązując praktyczne zadania polegające na naprawieniu testów jednostkowych nauczysz się języka krok po kroku. Zapraszam wszystkich, którzy chcą spróbować sił w programowaniu funkcyjnym i zobaczyć o co na prawdę chodzi z tymi \"nawiasami\".
+
+    <b>REST assured</b>
+
+    Zbudujmy coś praktycznego! Krok po kroku, małymi zmianami zbudujemy razem prostą aplikację, która będzie odpowiadać na http. Taki typowy przypadek użycia. Pozwoli to przećwiczyć wiedzę nabytą w pierwszej części warsztatu."
+    prereq: {title: "Wymagania przed warsztatem", list: ["Laptop z nowożytna przeglądarka internetową"]}
+    type: 0
+    speakers: [13]
+    tags: [JVM, Clojure, "Języki programowania", "Programowanie funkcyjne"]
+    complexity: 1
+
+  - id: 9
+    title: "Jak przygotować swoją pierwszą prezentację (lub ulepszyć istniejące)?"
+    description: "Jeżeli nosisz w sobie kawałek wartościowej wiedzy ale zastanawiasz się jak ją \"sformatować\" w formę ciekawej prezentacji to zapraszam na mój warsztat.
+
+    Zajmiemy się jednym z kilku aspektów wystąpienia: przygotowaniem treści.
+
+    Podczas warsztatu będziemy ćwiczyć sprawdzone techniki:
+
+    - nawiązanie połączenia z odbiorcami poprzez role i problemy
+
+    - prowadzenia osi narracji poprzez pytania jakie stawiają sobie odbiorcy
+
+    - używanie \"włączającego\" języka i trybu dialogu
+
+    - kilka wzorców tworzenia prezentacji: ADEPT, Context-problem-questions-solutions, triada, łuk narracyjny, metaprogramy"
+    type: 0
+    speakers: [5]
+    tags: ["Train the trainer"]
+    complexity: 0
+
+  - id: 10
+    title: "JMX w praktyce"
+    description: "Podczas warsztatu zapoznamy się z Java Management Extensions (JMX). Zaczniemy od wprowadzenia do tematu i poznania możliwości technologii. Sprawdzimy narzędzia, które pozwalają korzystać z JMX, zobaczymy także co mają do zaoferowania popularne frameworki i biblioteki, których większość z Was już używa. Zakończymy implementacją własnych pomysłów oraz omówieniem najlepszych praktyk."
+    prereq: {title: "Wymagania do przygotowania przed warsztatem", list: [
+      "JDK Java 8", "dowolne IDE", "maven, gradle", "git"
+    ]}
+    type: 0
+    speakers: [22]
+    tags: ["Wydajność aplikacji", "Application performance by Dynatrace"]
+    complexity: 1
+
+  - id: 11
+    title: "Zawładnij (hiper)tekstem, czyli jak zbudować wyszukiwarkę?"
+    description: "Przeszukiwanie tekstu zagościło na dobre we współczesnych aplikacjach internetowych. Czy zastanawiałeś się, jak to właściwie działa? Może chciałbyś stworzyć własną wyszukiwarkę, obsługującą różnorodne formy danych wejściowych?
+
+    Poznaj Lucene - silnik wyszukiwania leżący u podstaw popularnych rozwiązań, takich jak Elasticsearch, Opengrok, czy Apache Solr. Dowiedz się, jak zbudowany jest indeks wyszukiwarki i jak sprawić, aby użytkownik szybko znalazł interesujące go dane. W ramach warsztatu zobaczysz, jak sprowadzić tekst do postaci, którą można efektywnie przeszukiwać. Nauczysz się także stosować Lucene w praktyce, krok po kroku budując własną, coraz bardziej wyrafinowaną wyszukiwarkę."
+    prereq: {title: "Wymagania przed warsztatem", list: ["laptop i podstawowa znajomość Javy"]}
+    type: 0
+    speakers: [16, 23]
+    tags: ["NoSQL", "Bazy danych", "Application performance by Dynatrace"]
+    complexity: 1
+
+  - id: 12
+    title: "Speed-up code evaluation by JIT compilation"
+    description: "Podczas prezentacji chcialbym odpowiedziec na pytanie, dlaczego generowanie kodu ma sens, gdzie mozna je zastosowac i w jaki sposob zwieksza wydajnosc. Postaram sie takze omowic obecne trendy w tej dziedzinie. Zmierzajac do celu przedstawie budowe kompilatorow oraz opisze kolejne fazy kompilacji skupiajac sie na generowaniu kodu, poczynajac od frontentu, konczac na generowaniu kodu maszynowego."
+    type: 1
+    speakers: [24, 25]
+    tags: ["Java", "JVM", "C", "Machine code", "Assembly", "Wydajność aplikacji", "Application performance by Dynatrace"]
+    complexity: 3
+
+  - id: 13
+    title: "ElasticSearch: wydajnościowe pułapki?"
+    description: "Z ElasticSearchem łatwo zacząć - ściągasz JARa, uruchamiasz, budujesz swój pierwszy indeks i bawisz się RESTowym API. Kilka sprintów dalej wdrażasz rozwiązanie na produkcję, puszczasz na nie produkcyjny ruch... i jesteś nieco zmartwiony wydajnością.
+
+    Domyślna konfiguracja indeksów ElasticSearcha nie pasuje do wszystkich przypadków użycia i w produkcyjnych warunkach prawie zawsze musimy coś zmienić. A żeby nie uciekać się do, niekiedy kosztownych, metod typu “kręcę gałami i patrzę co się dzieje” potrzebna jest odrobina wiedzy o tym, co się kryje pod maską.
+
+    W trakcie sesji postaramy się tę wiedzę dostarczyć. Na początek powiemy kilka słów o samym sercu ElasticSearcha, którym jest indeks Lucene, a następnie zrobimy przegląd parametrów konfiguracyjnych, które wpływają na wydajność, za każdym razem demonstrując co się dzieje z indeksem kiedy je zmieniamy i jak to wpływa na czas indeksowania, czas odpowiedzi na zapytanie, wielkość indeksu, czy pamięć zużytą do obsługi zapytania. Zilustrujemy te przykłady opowieściami z życia wziętymi.
+
+    Sesja jest przeznaczona dla tych, którzy zaczynają przygodę z optymalizacją ElasticSearcha i zamiast polegać na metodzie na chybił-trafił, woleliby zanurkować głębiej, zrozumieć mechanikę działania i na tej podstawie wykonać kilka bardziej precyzyjnych ruchów."
+    type: 1
+    speakers: [26, 42]
+    tags: ["NoSQL", "Bazy danych", "Wydajność aplikacji", "Application performance by Dynatrace"]
+    complexity: 2
+
+  - id: 14
+    title: "Wydajność bazy danych z perspektywy programisty"
+    description: "Na warsztacie pokażemy, co dzieje się \"na zapleczu\" relacyjnej bazy danych, kiedy wykonujemy codzienne czynności i odpowiemy na odwieczne pytanie \"dlaczego tak wolno?\".
+
+    Zaczynając od wnioskowania o samych danych, przejdziemy stopniowo do architektury bazy i typowych nieporozumień między bazą a programistą (n+1 query problem, normalizacja-denormalizacja, zarządzanie połączeniami). Po skończonym laboratorium każdy z uczestników powinien czuć się pewnie diagnozując własne problemy z bazą.
+
+    W czasie warsztatu będziemy korzystać z przygotowanego przez nas Microsoft SQL Servera, natomiast poruszane tematy są niezależne od silnika bazy danych.
+
+    wymagania przed warsztatem: laptop min 8 GB RAM (najlepiej 16GB), dowolny OS, zainstalowany VirtualBox, Java JDK8 albo Java JDK9"
+    type: 0
+    speakers: [27, 28]
+    tags: ["Bazy danych", "Wydajność aplikacji", "Application performance by Dynatrace"]
+    complexity: 2
+
+  - id: 15
+    title: "Java Mission Control + Flight Recorder — diagnozowanie problemów wydajnościowych na produkcji"
+    description: "Narzędzia JDK pozwalają na szczegółową analizę wydajności. Możemy liczyć że będą dostępne na (pre-)produkcji. Co daje nam duże możliwości diagnozowania problemów. Nawet jeśli podchodzimy do problemu ad hoc — nie planowaliśmy takiej możliwości przy wdrożeniu i instalacji.
+
+    Na warsztacie zobaczymy jak za pomocą narzędzi JDK wykryć przykładowe problemy: wyciek pamięci, nadmierna alokacja obiektów, źle skonfigurowany GC. Porównamy informacje dostępne w maszynie wirtualnej, z tym co oferuje system operacyjny. Przyjrzymy się możliwościom wizualizacji i automatyzacji."
+    type: 0
+    speakers: [28, 29]
+    tags: ["Java", "Wydajność aplikacji", "Application performance by Dynatrace"]
+    complexity: 1
+
+  - id: 16
+    title: "Introduction to Kotlin"
+    description: "Jeśli coraz częściej słyszysz o Kotlinie, ale dotąd nie miałeś(-aś) czasu bliżej się z nim zapoznać, to te warsztaty są właśnie dla Ciebie :)
+
+    Zapraszam na piękną przygodę poznawania języka, który czerpie pełnymi garściami z doświadczeń swoich wielkich poprzedników - Java, C#, Groovy, JavaScript, Scala, Swift - biorąc z nich to, co najlepsze, a odrzucając to, co słabe.
+
+    Najpierw omówimy założenia języka i motywy jakie przyświecały jego twórcom (JetBrains). A potem włączymy IntelliJ i zaczniemy się bawić :) Serio - niektóre rozwiązania są tak genialne, że wywołują niekontrolowany uśmiech na twarzy :) Przećwiczymy najważniejsze elementy składni języka i jego najciekawsze funkcjonalności, rozwiązując przy tym sporo praktycznych zadań."
+    prereq: {title: "Wymagania względem uczestników", list: [
+      "Żadna wiedza o Kotlinie nie jest wymagana (warsztaty będą od samych podstaw)",
+      "Przyda się znajomość Javy (będzie sporo porównań Kotlin vs Java)",
+      "Przynosimy laptopy z zainstalowanym IntelliJ IDEA (może być darmowa wersja Community)"
+    ]}
+    type: 0
+    speakers: [8]
+    tags: [JVM, Kotlin, "Języki programowania"]
+    complexity: 1
+
+  - id: 17
+    title: "JUnit5"
+    description: "To praktyczny warsztat adresowane jest  do programistów Java, chcących poznać najnowszą wersję frameworka do tworzenia testów jednostkowych - Junit 5.
+    JUnit 5 to całkowicie nowy projekt, oferujący wiele ciekawych funkcjonalności takich jak m.in. całkowite wsparcie dla Javy w wersji 8, wstrzykiwanie parametrów, testy parametryzowane czy w końcu nowe i API umożliwiające łatwiejsze niż kiedykolwiek rozszerzanie możliwości frameworka i dostosowanie go do potrzeb projektowych .
+    JUnit 5 daje całkowicie nowe możliwości pisania testów. Na szkoleniu poznasz podstawy Junit 5 jak również sposoby integracji z popularnymi bibliotekami takimi jak Mockito,  AssertJ czy RESTAssured. Poznasz również możliwości wykorzystania frameworku w tworzeniu testów integracyjnych dla aplikacji opartych o Spring Boot i Spring Framework.
+
+    <figure>
+    <figcaption>Zakres:</figcaption>
+      <ul>
+      <li>Gradle i Maven oraz wsparcie IDE
+      <li>Junit 5 - wprowadzenie
+      <li>Asersje oraz integracja z AssertJ
+      <li>Testowanie wyjątków
+      <li>Testy parametryzowane
+      <li>Mockito
+      <li>Spring / Spring Boot
+      <li>REST Assured
+      <li>Extension API
+      </ul></figure>"
+    type: 1
+    speakers: [30, 31]
+    tags: [Java, Testowanie]
+    complexity: 0
+
+  - id: 18
+    title: "Wprowadzenie do Scali"
+    description: "Java 10 tuż tuż i już nikogo nie będzie dziwić zapis var s=”hello”. Alternatywne języki JVM wpływają na to jak rozwija się sama Java i chciałbym was zachęcić do poznania mechanizmów w tychże językach zanim wszystko trafi do mainstreamu.
+
+    Ponieważ Java przyzwyczaiła nas do podejścia obiektowego to i od tego zaczniemy nasza naukę. Zobaczymy, że Scala jest tak naprawde bardziej obiektowa niż Java a także i wprowadza wiele ciekawych mechanizmów, które sprawdziły się na tyle, że również pojawiają się w Kotlinie.
+
+    W dalszej części - w zależności od tego co będzie chciała robić publiczność - możemy pójść dalej w system typów lub skupić się na funkcjach.
+
+    Nie trzeba znać Scali, trzeba trochę znać Javę.
+
+    Kto chętny może zapoznać się z teorią : https://pawelwlodarski.gitbooks.io/workshops/content/"
+    prereq: {title: "Przed warsztatem warto przygotować środowisko", list: [
+      "Wyciągnijcie kod : https://github.com/PawelWlodarski/workshops",
+      "Zainstalujcie https://www.jetbrains.com/idea/ community edition (bezpłatne) i później w opcjach zainstalujcie plugin do scali.",
+      "Zaimportujcie projekt (ten z wyciągniętego kodu) do IDE.",
+      "Otwórzcie klaskę \"TestingJavaClassAnswer\" (2 razy Shift otwiera okno wyszukiwania) i odpalcie (ctrl+Shift+F10). Powinien pojawić się zielony pasek."
+    ]}
+    type: 0
+    speakers: [15]
+    tags: [JVM, Scala, "Języki programowania", "Programowanie funkcyjne"]
+    complexity: 1
+
+  - id: 19
+    title: "Kubernetes od podstaw"
+    description: "W świecie systemów rozproszonych, mikrousług, zdarzeń programiście nie wystarczy już tylko wiedzieć jak napisać i zbudować kod źródłowy. W świecie, w którym system podzielony jest na kilka, kilkanaście, kilkadziesiąt lub kilkaset modułów przychodzi taki moment w którym potrzebujemy skomunikować się z innymi komponentami.
+
+    W tym samym świecie systemy produkcyjnie uruchamiamy w chmurze. I wszystko ładnie, pięknie, ale jak tutaj prowadzić development? Czy każdy programista powinien mieć swoją chmurę na którą będzie w stanie wrzucić swoje \"dziecko w trakcie aktu tworzenia\"? Czy musimy uruchamiać wszystko? Co z kosztem? W takim razie może powinienem uruchamiać swoją lokalną instancję poza chmurą? Ale czy wtedy nie istnieje ryzyko, że inny sposób wdrożenia podczas developmentu spowoduje problemy na środowiskach produkcyjnych?
+
+    A może by tak dało się prościej? Może da się tworzyć w oparciu o takie same podejście do wdrożeń na lokalnej maszynie programisty z możliwością wybrania, które elementy faktycznie powinny zostać uruchomione? Może development mógłby działać podobnie do produkcji i gwarantować taki sam sposób wdrożenia?
+
+    Chciałbym Wam pokazać jedną z alternatyw- podejście które jest wygodne zarówno od strony OPSów jak i programistów, podejście, które potrafi bardzo przyspieszyć i ułatwić development. Podejście, które pozwoli nam (programistom) i administratorom wejść w świat kultury devops i naprawdę lepiej rozumieć siebie nawzajem.
+
+    <figure><figcaption>W ramach warsztatów:</figcaption>
+    <ul>
+    <li>Skonfigurujesz poprawnie lokalne środowisko pracy z kubernetesem
+    <li>Na podstawie przygotowanych i udostępnionych obrazów dockera przykładowych aplikacji wdrożysz własne moduły na kilka różnych sposobów wraz z wyróżnieniem wad i zalet każdego z podejść
+    <li>Opracujesz automatyczny restart aplikacji na wypadek problemów i zobaczysz jak działa to w praktyce
+    <li>Skonfigurujesz na potrzeby developmentu bazy danych i inne usługi serwisowe
+    <li>Zdefiniujesz automatyczne skalowanie aplikacji
+    <li>Przeprowadzisz rolling-release przykładowej aplikacji gwarantując tzw. \"zero-downtime\"
+    <li>Dowiesz się jak rekonfigurować aplikację za pomocą config map
+    <li>Zabezpieczysz hasła i klucze do baz danych
+    </ul></figure>
+
+    Wszystko to pozwoli Ci swobodnie pracować i przygotowywać konfiguracje aplikacji za które administratorzy Cię pokochają :)"
+    prereq: {title: "Wymagania", list: [
+      "Komputer z minimum 8GB pamięci (mocno zalecane 12GB) i procesor z minimum dwoma core'ami",
+      "Skonfigurowany i zainstalowany docker",
+      "Podstawowa znajomość komend dockera (pobieranie obrazów z dockerhub, budowanie obrazów). Znajomość przygotowywania plików dockera może pomóc, ale nie jest konieczna.",
+      "Zainstalowany edytor tekstu",
+      "Konsola użytkownika i podstawowa umiejętność jej obsługi w swoim systemie operacyjnym    "
+    ]}
+    type: 0
+    tags: [Docker, DevOps, Microservices]
+    speakers: [9]
+    complexity: 1
+
+  - id: 20
+    title: "Testowanie wydajności kodu Javy za pomocą narzędzia JMH."
+    description: "Testowanie wydajności kodu. A co w tym trudnego? Wystarczy System.currentTimeMillis() przed i po wywołaniu metody i po kłopocie. Przecież sam Bruce Eckel tak robił. Okazuje że można przy okazji popełnić wiele typowych błędów, które mogą spowodować, że nasze szacowania będą bezużyteczne. W ramach sesji warsztatowej wykorzystamy narzędzie JMH do testowania naszych kawałków kodu i zobaczymy jak pomoże nam ono tych błędów uniknąć. Przy okazji poznamy też triki JIT-compilera, którymi sprawia, że java potrafi działać naprawdę szybko ale przy okazji czyni pisanie microbenchmarków zadaniem nie tak trywialnym jakby się mogło na pierwszy rzut oka wydawać.
+
+    Uczestnicy powinni umieć programować w Javie."
+    prereq: {title: "Środowisko", list: ["Dowolne IDE do Javy plus maven", "GIT"]}
+    type: 0
+    speakers: [11]
+    tags: [Java, JVM, "Wydajność aplikacji", Testowanie]
+    complexity: 1
+
+  - id: 21
+    title: "Implementacja OAuth 2.0 za pomocą Spring Boot"
+    description: "W ramach warsztatu opiszę  na czym polega bardzo popularny framework OAuth 2.0  oraz pokażę jak wygląda jego implementacja w Spring Boot oraz jak  zabezpieczyć za jego pomocą system zbudowany w oparciu o mikroserwisy
+
+    Uczestnicy powinni umieć programować w Javie."
+    prereq: {title: "Środowisko", list: ["Laptop, z IDE (pref. Intellij)", "JDK 1.8"]}
+    type: 0
+    speakers: [32]
+    tags: [Java, Microservices, Architektura, Security]
+    complexity: 1
+
+  - id: 22
+    title: "Functional concepts in JavaScript"
+    description: "Niektóre elementy programowania funkcyjne przydadzą się każdemu. Nie będziemy omawiać monad, funktorow i innych ciekawych matematycznych terminów. Zobaczymy w jaki sposób programowanie funkcyjne pomoże nam udoskonalić nasz kod, uczyni go bardziej czytelnym. Będziemy eksperymentowali z kilkoma funkcyjnymi operacjami i typami danych. Prześledzimy konstrukcje, które wykorzystujemy na co dzień i przeniesiemy je do świata programowania funkcyjnego. "
+    type: 0
+    speakers: [17]
+    tags: [JavaScript, "Języki programowania", "Programowanie funkcyjne"]
+    complexity: 1
+
+  - id: 23
+    title: "Efektywne programowanie funkcyjne w Scali"
+    description: "Odnośnie programowanie funkcyjnego oraz Scali narosło wiele mitów takich jak: \"Programowanie funkcyjne jest trudne i to sama matma\", \"Scala jest nieproduktywna, niezrozumiała i ogólnie ciężka\".
+
+    Podczas moich warsztatów, dowiesz się że to wszystko nieprawda. Pokażę Ci, że programowanie funkcyjne w Scali jest logiczne, zrozumiałe i proste.
+
+    Lecz uważaj, smakując raz potęgi ciemnej (tak na prawdę jasnej) strony mocy, być może już nigdy nie będziesz chciał wrócić do starych praktyk.
+
+    Uczymy się poprzez praktykę, więc jak najwięcej kodu będziecie pisać samodzielnie. Nie będziemy się rozwodzić nad słowami zaczynającymi się na M, F oraz A. Będą natomiast zadania w przygotowanej domenie, z problemami, z którymi spotykacie się na codzień.
+
+    Znajomość Scali nie jest konieczna, ale nie będę opisywał i zagłębiał się w podstawy samego języka. Skupimy się na zaletach i bezpieczeństwie jakie daje podejście funkcyjne.
+
+
+    Założenia i metodologia: Stosujemy metodę fake it till you make it , czyli udajemy, że doskonale znamy teorię programowania funkcyjnego i pomijamy jej wewnętrzne skomplikowanie.
+
+    Nie rozkładamy samochodu na części pierwsze. Tak jak w życiu, najpierw tylko jeździmy samochodem i ewentualnie sami wymieniamy olej, abstrahując od wewnętrznego skomplikowania mechanizmów.
+
+    Warsztaty będą bardzo praktyczne. Najpierw przedstawię wam zasadę działania elementu poprzez przykłady lub live-coding, a następnie będziecie sami implementować konkretne zadanie na przygotowanej domenie i templacie."
+    prereq: {title: "Wymagania", list: [
+      "Java 1.8",
+      "Sbt >= 1.0",
+      "Scala >= 2.12",
+      "ulubiony edytor / IDE, zalecam Intellij (prowadzący będzie korzystał z Intellij z wtyczką do scali)",
+      "pobrany kod źródłowy do workshopu (link będzie dostępny później)"
+    ]}
+    type: 0
+    speakers: [33]
+    tags: [JVM, Scala, "Języki programowania", "Programowanie funkcyjne"]
+    complexity: 1
+
+  - id: 24
+    title: "Datalog: Biting the Silver Bullet"
+    description: "\"Databases, databases everywhere! Which one do I need?\" -- You need all of them; you need none of them; you're asking all the wrong questions! This workshop is dedicated to solving the data vs code impedance mismatch with a 1970's technology (chevron mustache is optional). This workshop assumes no previous knowledge of Datalog and applies to both client and server applications. If you are interested in data pipelines, GraphQL, event-sourcing, or building maintainable data systems, you will leave a better person* (some restrictions apply, promises are not legally binding)."
+    type: 1
+    speakers: [34]
+    tags: [NoSQL, "Bazy danych", "Wydajność aplikacji"]
+    complexity: 1
+
+  - id: 25
+    title: "Wykorzystanie dockera w celu poprawy efektywności CI/CD"
+    description: "Dzięki zastosowaniu dockera możemy zwiększyć efektywność naszego CI/CD. I nie mamy tu na myśli konteneryzacji aplikacji, a wykorzystanie dockera jako składnik środowiska budującego (development toolchain). Na warsztacie wspólnie przygotujemy build plan  w narzędziu CI z pojedynczym agentem, a następnie jak w prosty sposób skalować to rozwiązanie gdy przybywa nam obciążenia - zarówno w postaci wzrostu ilości: użytkowników, build planów oraz samych buildów. Każdy z uczestników będzie rozwijał swoje środowisko CI z wykorzystaniem platformy chmurowej. W wielu firmach dużym problemem jest utrzymywanie wydajnej infrastruktury CI/CD i chcemy zaprezentować jeden ze sposobów na rozwiązanie tego wyzwania.
+
+    Podczas warsztatu poruszymy następujące kwestie:
+
+      - Tworzenie kontenera budującego przykładową aplikację
+
+      - Uruchomienie kontenera budującego w lokalnym środowisku
+
+      - Symulacja wzrostu ilości równoległych buildów
+
+      - Skalowanie kontenerów budujących z wykorzystaniem chmury"
+    prereq: {title: "Środowisko do przygotowania przed warsztatami", list: [
+      "docker w wersji &gt;= 17.09",
+      "docker-compose w wersji &gt;= 1.18"
+    ]}
+    type: 0
+    speakers: [36, 35]
+    tags: [Docker, DevOps]
+    complexity: 1
+
+  - id: 26
+    title: "Service Discovery &amp; Failure Detection with Consul (101)"
+    description: "Do you want to know how you can ensure that your microservices are resilient to network problems? Or perhaps you need to know how to keep system running even after crash of the half of the servers? Join our workshop to learn more. The workshop provides intensive introduction into service discovery tool from Hashicorp -  Consul.
+
+    Our exercises ran for the two-and-half hour and at the end, you should have basic knowledge on how to do service discovery and failure detection in highly resilient environments. We will also cover some best practices for using Consul at scale."
+    type: 0
+    speakers: [37, 38]
+    tags: [Architektura, Microservices]
+    complexity: 1
+
+  - id: 27
+    title: "React – co i jak?"
+    description: "Chcesz nauczyć się najpopularniejszej technologii do tworzenia aplikacji internetowych? Poprawić swoje umiejętności programowania w JavaScript? Skupiając się na prostocie przekazu ten kurs pokaże Ci:
+
+      - Jak zbudować dynamiczną aplikację internetową w krótkim czasie
+
+      - Jak wykorzystać create-react- app w swojej pracy
+
+      - Jak skorzystać z nowych funkcji ES6
+
+      W czasie warsztatu zbudujemy razem aplikację opartą o najnowocześniejsze technologie frontendowe, których używa m. in. Netflix, Facebook czy AirBnB."
+    type: 0
+    speakers: [39]
+    tags: [JavaScript, Frontend]
+    complexity: 0
+
+  - id: 28
+    title: "Testy integracyjne przetwarzania danych z uzyciem RobotFramework"
+    description: "Agenda
+
+      - wprowadzenie do RobotFramework
+
+      - przykłady bibliotek wbudowanych
+
+      - automatyzacja testów integracyjnych procesu  ETL"
+    prereq: {title: "Wymagania przed warsztatem", list: [
+      "zainstalowany Virtualbox, Windows/Linux, 4GB RAM"
+    ]}
+    type: 0
+    speakers: [40]
+    tags: [Testowanie]
+    complexity: 0
+
+  - id: 29
+    title: "NginX + Lua = OpenResty"
+    description: "Czy wiesz co potrafi zrobić twój serwer reverse-proxy? Wydaje Ci się, że żeby zrobić sprytny routing / uwierzytelnianie / autoryzację (niepotrzebne skreślić) między serwisami musisz go napisać w Javie lub jako moduł w C? A co jeżeli odpalanie JVM tylko po to, żeby do każdego żądania http dokleić jeden nagłówek to armata na wróbla? Zwłaszcza, że prawie na pewno gdzieś tam po drodze mijasz nginx...
+    Zapraszam Cię do świata idealnej symbiozy nginx i Lua.
+
+    Założenia co do uczestników:
+
+    Mogliby znać Dockera, bo wszystko będziemy na kontenerach odpalać. Przy czym widziałem, że są też warsztaty z niego, więc składa się idealnie...
+
+    Ani Lua ani NginX nie trzeba znać - będziemy robić warsztaty od \"zera do bohatera\" :)"
+    prereq: {title: "Jak przygotować sprzęt", list: [
+      "Linux + Docker, może być wirtualka Linuksa na Windowsie. Ulubiony edytor tekstu."
+    ]}
+    type: 0
+    speakers: [20]
+    tags: [Architektura, Microservices]
+    complexity: 1
+
+  - id: 30
+    title: "Spring Boot - szybki start"
+    description: "Spring Boot - szybki start to warsztat dla osób chcących szybko zbudować aplikacje internetową napisaną w języku Java. Minimum konfiguracji, sprawny development."
+    type: 0
+    speakers: [41]
+    tags: [Java]
+    complexity: 0
+
+  - id: 31
+    title: "Consumer-Driven Contracts w praktyce"
+    description: "Jeśli robisz mikroserwisy, udostępniasz publiczną usługę albo po prostu korzystasz z jakiegoś API to na pewno masz do czynienia z kontraktami. Kontrakt pomiędzy klientem a serwerem ma niestety to do siebie, że bardzo łatwo go złamać (co zapewne każdy z nas nie raz doświadczył). Mała poprawka na API, szybkie wdrożenie i ... BOOM! Dlaczego? Bo okazało się, że \"jeszcze któryś klient korzysta z tego co zmieniliśmy?\" Co wtedy robić? Oczywiście próbować nie dopuszczać do takiej sytuacji, jednak jak? Tą bolączkę rozwiązuje Consumer-Driven Contracts. W ramach warsztatu omówimy idee wzorca oraz co najważniejsze - narzędzie Spring Cloud Contract. Nauczymy się je konfigurować w środowisku Java + SpringBoot oraz pisać \"żywe\" kontrakty pomiędzy serwisami RESTowymi tak, aby nie dopuszczać do wprowadzania niekompatybilnych zmian pomiędzy klientem a producentem."
+    prereq: {title: "Jak przygotować sprzęt", list: [
+      "Ulubione IDE i zainstalowane JDK Javy, jednak jeśli programujesz w czymś innym to też damy jakoś radę :)"
+    ]}
+    type: 0
+    speakers: [43]
+    tags: [Architektura, Microservices, Testowanie]
+    complexity: 1
+
+  - id: 32
+    title: "Jak podzielić system na moduły"
+    description: "Nie ważne w jakim stylu architektonicznym tworzymy nasze aplikacje, (monolitycznym, mikroserwisy, serverless) warunkiem koniecznym niewystarczającym, do uzyskania takich właściwości jak: łatwość utrzymania, testowalność, reużywalność czy skalowalność, jest odpowiedni podział na moduły. Odpowiedni czyli jaki? I tu się zaczynają schody, bo przecież nigdzie nie ma do tego instrukcji. To co jest to ogólnikowe rady w stylu \"musisz znaleść bounded context\". Jak to zrobić?
+
+    Skąd będę wiedział, że zrobiłem to dobrze? Jak to odzwierciedlić w strukturze paczek? Nie mam jedynych słusznych odpowiedzi, ale podzielę się z wami tym jak ja to robię."
+    type: 0
+    speakers: [10]
+    tags: [Architektura, DDD]
+    complexity: 1
+
+  - id: 33
+    title: "Micro Services using Spring Boot 2.0 with Kotlin - krok po kroku"
+    description: "Podczas warsztatu zaprezentujemy nasze podejście do architektury mikro serwisowej wytwarzanej w oparciu o Spring Cloud oraz rozwiązania firmy Netflix.
+
+    Dowiesz się krok po kroku w jaki sposób:
+      <ol>
+        <li> Umożliwić komunikację pomiędzy mikro serwisami za pomocą service discovery (Eureka).
+        <li> Zapobiegać propagacji błędów pomiędzy mikro serwisami z wykorzystaniem wzorca circuit breaker (Hystrix + Ribbon).
+        <li> Zarządzać konfiguracją aplikacji dla wielu środowisk w architekturze rozproszonej stosując Spring Cloud Config Server.
+        <li> Śledzić komunikację pomiędzy mikro serwisami wykorzystując biblioteki Sleuth i Zipkin.
+        <li> Dowiedzieć się czy aplikacja działa prawidłowo bazując na metrykach zebranych przez Prometheus i zaprezentowanych w Grafana.
+        <li> Prawidłowo udostępnić usługę zewnętrznym klientom poprzez Spring Cloud Gateway.
+        <li> Uruchomić produkcyjnie system rozproszony opierając się na konteneryzacji (Docker).
+      </ol>
+
+    Dodatkowo będziesz miał okazję zapoznać się z reaktywnym oraz funkcyjnym podejściem do wytwarzania oprogramowania z wykorzystaniem języka Kotlin.
+
+    Warto wiedzieć przed: podstawowa znajomość koncepcji architektury mikro serwisowej oraz umiejętność programowania w dowolnym języku."
+    prereq: {title: "Przygotowanie do warsztatu to laptop z zainstalowanym", list: [
+        "JDK 1.8",
+        "Ulubionym środowiskiem programistycznym z wtyczką do Kotlina np. IntelliJ IDEA",
+        "Git",
+        "Docker >=17.12",
+        "Docker Compose >= 1.18"
+      ]}
+    type: 0
+    speakers: [44, 45]
+    tags: [Architektura, Microservices, Kotlin]
+    complexity: 1
+
+  - id: 34
+    title: "Rozwój Reactowej aplikacji w firmie"
+    description: "<figure><figcaption>Poruszenie tematów</figcaption>
+    <ul>
+    <li>Testowanie aplikacji (komponentów(shallow, mount, snapshoty, mockowanie), jest, reducery, akcje, testowanie kodu asynchronicznego)
+    <li>Storybook jako ułatwienie przy tworzeniu aplikacji, filozofia zamkniętych komponentów
+    <li>HOC(High order component) i kontekst jako sposób na DRY
+    <li>Różne sposoby dzielenia aplikacji(budowanie wielu plików przy pomocy webpacka, wspólne elemty jako odzielnie repozytorium)
+    <li>React Native jako początek aplikacji mobilnej
+    </ul></figure>"
+    prereq: {title: "Co warto zrobić przed warsztatem", list: [
+      "zainstalować środowisko programistyczne pod javascript", "wiedzieć co to react i co to komponent"
+    ]}
+    type: 0
+    speakers: [46]
+    tags: [JavaScript, Frontend]
+    complexity: 2
+
+  - id: 35
+    title: "Asynchroniczny Javascript - od callbacków przez promisy do async/await"
+    description: "To, że Javascript jest jednowątkowy, nie oznacza, że wszystko musi dziać się po kolei.
+
+    Na tych warsztatach zgłębimy dostępne techniki pisania asynchronicznego kodu w Javascript dla przeglądarek i Node.js. Zaczniemy od znanych od lat callback-ów. Zobaczymy też \"streetfighter code\" (https://pbs.twimg.com/media/Bp1IyS7CYAATIEB.jpg) do którego prowadzi ich nadużywanie. Później przejdziemy do Promise-ów i sprawimy, że nasz kod będzie znów piękny i czytelny. Zobaczymy też dostępne w nich “super moce” i jak obchodzić ich ograniczenia. Na koniec jeszcze raz przeorganizujemy nasz kod tak, żeby wykorzystywał generatory i async/await, które pojawiły się w standardzie ES2017.
+
+    o tych warsztatach powinieneś wiedzieć już który styl programowania asynchronicznego wybrać. Tak, żeby najlepiej pasował do rozwiązywanego problemu."
+    type: 0
+    speakers: [47]
+    tags: [JavaScript, "Języki programowania"]
+    complexity: 1
+
+  - id: 36
+    title: "Messaging Queues"
+    description: "Spadek wydajności aplikacji nie zawsze wymaga otworzenia nowych serwerów i skalowania. W większości przypadków wystarczy oddelegować czasochłonne lub zasobochłonne zadania na później lub do innych aplikacji. Systemy kolejkowania wspomagają ten proces dostarczając zaawansowane, skuteczne i stabilne rozwiązania, które pozbywają się najczęstrzych problemów. Podczas workshopu dowiesz się jakie systemy kolejkowania są dostępne i jak je skonfugurować. Jaka jest różnica między AMQP, a MQTT i kiedy z nich korzystać."
+    type: 0
+    speakers: [48]
+    tags: [Architektura, Microservices]
+    complexity: 0
+
+# Radmor 1
+  - id: 37
+    title: "Jedna aplikacja - wiele odsłon, czyli modułowość w NetBeans Platform"
+    description: "W proponowanym przez nas warsztacie nie chcemy się skupiać na zagadnienia tworzenia oprogramowania na różne platformy, ponieważ sama Java została stworzona już tym celu. To, co chcemy zaprezentować to możliwości środowiska NetBeans Platfrom w szybkim tworzeniu aplikacji spersonalizowanych pod różnych klientów, przy możliwie najkrótszym time to market. Środowisko NetBeans to nie tylko IDE do tworzenia innych programów, ale framework na bazie którego możemy przygotować nową aplikację. Dzięki temu developer nie musi implementować od podstaw całej aplikacji, przejmować się implementacją mechanizmów obsługi okien, obsługi plików, zarządzania modułami aplikacji oraz integracją z systemem okien OS. Wszystko to za niego robi silnik NetBeansPlatform dzięki temu zespół developerski może skupić się implementacji funkcjonalności stricte dot. wartości biznesowej aplikacji.
+
+    Firmy wytwarzające oprogramowanie często spotykają się z sytuacją, w której każdy klient ma inne wymagania w stosunku do oferowanej mu aplikacji. Warsztat pokazuje, w jaki sposób NetBeans Platform pomaga w stworzeniu jednej aplikacji dla wielu klientów z różnymi wymaganiami.
+
+    Dzięki wykorzystaniu modułowości, aplikacja posiada jeden rdzeń, który może być swobodnie personalizowany. W trakcie warsztatu poruszymy następujące tematy:
+      <ul>
+        <li> Zalety modułowości w NetBeans (czyli jak niewiele potrzeba, aby nasza aplikacja była na prawdę modułowa)
+        <li> Podejście NetBeans Platform do modułowości (czyli ile robi za nas NetBeans)
+        <li> Tworzenie i wykorzystanie modułów (czyli jak żonglować implementacjami interfejsu na żywym organizmie aplikacji)
+        <li> Dynamiczne dostosowywanie menu programu (czyli jak mieszać w dostępnych w menu opcjach oraz skrótach klawiszowych)
+        <li> Zarządzanie oknami (czyli jak bezboleśnie obsługiwać wiele okien aplikacji)
+        <li> Rozwijanie IDE (czyli jak rozwijać NetBeansowe IDE wg własnych pomysłów)
+      </ul>"
+    prereq: {title: "Przygotowanie przed warsztatem", list: [
+      "Komputer z systemem Windows w wersji co najmniej 7", "Zainstalowane środowisko Oracle JDK", "NetBeans IDE (co najmniej Java SE)"
+    ]}
+    type: 0
+    speakers: [49, 50]
+    tags: [Java]
+    complexity: 1
+
+# Radmor 2
+  - id: 38
+    title: "SDR for Dummies (SOA inside a modern military radio)"
+    description: "<b>Problem (odwieczna kwestia niekompatybilności w łączności)</b>:
+      <ul>
+        <li> Na misjach sojuszniczych NATO (np. w Afganistanie lub Iraku) wykorzystywane są różne sposoby radiokomunikacji (typowe dla różnych armii), co często jest rozwiązywane najprostszym, ale nieoptymalnym sposobem tj. żołnierze wymieniają pomiędzy sobą sprzęt, aby zapewnić sobie łączność podczas współpracy.
+        <li> Z reguły istnieją trudności (lub jest to całkowicie niemożliwe bez zmian sprzętowych) w zmianie wykorzystywanych protokołów łączności, gdyż dotychczas radiostacje były produkowane jako monolit sprzętowo-programowy (każdy producent stosował własną architekturą wewnętrzną). Szybka zmiana sposobu komunikacji wykorzystującej ten sam sprzęt (zmiana tylko za pomocą oprogramowania) jest szczególnie istotna, gdy wrogie jednostki przechwycą taki sprzęt. Wpływa to bezpośrednio na bezpieczeństwo żołnierzy i możliwość kontynuowania misji z rotacyjnym udziałem różnych armii.
+      </ul>
+
+      <b>Rozwiązanie (jak można do tego podejść)</b>:
+        <ul>
+          <li> Najnowszym trendem w sprzęcie radiokomunikacyjnym dla armii wchodzących w skład NATO jest koncepcja radia definiowanego programowo (ang. Software Defined Radio [SDR]). Technologia ta dzięki koncepcji zorientowanej na usługach (SOA) pozwala na szybsze uzyskanie interoperacyjności i uelastycznienie zakresu funkcjonalności.
+          <li> Zestandaryzowana architektura programowa definiuje wewnętrzny zestaw API, co pozwala na uruchamianie obsługi różnych protokołów komunikacyjnych na tej samej platformie sprzętowej. Oprogramowanie jest ładowane i zorganizowane wewnątrz radiostacji w standardowy sposób co umożliwia szybkie wdrażanie nowych sposobów komunikacji wymaganych podczas różnych misji wojskowych.
+          <li> Ponadto oprogramowanie komunikacyjne jest projektowane cross-platformowo, aby umożliwić portowanie modułów funkcjonalnych na platformy pochodzące od różnych producentów.
+        </ul>
+
+        <b>Warsztat (czego się nauczysz w praktyce)</b>:
+          <ul>
+            <li> Warsztat zawiera praktyczny przykład prostej implementacji architektury SDR. Poszczególne komponenty architektury, realizujące wzajemnie usługi wewnątrz platformy SDR, komunikują się za pomocą warstwy middleware'u (standard OMG CORBA).
+            <li> Warsztat prezentuje podejście do uruchamiania i testowania modułów (usług) przy wykorzystaniu popularnego framework'u GoogleTest / GoogleMock.
+            <li> W ramach warsztatu przewidziane jest wprowadzenie merytoryczne w architekturę, uruchomienie domeny SDR na maszynie wirtualnej, implementacja modyfikacji w komponencie komunikacyjnym i w komponentach usługowych (timing-, crypto-, log- service) (rozszerzenie przez uczestników warsztatu kodu źródłowego w języku C++).
+          </ul>"
+    prereq: {title: "Przed warsztatem", list: [
+      "Komputer z zainstalowanym narzędziem VirtualBox (w najnowszej dostępnej wersji na dowolnym systemie operacyjnym).",
+      "Umiejętność pracy w powłoce (shell) systemu Linux i znajomość programowania w języku C++ oraz notacji UML. Mile widziana podstawowa znajomość standardu CORBA i SCA."
+    ]}
+    type: 0
+    speakers: [51]
+    tags: ["C", Testowanie, SOA, Architektura]
+    complexity: 2
+
+  - id: 39
+    title: "Reactive APIs behind the scenes"
+    description: "W ramach sesji hands-on zobaczymy jakie problemy (i w jaki sposób) adresują reaktywne implementacje.
+
+    Przykłady oprzemy na stosie Springa (m.in.: Spring 5.0 i WebFlux, Project Reactor, Spring Boot 2.0) choć tematy będą raczej uniwersalne.
+
+    Nie będziemy się zbytnio skupiać na API (omówimy jedynie podstawowe operatory), zamiast tego skupimy się na tym jak działają reaktywne implementacje.
+
+    Poruszymy m.in. tematykę:
+      <ul>
+        <li> wykorzystania dostępnych zasobów
+        <li> strumieni
+        <li> backpressure (po stronie klienta, producenta oraz sam protokół)
+      </ul>"
+    type: 1
+    speakers: [52]
+    tags: [Java, Microservices, Architektura]
+    complexity: 1
+
+  - id: 40
+    title: "Z Typescriptem Ci do twarzy"
+    description: "Zapraszam Cię na niesamowitą podróż podczas której:
+
+      <ul>
+      <li> dowiesz się czym jest Typescript, skąd pochodzi i dokąd zmierza,
+      <li> poznasz jego najważniejsze cechy, w czym jest podobny, w czym lepszy a w czym gorszy od innych rozwiązań
+      <li> rozpoczniesz z nim pracę, w sposób praktyczny poprzez wykonywanie ćwiczeń zobaczysz dlaczego warto go używać
+      <li> zaspokoisz swój głód wiedzy co dalej poprzez wskazanie drogi jak dalej się rozwijać.
+      </ul>
+
+      A po tym wszystkim będziesz mógł odpowiedzieć na pytanie - dlaczego to właśnie Typescript jest Twoją ulubioną technologią do tworzenia rozwiązań webowych i nie tylko.
+
+      Dla kogo jest ten warsztat? Dla tych którzy znają już programowanie a chcieliby poznać TypeScript, praktycznie wykorzystać oraz dowiedzieć się co dalej.
+
+      Co dostaniesz - dużą dawkę wiedzy, masę pytań i wątpliwości a także materiały by móc dalej samodzielnie rozwijać się w tym kierunku."
+    prereq: {title: "Co potrzebujesz", list: ["komputer z przygotowanym środowiskiem (opis przygotowania środowiska dostaniesz przed warsztatem)"]}
+    type: 0
+    speakers: [12]
+    tags: [JavaScript, Frontend, "Języki programowania"]
+    complexity: 1
+
+  - id: 42
+    title: "Storytelling"
+    description: "Czy zastanawiałeś się jak prezentować, żeby ludzie słuchali Cię z uwagą? Nawet kiedy chcesz przedstawić dane liczbowe, statystyki, czy wytłumaczyć skomplikowane zagadnienia, możesz zaangażować widownię i sprawić, że będzie to dla nich ciekawe doświadczenie. Podczas warsztatów dowiesz się jak stworzyć opowieść, która wzbudzi emocje i sprawi, że Twoja prezentacja będzie interesująca. Nauczysz się jak poprzez wykorzystanie elementów Storytellingu przekazać drugiej osobie informacje w najbardziej przystępnej formie, a także będziesz miał możliwość wykorzystać zdobytą wiedzę w praktyce przygotowując krótką prezentację."
+    type: 0
+    speakers: [54]
+    tags: ["Train the trainer"]
+    complexity: 0
+
+  - id: 43
+    title: "\"Przeszczepianie wiedzy\" - czyli jak fachowo uczyć programowania?"
+    description: "Chcesz dowiedzieć się jak rozwinąć się programistycznie i spełnić dodatkowo jako człowiek? Naucz się przekazywać wiedzę innym i pomóż wejść im do magicznej krainy IT. Uczenie przyszłych programistów, ludzi, którzy naprawdę chcą zmienić swoje życia, daje ogromną radość oraz poczucie, że czynimy świat lepszym miejscem. Bądź jak Elon Musk – realizując się zawodowo (każde zajęcia to gruntowanie wiedzy, ale też spojrzenie na kodowanie z perspektywy „świeżych” w branży osób), pomożesz ambitnym osobom zrealizować ich marzenia o przygodzie w magicznym świecie programingu. Opowiem o tym, jak wyglądają spotkania z kursantami, jak z nimi rozmawiać, jak uczyć, jak słuchać i być słuchanym i wiele, wiele więcej. Jeśli lubisz pracę z ludźmi (w dosłownym rozumieniu) i chcesz nauczać zapraszam – warto."
+    type: 0
+    speakers: [55]
+    tags: ["Train the trainer"]
+    complexity: 0
+
+  - id: 44
+    title: "Projektowanie i szlifowanie komunikacji. Jak słowa działają na mózg i jak to dobrze wykorzystać."
+    description: "Komunikację można projektować – jak architekturę, kod, czy interfejs strony internetowej. Trzeba tylko wiedzieć, z grubsza jak działa mózg i jakie słowa smakują mu jak najlepsza włoska pizza, a które są tak mdłe jak szpitalny posiłek. Na warsztacie nauczymy się, jak dobrze i zwięźle sprzedawać idee. Dowiemy się, czy introwertycy robią lepsze prezentacje i sprawdzimy, czy zamek w Malborku jest lepszy niż \"stara budowla\"."
+    type: 0
+    speakers: [53]
+    tags: ["Train the trainer"]
+    complexity: 0
+
+  - id: 45
+    title: "Implementacja modeli Machine Learningowych"
+    description: "Machine Learning na dobre zagościł w developerskim świecie. Dziś do naszej dyspozycji są nie tylko dziesiątki ciekawych bibliotek, ale także dedykowane usługi online, także w formie komponentów oferowanych w ramach popularnych platform cloud. Dodając do tego różne mechaniki tworzenia rozwiązań ML czy setki gotowych algorytmów, poruszanie się w świecie uczenia maszynowego potrafi przysporzyć bólu głowy...
+
+    Podczas naszego warsztatu na przykładzie otwartych data-setów zbudujemy kilka modeli, w tym klasyfikacyjnych i regresyjnych, poznając przy tym podstawowe koncepty Machine Learningu. Zastanowimy się również nad wykorzystaniem technik ML jako warstwy Decision Support w modelach wielkoskalowych."
+    prereq: {title: "Co będzie potrzebne podczas warsztatu?",list: [
+      "Pracować będziemy w oparciu o notebooki Jupyter, laptop i przeglądarka będzie więc wszystkim, czego będziemy potrzebować"
+    ]}
+    type: 0
+    speakers: [6]
+    tags: [Architecture, "Machine Learning"]
+    complexity: 0
+
+  - id: 46
+    title: "AWS meets front-end"
+    description: "Is commit the last thing that you care about in your Front-end app ? Do you ever wondered what should happen to deliver your code to client machine, how to speed-up page loading with just few clicks or restrict access ?  In this session I'll cover all this things and show how to deploy your front-end code with A/B tests using Amazon AWS from scratch."
+    prereq: {title: "Co będzie potrzebne podczas warsztatu?",list: [
+      "Podstawowa wiedza z zakresu aplikacji WEB i zagadnien sieciowych",
+      "Dostęp do Amazon AWS (zarejestrować konto)"
+    ]}
+    type: 0
+    speakers: [56]
+    tags: [Architecture, Cloud, Frontend]
+    complexity: 0
+
+  - id: 47
+    title: "Przeszłość i przyszłość tworzenia aplikacji Internetowych"
+    description: "Będzie to swoista podróż w czasie. Zaczniemy od przeglądu dawnych problemów i technik przy tworzeniu aplikacji internetowych. Zobaczymy co się sprawdziło, a co wymagało poprawki. Określimy nowe ambicje i cele webdevów godne 2018 roku, a następnie zaprojektujemy rozwiązania i je wdrożymy.
+
+    Sesja rozpocznie się od prezentacji i niejako rozmowy z publicznością. Później będzie bardziej technicznie. Jeśli hasła microservices, Server Side Rendering, Progressive Web Applications albo TypeScript coś Ci mówią — to właśnie sesja dla Ciebie :-)
+
+    Przykłady będą głównie oparte o Node.js, React.js i Next.js, ale przedstawianie idee będą możliwie najbardziej uniwersalne i łatwe do przeniesienie na dowolne technologie."
+    type: 1
+    speakers: [19]
+    tags: [Frontend, JavaScript]
+    complexity: 0
