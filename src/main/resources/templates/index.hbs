@@ -5,10 +5,13 @@
 </head>
 <body>
 <h1>{{title}}</h1>
+    <form>
+        <input type="hidden" name="hash" value="{{hash}}">
     <ol>
-        {{#each seasons}}
-            <li>{{this}}</li>
+        {{#each schedule}}
+            <li>{{this.date}}</li>
         {{/each}}
     </ol>
+    </form>
 </body>
 </html>

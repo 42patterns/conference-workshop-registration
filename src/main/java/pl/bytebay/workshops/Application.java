@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static java.lang.System.getProperty;
+import static java.lang.System.getenv;
 import static java.util.Optional.ofNullable;
 
 public class Application {
@@ -42,7 +43,7 @@ public class Application {
         AuthenticationDetails auth = new AuthenticationDetails(ofNullable(getProperty("username")),
                 ofNullable(getProperty("password")));
         ScheduleParser parser = new ScheduleParser(new URL(GITHUB_URL).toURI());
-        Application app = new Application(ofNullable(getProperty("PORT")),
+        Application app = new Application(ofNullable(getenv("PORT")),
                 auth,
                 parser);
         app.run();
