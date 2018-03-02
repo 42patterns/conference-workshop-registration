@@ -81,28 +81,21 @@ public class Application {
         Service http = Service.ignite();
         http.port(this.port);
 
-        http.post("/:hash", (req, resp) -> {
+        http.get("/mostPopularWorkshops", (req, resp) -> {
 
-            String hash = req.params("hash");
+            Map<String, Integer> popularity = jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
+                    "( " +
+                    "select s1 as s from sessions where hash != 'test' " +
+                    "union all select s2 as s from sessions where hash != 'test' " +
+                    "union all select s3 as s from sessions where hash != 'test' " +
+                    "union all select s4 as s from sessions where hash != 'test') " +
+                    "all_sessions group by s order by count;")
+                    .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("s1", req.queryMap().value("sessions-2018-03-15-10:30"));
-            map.put("s2", req.queryMap().value("sessions-2018-03-15-14:00"));
-            map.put("s3", req.queryMap().value("sessions-2018-03-16-9:00"));
-            map.put("s4", req.queryMap().value("sessions-2018-03-16-12:30"));
-
-
-            Integer i = jdbi.withHandle(h -> h
-                    .createUpdate("INSERT INTO sessions VALUES(default, :hash, :s1, :s2, :s3, :s4, default)")
-                    .bind("hash", hash)
-                    .bindMap(map)
-                    .execute()
-            );
-
-            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
-            resp.redirect("/" + req.params("hash"));
-            return null;
-        });
+            popularity.remove(null);
+            return popularity;
+        }, new JsonTransformer());
 
         http.get("/:hash", (req, resp) -> {
             String hash = req.params("hash");
@@ -142,6 +135,31 @@ public class Application {
             map.put("schedule", schedule);
             return new ModelAndView(map, "index.hbs");
         }, new BytebayHandlebarEngine());
+
+
+        http.post("/:hash", (req, resp) -> {
+
+            String hash = req.params("hash");
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("s1", req.queryMap().value("sessions-2018-03-15-10:30"));
+            map.put("s2", req.queryMap().value("sessions-2018-03-15-14:00"));
+            map.put("s3", req.queryMap().value("sessions-2018-03-16-9:00"));
+            map.put("s4", req.queryMap().value("sessions-2018-03-16-12:30"));
+
+
+            Integer i = jdbi.withHandle(h -> h
+                    .createUpdate("INSERT INTO sessions VALUES(default, :hash, :s1, :s2, :s3, :s4, default)")
+                    .bind("hash", hash)
+                    .bindMap(map)
+                    .execute()
+            );
+
+            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
+            resp.redirect("/" + req.params("hash"));
+            return null;
+        });
+
 
         http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
         http.get("/admin/registrations", (req, resp) -> {
