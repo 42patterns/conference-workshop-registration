@@ -19,6 +19,18 @@
         .timeslot:nth-child(odd) .workshops {
             background-color: #dcdcdc;
         }
+
+        .previous {
+            padding: 30px;
+        }
+
+        .dates div:nth-child(odd) {
+            text-align: right;
+        }
+
+        .dates div:nth-child(even) {
+            text-align: left;
+        }
     </style>
 
     <title>Rejestracja na warsztaty &bull; ByteBay 2018</title>
@@ -43,6 +55,22 @@
                 <p>Rejestrujemy się tylko na warsztaty. Keynote oraz sesje deep dive nie mają ograniczeń.</p>
             </div>
         </div>
+
+        {{#if previous}}
+            <div class="content-wrapper previous col-lg-12 col-md-12">
+                <div class="col-lg-12"><h6>Sesje które wybrałeś poprzednio <span style="font-style: italic">(zawsze możesz zmienić wybór)</span></h6></div>
+                <div class="dates">
+                    <div class="col-lg-6"><b>Czwartek, 15-03-2018</b></div>
+                    <div class="col-lg-6"><b>Piątek, 16-03-2018</b></div>
+                    {{#each previous}}
+                        <div class="col-lg-6">
+                            {{this}}
+                        </div>
+                    {{/each}}
+                </div>
+
+            </div>
+        {{/if}}
 
         <form action="/{{hash}}" method="post">
             {{#each schedule}}
