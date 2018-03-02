@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
@@ -133,9 +134,29 @@ public class Application {
 
         http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
         http.get("/admin/registrations", (req, resp) -> {
-            LOG.info("Foo!");
-            resp.status(201);
-            return "Success";
+
+            RowMapper<String> mapper = (rs, ctx) ->
+                    Arrays.asList(
+                            rs.getString("hash"),
+                            rs.getString("sessions-2018-03-15-10:30"),
+                            rs.getString("sessions-2018-03-15-14:00"),
+                            rs.getString("sessions-2018-03-16-9:00"),
+                            rs.getString("sessions-2018-03-16-12:30"),
+                            rs.getString("insert_date")
+                    ).stream().collect(Collectors.joining(", "));
+
+            List<String> results = jdbi.withHandle(h -> h.createQuery("select ranked.* from " +
+                    "(" +
+                    "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
+                    ") as ranked " +
+                    "where rank = 1")
+                    .map(mapper)
+                    .collect(Collectors.toList())
+            );
+
+            resp.type("text/plain");
+
+            return results.stream().collect(Collectors.joining("\n"));
         });
 
     }
