@@ -29,7 +29,7 @@ public class BytebayHandlebarEngine extends HandlebarsTemplateEngine {
         handlebars.registerHelper("ifOver", (Helper<Integer>) (capacity, options) -> {
             Map<String, Integer> popularity = options.param(0);
             String title = options.param(1);
-            return (popularity.getOrDefault(title, 0)>capacity)?"disabled":"";
+            return (popularity.getOrDefault(title, 0) >= capacity)?"disabled":"";
         });
     }
 }
