@@ -56,15 +56,29 @@ public class Application {
         Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
                 .orElseThrow(() -> new RuntimeException("No DATABASE_URL found")));
 
-        jdbi.withHandle(h -> h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
-                "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
-                "hash VARCHAR(40)," +
-                "\"sessions-2018-03-15-10:30\" VARCHAR(255)," +
-                "\"sessions-2018-03-15-14:00\" VARCHAR(255)," +
-                "\"sessions-2018-03-16-9:00\" VARCHAR(255)," +
-                "\"sessions-2018-03-16-12:30\" VARCHAR(255)," +
-                "insert_date TIMESTAMP DEFAULT now()" +
-                ");"));
+        // migrations
+        jdbi.withHandle(h -> {
+            h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
+                    "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
+                    "hash VARCHAR(40)," +
+                    "\"sessions-2018-03-15-10:30\" VARCHAR(255)," +
+                    "\"sessions-2018-03-15-14:00\" VARCHAR(255)," +
+                    "\"sessions-2018-03-16-9:00\" VARCHAR(255)," +
+                    "\"sessions-2018-03-16-12:30\" VARCHAR(255)," +
+                    "insert_date TIMESTAMP DEFAULT now()" +
+                    ");");
+
+            h.execute("ALTER TABLE sessions " +
+                    "RENAME column \"sessions-2018-03-15-10:30\" TO s1;");
+            h.execute("ALTER TABLE sessions " +
+                    "RENAME column \"sessions-2018-03-15-14:00\" TO s2;");
+            h.execute("ALTER TABLE sessions " +
+                    "RENAME column \"sessions-2018-03-16-9:00\" TO s3;");
+            return h.execute("ALTER TABLE sessions " +
+                    "RENAME column \"sessions-2018-03-16-12:30\" TO s4;");
+        });
+
+
 
         Application app = new Application(ofNullable(getenv("PORT")),
                 jdbi,
@@ -109,11 +123,8 @@ public class Application {
             }
 
             RowMapper<List<String>> mapper = (rs, statementContext) ->
-                    Arrays.asList(
-                            rs.getString("sessions-2018-03-15-10:30"),
-                            rs.getString("sessions-2018-03-15-14:00"),
-                            rs.getString("sessions-2018-03-16-9:00"),
-                            rs.getString("sessions-2018-03-16-12:30"));
+                    Arrays.asList(rs.getString("s1"), rs.getString("s2"),
+                            rs.getString("s3"), rs.getString("s4"));
 
             Optional<List<String>> previous = jdbi.withHandle(h -> h
                     .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
@@ -136,12 +147,9 @@ public class Application {
         http.get("/admin/registrations", (req, resp) -> {
 
             RowMapper<String> mapper = (rs, ctx) ->
-                    Arrays.asList(
-                            rs.getString("hash"),
-                            rs.getString("sessions-2018-03-15-10:30"),
-                            rs.getString("sessions-2018-03-15-14:00"),
-                            rs.getString("sessions-2018-03-16-9:00"),
-                            rs.getString("sessions-2018-03-16-12:30"),
+                    Arrays.asList(rs.getString("hash"),
+                            rs.getString("s1"), rs.getString("s2"),
+                            rs.getString("s3"), rs.getString("s4"),
                             rs.getString("insert_date")
                     ).stream().collect(Collectors.joining(", "));
 
