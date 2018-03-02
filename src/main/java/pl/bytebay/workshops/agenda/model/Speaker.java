@@ -13,4 +13,6 @@ public class Speaker {
     Integer id;
     String name;
     String surname;
+    String bio;
+    String thumbnailUrl;
 }

@@ -13,6 +13,7 @@ public class Session {
     Integer id;
     String title;
     Boolean service;
+    String description;
     List<Speaker> speakers;
     SessionType sessionType;
 

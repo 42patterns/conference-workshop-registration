@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Schedule {
+public class ScheduleDay {
     LocalDate date;
     List<Timeslot> timeslots;
 

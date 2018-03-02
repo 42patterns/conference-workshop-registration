@@ -1,17 +1,145 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{{title}}</title>
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="//bytebay.pl/css/main.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <style>
+        .timeslot:nth-child(odd) .workshops {
+            background-color: #dcdcdc;
+        }
+    </style>
+
+    <title>Rejestracja na warsztaty &bull; ByteBay 2018</title>
 </head>
 <body>
-<h1>{{title}}</h1>
-    <form>
-        <input type="hidden" name="hash" value="{{hash}}">
-    <ol>
+
+    <section id="schedule" class="schedule">
+        <div class="content-wrapper col-lg-12 col-md-12">
+            <div class="text-left">
+                <h2>Złóż swoją ścieżkę ByteBay 2018</h2>
+            </div>
+            {{#if isTest}}
+                <div style="text-align: center; color: brown">
+                    <h3>To jest link testowy!!</h3>
+                </div>
+            {{/if}}
+            <div class="text-left">
+                <p>
+                    Cześć <b>{{name}}</b>, wybierz warsztaty które Ciebie interesują. Pamiętaj, że tak długo jak ta strona działa możesz zmienić wybór.
+                    Jeżeli nie wybierzesz warsztatu - możesz to zrobić podczas konferencji. Ale pamiętaj, niektóre sale mogą być już wtedy pełne.
+                </p>
+                <p>Rejestrujemy się tylko na warsztaty. Keynote oraz sesje deep dive nie mają ograniczeń.</p>
+            </div>
+        </div>
+
+        <form action="/{{hash}}" method="post">
+            {{#each schedule}}
+            <div class="schedule-table col-lg-12 col-md-12">
+                <h4 class="schedule-table-heading">{{ date }}</h4>
+
+
+                {{#each timeslots}}
+                    {{#if workshops}}
+                    <div class="timeslot" style="border: 0px !important;" itemtype="http://schema.org/subEvent">
+                        <div class="col-md-2 timeslot-label">
+                            <time class="start-time" itemprop="startDate">
+                                {{ startTime }}
+                            </time>
+                            <time class="end-time" itemprop="endDate">
+                                {{ endTime }}
+                            </time>
+                        </div>
+
+                        <div class="workshops col-md-10" style="border-bottom: 1px solid #e7e7e7; display: flex; flex-direction: column; padding: 0px;">
+                            {{#each workshops}}
+                                <div id="session-{{ id }}" class="slot col-md-10">
+                                    <div class="slot-content-wrapper col-md-11">
+                                        <div class="slot-content" style="background: none !important;">
+                                            <h5 class="slot-title" itemprop="name">
+                                                <label style="font-weight: normal !important;">
+                                                    <input type="radio" name="sessions-{{date}}-{{startTime}}" value="{{title}}" {{ifIn title previous}}> {{ title }}
+                                                </label>
+                                                <span style="cursor: pointer; color: #5195EA; font-size: 0.7em; padding-left: 10px" data-toggle="modal" data-target="#sessionDetail-{{ id }}">
+                                                    czytaj więcej  &#10140;
+                                                </span>
+                                            </h5>
+                                            <ul class="slot-speakers">
+                                                {{#each speakers}}
+                                                    <li itemprop="performer">
+                                                        <div class="speaker-img flow-img img-circle" style="background-image: url('//bytebay.pl/img/people/{{thumbnailUrl}}')"></div>
+                                                        <p class="speaker-name">{{ name }} {{ surname }}</p>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            {{/each}}
+            <button type="submit" class="btn btn-success">Wysyłam!!</button>
+        </form>
+
+    </section>
+
+    <!-- Begin Sessions Modals -->
+    <div class="modals" class="modals">
         {{#each schedule}}
-            <li>{{this.date}}</li>
+            {{#each timeslots}}
+                {{#each workshops}}
+                    <div class="modal fade text-left people-modal" id="sessionDetail-{{ id }}" tabindex="-1" role="dialog" aria-labelledby="sessionDetailLabel-{{ id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="close">
+                                        x <div class="close-mask" data-dismiss="modal"></div>
+                                    </div>
+                                    <h4>{{ title }}</h4>
+                                    <p class="theme-description">{{ breaklines description }}</p>
+                                    <hr>
+                                    <div class="people-details">
+                                        {{#each speakers}}
+                                            <div class="row">
+                                                <div class="col-md-2 col-sm-2">
+                                                    <div class="flow-img img-circle people-img" style="background-image: url('//bytebay.pl/img/people/{{thumbnailUrl}}')"></div>
+                                                </div>
+                                                <div class="col-md-10 col-sm-10 details">
+                                                    <p class="name">{{ name }} {{ surname }}
+                                                    </p>
+                                                    <p class="about">{{ bio }}</p>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/each}}
         {{/each}}
-    </ol>
-    </form>
+    </div>
+    <!-- End Speakers Modals -->
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.bytebay.workshops.agenda.model.Schedule;
+import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.agenda.model.Speaker;
 
@@ -45,13 +45,13 @@ public class ScheduleParser {
         return t.negate();
     }
 
-    public List<Schedule> schedule() {
+    public List<ScheduleDay> schedule() {
         return schedule(sessions(speakers()));
     }
 
-    public List<Schedule> schedule(Map<Integer, Session> sessions) {
+    public List<ScheduleDay> schedule(Map<Integer, Session> sessions) {
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(Schedule.Timeslot.class, new TimeslotDeserializer(sessions));
+        module.addDeserializer(ScheduleDay.Timeslot.class, new TimeslotDeserializer(sessions));
 
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory())
                 .registerModule(new JavaTimeModule())
@@ -59,8 +59,8 @@ public class ScheduleParser {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-            Schedule[] schedule = mapper.readValue(getFile(SCHEDULE_FILE), Schedule[].class);
-            return Arrays.asList(schedule);
+            ScheduleDay[] scheduleDay = mapper.readValue(getFile(SCHEDULE_FILE), ScheduleDay[].class);
+            return Arrays.asList(scheduleDay);
         } catch (IOException e) {
             LOG.warn("Error parsing {}", SPEAKERS_FILE, e);
             return Collections.emptyList();
@@ -135,6 +135,7 @@ class SessionDeserializer extends StdDeserializer<Session> {
         return Session.builder()
                 .id(sessionNode.get("id").asInt())
                 .title(sessionNode.get("title").asText())
+                .description(sessionNode.has("description")?sessionNode.get("description").asText():"")
                 .service(sessionNode.has("service") ? true : false)
                 .sessionType(sessionNode.has("type") ? Session.SessionType.getSessionTypeById(sessionNode.get("type").asInt()) : Session.SessionType.SERVICE)
                 .speakers(this.speakers
@@ -146,22 +147,22 @@ class SessionDeserializer extends StdDeserializer<Session> {
     }
 }
 
-class TimeslotDeserializer extends StdDeserializer<Schedule.Timeslot> {
+class TimeslotDeserializer extends StdDeserializer<ScheduleDay.Timeslot> {
     private final Map<Integer, Session> sessions;
 
     public TimeslotDeserializer(Map<Integer, Session> sessions) {
-        super(Schedule.Timeslot.class);
+        super(ScheduleDay.Timeslot.class);
         this.sessions = sessions;
     }
 
     @Override
-    public Schedule.Timeslot deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public ScheduleDay.Timeslot deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         JsonNode timeslotNode = p.getCodec().readTree(p);
 
-        List<Integer> workshopIds = timeslotNode.has("workshopsIds") ?
-                Utils.jsonArrayAsList(timeslotNode.get("workshopsIds")) : Collections.emptyList();
+        List<Integer> workshopIds = timeslotNode.has("workshopsIds")?
+                Utils.jsonArrayAsList(timeslotNode.get("workshopsIds")):Collections.emptyList();
 
-        return Schedule.Timeslot.builder()
+        return ScheduleDay.Timeslot.builder()
                 .startTime(timeslotNode.get("startTime").asText())
                 .endTime(timeslotNode.get("endTime").asText())
                 .workshops(this.sessions
