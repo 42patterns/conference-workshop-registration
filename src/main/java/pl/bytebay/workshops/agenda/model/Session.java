@@ -14,6 +14,7 @@ public class Session {
     String title;
     Boolean service;
     String description;
+    Integer capacity;
     List<Speaker> speakers;
     SessionType sessionType;
 

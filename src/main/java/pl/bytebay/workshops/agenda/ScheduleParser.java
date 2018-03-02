@@ -135,6 +135,7 @@ class SessionDeserializer extends StdDeserializer<Session> {
         return Session.builder()
                 .id(sessionNode.get("id").asInt())
                 .title(sessionNode.get("title").asText())
+                .capacity(sessionNode.has("capacity")?sessionNode.get("capacity").asInt():0)
                 .description(sessionNode.has("description")?sessionNode.get("description").asText():"")
                 .service(sessionNode.has("service") ? true : false)
                 .sessionType(sessionNode.has("type") ? Session.SessionType.getSessionTypeById(sessionNode.get("type").asInt()) : Session.SessionType.SERVICE)

@@ -57,26 +57,15 @@ public class Application {
                 .orElseThrow(() -> new RuntimeException("No DATABASE_URL found")));
 
         // migrations
-        jdbi.withHandle(h -> {
-            h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
-                    "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
-                    "hash VARCHAR(40)," +
-                    "\"sessions-2018-03-15-10:30\" VARCHAR(255)," +
-                    "\"sessions-2018-03-15-14:00\" VARCHAR(255)," +
-                    "\"sessions-2018-03-16-9:00\" VARCHAR(255)," +
-                    "\"sessions-2018-03-16-12:30\" VARCHAR(255)," +
-                    "insert_date TIMESTAMP DEFAULT now()" +
-                    ");");
-
-            h.execute("ALTER TABLE sessions " +
-                    "RENAME column \"sessions-2018-03-15-10:30\" TO s1;");
-            h.execute("ALTER TABLE sessions " +
-                    "RENAME column \"sessions-2018-03-15-14:00\" TO s2;");
-            h.execute("ALTER TABLE sessions " +
-                    "RENAME column \"sessions-2018-03-16-9:00\" TO s3;");
-            return h.execute("ALTER TABLE sessions " +
-                    "RENAME column \"sessions-2018-03-16-12:30\" TO s4;");
-        });
+        jdbi.withHandle(h -> h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
+                "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
+                "hash VARCHAR(40)," +
+                "\"sessions-2018-03-15-10:30\" VARCHAR(255)," +
+                "\"sessions-2018-03-15-14:00\" VARCHAR(255)," +
+                "\"sessions-2018-03-16-9:00\" VARCHAR(255)," +
+                "\"sessions-2018-03-16-12:30\" VARCHAR(255)," +
+                "insert_date TIMESTAMP DEFAULT now()" +
+                ");"));
 
 
 
@@ -126,6 +115,16 @@ public class Application {
                     Arrays.asList(rs.getString("s1"), rs.getString("s2"),
                             rs.getString("s3"), rs.getString("s4"));
 
+            Map<String, Integer> popularity = jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
+                    "( " +
+                    "select s1 as s from sessions where hash != 'test' " +
+                    "union all select s2 as s from sessions where hash != 'test' " +
+                    "union all select s3 as s from sessions where hash != 'test' " +
+                    "union all select s4 as s from sessions where hash != 'test') " +
+                    "all_sessions group by s;\n")
+                    .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+
             Optional<List<String>> previous = jdbi.withHandle(h -> h
                     .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
                     .bind("hash", hash)
@@ -137,6 +136,7 @@ public class Application {
             Map<String, Object> map = new HashMap();
             map.put("hash", hash);
             map.put("previous", previous.orElse(Collections.emptyList()));
+            map.put("popularity", popularity);
             map.put("name", usernameHashmap.get(hash));
             map.put("isTest", ("test".equals(req.params("hash"))?true:false));
             map.put("schedule", schedule);
@@ -157,7 +157,7 @@ public class Application {
                     "(" +
                     "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
                     ") as ranked " +
-                    "where rank = 1")
+                    "where rank = 1 and hash != 'test")
                     .map(mapper)
                     .collect(Collectors.toList())
             );
