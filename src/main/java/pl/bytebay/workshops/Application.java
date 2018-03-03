@@ -145,8 +145,8 @@ public class Application {
 
 
             RowMapper<List<String>> mapper = (rs, statementContext) ->
-                    Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
-                            rs.getString("title_3"), rs.getString("title_4"));
+                    Arrays.asList(rs.getString("title_1"), rs.getString("title_3"),
+                            rs.getString("title_2"), rs.getString("title_4"));
 
             Optional<List<String>> previous = jdbi.withHandle(h -> h
                     .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
