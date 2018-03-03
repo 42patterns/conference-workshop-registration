@@ -78,6 +78,35 @@ public class Application {
                 "insert_date TIMESTAMP DEFAULT now()" +
                 ");"));
 
+//        /* Migrating IDs */
+//        Schedule schedule = parser.schedule();
+//        jdbi.useHandle(h -> {
+//            List<Map<String, Object>> maps = h.createQuery("select * from sessions")
+//                    .mapToMap()
+//                    .list();
+//
+//            Function<Optional<String>, Optional<Integer>> getSessionId = maybeTitle -> maybeTitle
+//                    .map(title -> schedule
+//                            .getAllSessions().values().stream()
+//                            .filter(s -> s.getTitle().equals(title))
+//                            .findFirst()
+//                            .map(Session::getId).get()
+//                    );
+//
+//            Function<Object, Optional<String>> arg = o -> Optional.ofNullable(o)
+//                    .map(Object::toString);
+//
+//            for (Map<String,Object> map: maps) {
+//                h.createUpdate("update sessions set id_1=?, id_2=?,id_3=?,id_4=? where id=?")
+//                        .bind(0, getSessionId.apply(arg.apply(map.get("title_1"))))
+//                        .bind(1, getSessionId.apply(arg.apply(map.get("title_2"))))
+//                        .bind(2, getSessionId.apply(arg.apply(map.get("title_3"))))
+//                        .bind(3, getSessionId.apply(arg.apply(map.get("title_4"))))
+//                        .bind(4, map.get("id"))
+//                        .execute();
+//            }
+//        });
+
         Application app = new Application(ofNullable(getenv("PORT")),
                 jdbi,
                 auth,
@@ -92,7 +121,7 @@ public class Application {
 
         http.get("/mostPopularWorkshops", (req, resp) -> {
 
-            List<Map<String, Object>> popularity = jdbi.withHandle(h -> h.createQuery("select s, id, count(*) from " +
+            Map<Object, Map<String, Object>> popularity = jdbi.withHandle(h -> h.createQuery("select s, id, count(*) from " +
                     "( " +
                     "select id_1 as id, title_1 as s from sessions where hash != 'test' " +
                     "union all select id_2 as id, title_2 as s from sessions where hash != 'test' " +
@@ -100,7 +129,8 @@ public class Application {
                     "union all select id_4 as id, title_4 as s from sessions where hash != 'test') " +
                     "all_sessions group by id, s order by count desc;")
                     .mapToMap()
-                    .list());
+                    .collect(Collectors.toMap(m -> m.get("id"), Function.identity()))
+            );
 
 //            popularity.remove(null);
             return popularity;
