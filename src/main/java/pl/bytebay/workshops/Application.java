@@ -127,12 +127,12 @@ public class Application {
                     "union all select id_2 as id, title_2 as s from sessions where hash != 'test' " +
                     "union all select id_3 as id, title_3 as s from sessions where hash != 'test' " +
                     "union all select id_4 as id, title_4 as s from sessions where hash != 'test') " +
-                    "all_sessions group by id, s order by count desc;")
+                    "all_sessions group by id, s order by count desc;\n")
                     .mapToMap()
                     .collect(Collectors.toMap(m -> m.get("id"), Function.identity()))
             );
 
-//            popularity.remove(null);
+            popularity.remove(null);
             return popularity;
         }, new JsonTransformer());
 
