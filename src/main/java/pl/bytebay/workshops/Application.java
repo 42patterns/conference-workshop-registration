@@ -12,6 +12,7 @@ import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.auth.AuthenticationDetails;
 import pl.bytebay.workshops.auth.BasicAuthenticationFilter;
 import pl.bytebay.workshops.view.BytebayHandlebarEngine;
+import spark.HaltException;
 import spark.ModelAndView;
 import spark.Service;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -91,17 +92,17 @@ public class Application {
 
         http.get("/mostPopularWorkshops", (req, resp) -> {
 
-            Map<String, Integer> popularity = jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
+            List<Map<String, Object>> popularity = jdbi.withHandle(h -> h.createQuery("select s, id, count(*) from " +
                     "( " +
-                    "select s1 as s from sessions where hash != 'test' " +
-                    "union all select s2 as s from sessions where hash != 'test' " +
-                    "union all select s3 as s from sessions where hash != 'test' " +
-                    "union all select s4 as s from sessions where hash != 'test') " +
-                    "all_sessions group by s order by count;")
-                    .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+                    "select id_1 as id, title_1 as s from sessions where hash != 'test' " +
+                    "union all select id_2 as id, title_2 as s from sessions where hash != 'test' " +
+                    "union all select id_3 as id, title_3 as s from sessions where hash != 'test' " +
+                    "union all select id_4 as id, title_4 as s from sessions where hash != 'test') " +
+                    "all_sessions group by id, s order by count desc;")
+                    .mapToMap()
+                    .list());
 
-            popularity.remove(null);
+//            popularity.remove(null);
             return popularity;
         }, new JsonTransformer());
 
@@ -112,15 +113,6 @@ public class Application {
                 halt(401, "Invalid hash");
             }
 
-            Map<String, Integer> popularity = jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
-                    "( " +
-                    "select title_1 as s from sessions where hash != 'test' " +
-                    "union all select title_2 as s from sessions where hash != 'test' " +
-                    "union all select title_3 as s from sessions where hash != 'test' " +
-                    "union all select title_4 as s from sessions where hash != 'test') " +
-                    "all_sessions group by s;\n")
-                    .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
             RowMapper<List<String>> mapper = (rs, statementContext) ->
                     Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
@@ -137,7 +129,7 @@ public class Application {
             Map<String, Object> map = new HashMap();
             map.put("hash", hash);
             map.put("previous", previous.orElse(Collections.emptyList()));
-            map.put("popularity", popularity);
+            map.put("popularity", popularity());
             map.put("name", usernameHashmap.get(hash));
             map.put("isTest", ("test".equals(req.params("hash"))?true:false));
             map.put("schedule", schedule.getDays());
@@ -148,28 +140,36 @@ public class Application {
         http.post("/:hash", (req, resp) -> {
 
             String hash = req.params("hash");
-
             List<String> keys = Arrays.asList("sessions-2018-03-15-10:30",
                     "sessions-2018-03-15-14:00",
                     "sessions-2018-03-16-9:00",
                     "sessions-2018-03-16-12:30");
 
-            BiFunction<Integer, String, Map<String, Object>> sessionData = (idx, key) -> {
-                Integer id = Optional.ofNullable(req.queryMap().value(key))
-                        .map(Integer::valueOf)
-                        .orElse(null);
-                String title = Optional.ofNullable(schedule.getAllSessions().get(id))
-                        .map(Session::getTitle)
-                        .orElse(null);
-                Map<String, Object> map = new HashMap<>();
-                map.put("id" + (idx+1), id);
-                map.put("title" + (idx+1), title);
-                return map;
-            };
+            Function<String, Session> sessionData = key -> Optional.ofNullable(req.queryMap().value(key))
+                    .map(Integer::valueOf)
+                    .map(id -> schedule.getAllSessions().get(id))
+                    .orElse(new Session());
 
-            Map<String, Object> map = new HashMap<>();
-            IntStream.range(0, keys.size())
-                    .forEach(i -> map.putAll(sessionData.apply(i, keys.get(i))));
+            List<Session> sessions = keys.stream()
+                    .map(sessionData)
+                    .collect(Collectors.toList());
+
+            //validation
+            Map<String, Integer> popularity = popularity();
+            if (sessions.stream()
+                    .filter(s -> Objects.nonNull(s.getId()))
+                    .filter(s -> ((popularity.getOrDefault(s.getTitle(), 0) + 1) > s.getCapacity()))
+                    .count() > 0) {
+                halt(400, "Invalid sessions data. Try again");
+                return null;
+            }
+
+
+            final Map<String,Object> map = new HashMap<>();
+            IntStream.rangeClosed(1, sessions.size()).forEach(idx -> {
+                map.put("id"+idx, sessions.get(idx-1).getId());
+                map.put("title"+idx, sessions.get(idx-1).getTitle());
+            });
 
             Integer i = jdbi.withHandle(h -> h
                     .createUpdate("INSERT INTO sessions (hash, " +
@@ -185,6 +185,7 @@ public class Application {
             );
 
             LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
+
             resp.redirect("/" + req.params("hash"));
             return null;
         });
@@ -213,6 +214,19 @@ public class Application {
 
             return results.stream().collect(Collectors.joining("\n"));
         });
+
+    }
+
+    private Map<String, Integer> popularity() {
+        return jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
+                "( " +
+                    "select title_1 as s from sessions where hash != 'test' " +
+                    "union all select title_2 as s from sessions where hash != 'test' " +
+                    "union all select title_3 as s from sessions where hash != 'test' " +
+                    "union all select title_4 as s from sessions where hash != 'test') " +
+                "all_sessions group by s;")
+                .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
     }
 }
