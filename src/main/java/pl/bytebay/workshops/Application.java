@@ -1,5 +1,6 @@
 package pl.bytebay.workshops;
 
+import com.google.common.collect.Maps;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import pl.bytebay.workshops.agenda.ScheduleParser;
 import pl.bytebay.workshops.agenda.model.Schedule;
 import pl.bytebay.workshops.agenda.model.ScheduleDay;
+import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.auth.AuthenticationDetails;
 import pl.bytebay.workshops.auth.BasicAuthenticationFilter;
 import pl.bytebay.workshops.view.BytebayHandlebarEngine;
@@ -18,7 +20,10 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
@@ -61,14 +66,16 @@ public class Application {
         jdbi.withHandle(h -> h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
                 "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
                 "hash VARCHAR(40)," +
-                "\"sessions-2018-03-15-10:30\" VARCHAR(255)," +
-                "\"sessions-2018-03-15-14:00\" VARCHAR(255)," +
-                "\"sessions-2018-03-16-9:00\" VARCHAR(255)," +
-                "\"sessions-2018-03-16-12:30\" VARCHAR(255)," +
+                "id_1 SMALLINT," +
+                "title_1 VARCHAR(255)," +
+                "id_2 SMALLINT," +
+                "title_2 VARCHAR(255)," +
+                "id_3 SMALLINT," +
+                "title_3 VARCHAR(255)," +
+                "id_4 SMALLINT," +
+                "title_4 VARCHAR(255)," +
                 "insert_date TIMESTAMP DEFAULT now()" +
                 ");"));
-
-
 
         Application app = new Application(ofNullable(getenv("PORT")),
                 jdbi,
@@ -105,19 +112,19 @@ public class Application {
                 halt(401, "Invalid hash");
             }
 
-            RowMapper<List<String>> mapper = (rs, statementContext) ->
-                    Arrays.asList(rs.getString("s1"), rs.getString("s2"),
-                            rs.getString("s3"), rs.getString("s4"));
-
             Map<String, Integer> popularity = jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
                     "( " +
-                    "select s1 as s from sessions where hash != 'test' " +
-                    "union all select s2 as s from sessions where hash != 'test' " +
-                    "union all select s3 as s from sessions where hash != 'test' " +
-                    "union all select s4 as s from sessions where hash != 'test') " +
+                    "select title_1 as s from sessions where hash != 'test' " +
+                    "union all select title_2 as s from sessions where hash != 'test' " +
+                    "union all select title_3 as s from sessions where hash != 'test' " +
+                    "union all select title_4 as s from sessions where hash != 'test') " +
                     "all_sessions group by s;\n")
                     .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+
+            RowMapper<List<String>> mapper = (rs, statementContext) ->
+                    Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
+                            rs.getString("title_3"), rs.getString("title_4"));
 
             Optional<List<String>> previous = jdbi.withHandle(h -> h
                     .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
@@ -142,15 +149,36 @@ public class Application {
 
             String hash = req.params("hash");
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("s1", req.queryMap().value("sessions-2018-03-15-10:30"));
-            map.put("s2", req.queryMap().value("sessions-2018-03-15-14:00"));
-            map.put("s3", req.queryMap().value("sessions-2018-03-16-9:00"));
-            map.put("s4", req.queryMap().value("sessions-2018-03-16-12:30"));
+            List<String> keys = Arrays.asList("sessions-2018-03-15-10:30",
+                    "sessions-2018-03-15-14:00",
+                    "sessions-2018-03-16-9:00",
+                    "sessions-2018-03-16-12:30");
 
+            BiFunction<Integer, String, Map<String, Object>> sessionData = (idx, key) -> {
+                Integer id = Optional.ofNullable(req.queryMap().value(key))
+                        .map(Integer::valueOf)
+                        .orElse(null);
+                String title = Optional.ofNullable(schedule.getAllSessions().get(id))
+                        .map(Session::getTitle)
+                        .orElse(null);
+                Map<String, Object> map = new HashMap<>();
+                map.put("id" + (idx+1), id);
+                map.put("title" + (idx+1), title);
+                return map;
+            };
+
+            Map<String, Object> map = new HashMap<>();
+            IntStream.range(0, keys.size())
+                    .forEach(i -> map.putAll(sessionData.apply(i, keys.get(i))));
 
             Integer i = jdbi.withHandle(h -> h
-                    .createUpdate("INSERT INTO sessions VALUES(default, :hash, :s1, :s2, :s3, :s4, default)")
+                    .createUpdate("INSERT INTO sessions (hash, " +
+                            "   id_1, title_1, " +
+                            "   id_2, title_2, " +
+                            "   id_3, title_3, " +
+                            "   id_4, title_4 " +
+                            ") " +
+                            "VALUES(:hash, :id1, :title1, :id2, :title2, :id3, :title3, :id4, :title4)")
                     .bind("hash", hash)
                     .bindMap(map)
                     .execute()
