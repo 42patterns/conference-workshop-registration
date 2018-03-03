@@ -12,6 +12,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.bytebay.workshops.agenda.model.Schedule;
 import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.agenda.model.Speaker;
@@ -45,11 +46,11 @@ public class ScheduleParser {
         return t.negate();
     }
 
-    public List<ScheduleDay> schedule() {
+    public Schedule schedule() {
         return schedule(sessions(speakers()));
     }
 
-    public List<ScheduleDay> schedule(Map<Integer, Session> sessions) {
+    public Schedule schedule(Map<Integer, Session> sessions) {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(ScheduleDay.Timeslot.class, new TimeslotDeserializer(sessions));
 
@@ -59,11 +60,11 @@ public class ScheduleParser {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-            ScheduleDay[] scheduleDay = mapper.readValue(getFile(SCHEDULE_FILE), ScheduleDay[].class);
-            return Arrays.asList(scheduleDay);
+            ScheduleDay[] scheduleDays = mapper.readValue(getFile(SCHEDULE_FILE), ScheduleDay[].class);
+            return new Schedule(scheduleDays);
         } catch (IOException e) {
             LOG.warn("Error parsing {}", SPEAKERS_FILE, e);
-            return Collections.emptyList();
+            return new Schedule();
         }
     }
 

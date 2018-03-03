@@ -3,6 +3,7 @@ package pl.bytebay.workshops.agenda;
 import org.hamcrest.collection.IsCollectionWithSize;
 import org.junit.Before;
 import org.junit.Test;
+import pl.bytebay.workshops.agenda.model.Schedule;
 import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.agenda.model.Speaker;
@@ -28,10 +29,15 @@ public class ScheduleParserTest {
 
     @Test
     public void should_parse_schedule() throws Exception {
-        List<ScheduleDay> scheduleDay = parser.schedule();
-        assertThat(scheduleDay, IsCollectionWithSize.hasSize(2));
-        assertThat(scheduleDay.get(0).getTimeslots(), IsCollectionWithSize.hasSize(6));
+        Schedule schedule = parser.schedule();
+        assertThat(schedule.getDays(), IsCollectionWithSize.hasSize(2));
+        assertThat(schedule.getDays().get(0).getTimeslots(), IsCollectionWithSize.hasSize(6));
+    }
 
+    @Test
+    public void should_collect_all_sessions() throws Exception {
+        Schedule schedule = parser.schedule();
+        assertThat(schedule.getAllSessions().values(), IsCollectionWithSize.hasSize(36));
     }
 
     @Test

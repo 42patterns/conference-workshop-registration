@@ -5,6 +5,7 @@ import org.jdbi.v3.core.mapper.RowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.bytebay.workshops.agenda.ScheduleParser;
+import pl.bytebay.workshops.agenda.model.Schedule;
 import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.auth.AuthenticationDetails;
 import pl.bytebay.workshops.auth.BasicAuthenticationFilter;
@@ -32,12 +33,12 @@ public class Application {
     private final AuthenticationDetails authenticationDetails;
     private final Jdbi jdbi;
     private final Map<String, String> usernameHashmap;
-    private final List<ScheduleDay> schedule;
+    private final Schedule schedule;
 
     public Application(Optional<String> maybePort,
                        Jdbi jdbi,
                        AuthenticationDetails authenticationDetails,
-                       List<ScheduleDay> schedule,
+                       Schedule schedule,
                        Map<String, String> usernameHashmap) {
         this.port = maybePort.filter(s -> s.matches("\\d+"))
                 .map(Integer::valueOf)
@@ -132,7 +133,7 @@ public class Application {
             map.put("popularity", popularity);
             map.put("name", usernameHashmap.get(hash));
             map.put("isTest", ("test".equals(req.params("hash"))?true:false));
-            map.put("schedule", schedule);
+            map.put("schedule", schedule.getDays());
             return new ModelAndView(map, "index.hbs");
         }, new BytebayHandlebarEngine());
 

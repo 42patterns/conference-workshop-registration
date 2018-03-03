@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -23,4 +24,5 @@ public class ScheduleDay {
         String  endTime;
         List<Session> workshops;
     }
+
 }
