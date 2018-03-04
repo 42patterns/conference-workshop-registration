@@ -18,6 +18,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -114,21 +115,7 @@ public class Application {
         Service http = Service.ignite();
         http.port(this.port);
 
-        http.get("/mostPopularWorkshops", (req, resp) -> {
-
-            Map<Object, Map<String, Object>> popularity = jdbi.withHandle(h -> h.createQuery("select s, id, count(*) from " +
-                    "( " +
-                    "select distinct hash, id_1 as id, title_1 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, id_2 as id, title_2 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, id_3 as id, title_3 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, id_4 as id, title_4 as s from sessions where hash != 'test') " +
-                    "all_sessions where s!='' group by id, s order by count desc;\n")
-                    .mapToMap()
-                    .collect(Collectors.toMap(m -> m.get("id"), Function.identity()))
-            );
-
-            return popularity;
-        }, new JsonTransformer());
+        http.get("/mostPopularWorkshops", (req, resp) -> popularityReport(), new JsonTransformer());
 
         http.get("/:hash", (req, resp) -> {
             String hash = req.params("hash");
@@ -153,7 +140,7 @@ public class Application {
             Map<String, Object> map = new HashMap();
             map.put("hash", hash);
             map.put("previous", previous.orElse(Collections.emptyList()));
-            map.put("popularity", popularity());
+            map.put("popularity", popularityFlatten());
             map.put("name", usernameHashmap.get(hash));
             map.put("isTest", ("test".equals(req.params("hash"))?true:false));
             map.put("schedule", schedule.getDays());
@@ -179,7 +166,7 @@ public class Application {
                     .collect(Collectors.toList());
 
             //validation
-            Map<String, Integer> popularity = popularity();
+            Map<String, Integer> popularity = popularityFlatten(hash);
             if (sessions.stream()
                     .filter(s -> Objects.nonNull(s.getId()))
                     .filter(s -> ((popularity.getOrDefault(s.getTitle(), 0) + 1) > s.getCapacity()))
@@ -241,16 +228,41 @@ public class Application {
 
     }
 
-    private Map<String, Integer> popularity() {
-        return jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
-                "( " +
-                    "select distinct hash, title_1 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, title_2 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, title_3 as s from sessions where hash != 'test' " +
-                    "union all select distinct hash, title_4 as s from sessions where hash != 'test') " +
-                "all_sessions where s!='' group by s;")
-                .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
-
+    private Map<String, Integer> popularityFlatten() {
+        return popularityFlatten("");
     }
+
+
+    private Map<String, Integer> popularityFlatten(String filter_out_hash) {
+        return popularity(filter_out_hash)
+                .stream()
+                .collect(Collectors.toMap(m -> m.get("s").toString(), m->Integer.valueOf(m.get("count").toString())));
+    }
+
+    private Map<Object, Map<String, Object>> popularityReport() {
+        return popularity("")
+                .stream().collect(Collectors.toMap(m -> m.get("id"), Function.identity()));
+    }
+
+    private List<Map<String, Object>> popularity(String filter_out_hash) {
+
+        String whereClause = Arrays.asList("test", filter_out_hash)
+                .stream()
+                .filter(not(String::isEmpty))
+                .map(s -> String.format("hash != '%s'", s))
+                .collect(Collectors.joining(" AND ", "where ", ""));
+
+        return jdbi.withHandle(h -> h.createQuery(String.format("select rank, s, id, count(*) from " +
+                "( " +
+                "select distinct hash, id_1 as id, title_1 as s, rank() over (partition by hash order by insert_date desc) as rank  from sessions %1$s  " +
+                "union all select distinct hash, id_2 as id, title_2 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s " +
+                "union all select distinct hash, id_3 as id, title_3 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s  " +
+                "union all select distinct hash, id_4 as id, title_4 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s) " +
+                "all_sessions where s!='' and rank=1 group by rank, id, s order by count desc;\n", whereClause))
+                .mapToMap()
+                .list()
+        );
+    }
+
+    static <T> Predicate<T> not(Predicate<T> p) { return p.negate(); }
 }
