@@ -118,10 +118,10 @@ public class Application {
 
             Map<Object, Map<String, Object>> popularity = jdbi.withHandle(h -> h.createQuery("select s, id, count(*) from " +
                     "( " +
-                    "select id_1 as id, title_1 as s from sessions where hash != 'test' " +
-                    "union all select id_2 as id, title_2 as s from sessions where hash != 'test' " +
-                    "union all select id_3 as id, title_3 as s from sessions where hash != 'test' " +
-                    "union all select id_4 as id, title_4 as s from sessions where hash != 'test') " +
+                    "select distinct hash, id_1 as id, title_1 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, id_2 as id, title_2 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, id_3 as id, title_3 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, id_4 as id, title_4 as s from sessions where hash != 'test') " +
                     "all_sessions where s!='' group by id, s order by count desc;\n")
                     .mapToMap()
                     .collect(Collectors.toMap(m -> m.get("id"), Function.identity()))
@@ -244,11 +244,11 @@ public class Application {
     private Map<String, Integer> popularity() {
         return jdbi.withHandle(h -> h.createQuery("select s, count(*) from " +
                 "( " +
-                    "select title_1 as s from sessions where hash != 'test' " +
-                    "union all select title_2 as s from sessions where hash != 'test' " +
-                    "union all select title_3 as s from sessions where hash != 'test' " +
-                    "union all select title_4 as s from sessions where hash != 'test') " +
-                "all_sessions group by s;")
+                    "select distinct hash, title_1 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, title_2 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, title_3 as s from sessions where hash != 'test' " +
+                    "union all select distinct hash, title_4 as s from sessions where hash != 'test') " +
+                "all_sessions where s!='' group by s;")
                 .map((rs, ctx) -> new AbstractMap.SimpleEntry<>(rs.getString("s"), rs.getInt("count")))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
