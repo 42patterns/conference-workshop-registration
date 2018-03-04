@@ -1,27 +1,22 @@
 package pl.bytebay.workshops;
 
-import com.google.common.collect.Maps;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.bytebay.workshops.agenda.ScheduleParser;
 import pl.bytebay.workshops.agenda.model.Schedule;
-import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.auth.AuthenticationDetails;
 import pl.bytebay.workshops.auth.BasicAuthenticationFilter;
 import pl.bytebay.workshops.view.BytebayHandlebarEngine;
-import spark.HaltException;
 import spark.ModelAndView;
 import spark.Service;
-import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -127,12 +122,11 @@ public class Application {
                     "union all select id_2 as id, title_2 as s from sessions where hash != 'test' " +
                     "union all select id_3 as id, title_3 as s from sessions where hash != 'test' " +
                     "union all select id_4 as id, title_4 as s from sessions where hash != 'test') " +
-                    "all_sessions group by id, s order by count desc;\n")
+                    "all_sessions where s!='' group by id, s order by count desc;\n")
                     .mapToMap()
                     .collect(Collectors.toMap(m -> m.get("id"), Function.identity()))
             );
 
-            popularity.remove(null);
             return popularity;
         }, new JsonTransformer());
 
