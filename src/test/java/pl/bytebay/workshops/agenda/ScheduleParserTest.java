@@ -23,7 +23,7 @@ public class ScheduleParserTest {
     @Before
     public void setup() throws URISyntaxException {
         parser = new ScheduleParser(
-                ScheduleParserTest.class.getResource("/yml").toURI()
+                ScheduleParserTest.class.getResource("/yml/").toURI()
         );
     }
 

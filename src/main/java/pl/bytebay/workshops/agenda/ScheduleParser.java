@@ -17,9 +17,11 @@ import pl.bytebay.workshops.agenda.model.ScheduleDay;
 import pl.bytebay.workshops.agenda.model.Session;
 import pl.bytebay.workshops.agenda.model.Speaker;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -102,17 +104,13 @@ public class ScheduleParser {
         }
     }
 
-    private InputStream getFile(String file) {
+    private InputStream getFile(String file) throws IOException {
         try {
-            if (root.getScheme().startsWith("http")) {
-                LOG.info("Opening resource {}", root.resolve(file));
-                return root.resolve(file).toURL().openStream();
-            } else {
-                LOG.info("Opening resource {}", Paths.get(root).resolve(file));
-                return Files.newInputStream(Paths.get(root).resolve(file));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            LOG.info("Opening resource {}", root.resolve(file));
+            return root.resolve(file).toURL().openStream();
+        } catch (UnknownHostException e) {
+            LOG.warn("Error resolving {}. Loading local file", root.resolve(file));
+            return getClass().getResourceAsStream("/session-data/" + file);
         }
     }
 }
