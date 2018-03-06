@@ -115,6 +115,17 @@ public class Application {
         Service http = Service.ignite();
         http.port(this.port);
 
+        http.after("/mostPopularWorkshops", (request, response) -> {
+            final HashMap<String, String> corsHeaders = new HashMap<>();
+
+            corsHeaders.put("Access-Control-Allow-Methods", "GET");
+            corsHeaders.put("Access-Control-Allow-Origin", "*");
+            corsHeaders.put("Access-Control-Allow-Headers", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,");
+            corsHeaders.put("Access-Control-Allow-Credentials", "true");
+            corsHeaders.forEach((key, value) -> {
+                response.header(key, value);
+            });
+        });
         http.get("/mostPopularWorkshops", (req, resp) -> popularityReport(), new JsonTransformer());
 
         http.get("/:hash", (req, resp) -> {
@@ -200,7 +211,6 @@ public class Application {
             resp.redirect("/" + req.params("hash"));
             return null;
         });
-
 
         http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
         http.get("/admin/registrations", (req, resp) -> {
