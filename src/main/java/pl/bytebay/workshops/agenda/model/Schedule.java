@@ -2,16 +2,14 @@ package pl.bytebay.workshops.agenda.model;
 
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Getter
-public class Schedule  {
+public class Schedule {
 
     List<ScheduleDay> days;
 
@@ -27,8 +25,10 @@ public class Schedule  {
         return days.stream()
                 .flatMap(day -> day.getTimeslots()
                         .stream()
-                        .flatMap(t -> t.getWorkshops().stream()
-                )).collect(Collectors.toMap(Session::getId, Function.identity()));
+                        .flatMap(t -> Stream.of(t.getWorkshops(), t.getDeepdives())
+                                .flatMap(Collection::stream))
+                )
+                .collect(Collectors.toMap(Session::getId, Function.identity()));
     }
 
 }

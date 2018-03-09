@@ -37,7 +37,7 @@ public class ScheduleParserTest {
     @Test
     public void should_collect_all_sessions() throws Exception {
         Schedule schedule = parser.schedule();
-        assertThat(schedule.getAllSessions().values(), IsCollectionWithSize.hasSize(36));
+        assertThat(schedule.getAllSessions().values(), IsCollectionWithSize.hasSize(44));
     }
 
     @Test
