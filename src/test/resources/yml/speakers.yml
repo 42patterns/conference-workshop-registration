@@ -247,7 +247,7 @@
   surname: "Łuczak"
   company: "Symentis"
   title: "Projektant programista poliglota"
-  bio: "Projektant programista poliglota żyjący w cyfrowym świecie, który ponad połowę życia spędził tworząc oprogramowanie, a przez ostatnią dekadę dostarczając rozwiązania komercyjne (nierzadko klasy enterprise*). Pasjonat dla którego nie ma rzeczy niemożliwych, a każdy projekt stanowi wyzwanie oraz szansę rozwoju. Wyznawca metodyk Agile i TQM. Umie napisać poprawnie działającą aplikację w środowisku serwerowym, przeglądarkowym, mobilnym czy też pulpitowym wykorzystując przy tym różne języki i narzędzia. Tworzył rozwiązania na systemy zintegrowane oraz poczynił kilka implementacji na procesory sygnałowe. Piastował role analityczne, programistyczne, architektoniczne a także liderskie, mentorskie i audytorskie. Od kilku lat udowadnia, że javascript to nie tylko gwiazdki latające za kursorem ale przede wszystkim ekosystem który wyprzedził swój czas pozwalając na tworzenie cudów. Zapytany o proste rzeczy potrafi poczynić wielogodzinny wykład zahaczając przy tym o różne dziedziny nauki. Na codzień programista w Vistex, trener i konsultant w Symentis.pl a także autor i mentor w eduweb.pl 
+  bio: "Projektant programista poliglota żyjący w cyfrowym świecie, który ponad połowę życia spędził tworząc oprogramowanie, a przez ostatnią dekadę dostarczając rozwiązania komercyjne (nierzadko klasy enterprise*). Pasjonat dla którego nie ma rzeczy niemożliwych, a każdy projekt stanowi wyzwanie oraz szansę rozwoju. Wyznawca metodyk Agile i TQM. Umie napisać poprawnie działającą aplikację w środowisku serwerowym, przeglądarkowym, mobilnym czy też pulpitowym wykorzystując przy tym różne języki i narzędzia. Tworzył rozwiązania na systemy zintegrowane oraz poczynił kilka implementacji na procesory sygnałowe. Piastował role analityczne, programistyczne, architektoniczne a także liderskie, mentorskie i audytorskie. Od kilku lat udowadnia, że javascript to nie tylko gwiazdki latające za kursorem ale przede wszystkim ekosystem który wyprzedził swój czas pozwalając na tworzenie cudów. Zapytany o proste rzeczy potrafi poczynić wielogodzinny wykład zahaczając przy tym o różne dziedziny nauki. Na codzień programista w Vistex, trener i konsultant w Symentis.pl a także autor i mentor w eduweb.pl
 
   * - enterprise w znaczeniu \"nie ma na świecie osoby, który zrozumie dlaczego to działa\""
   thumbnailUrl: lukasz_luczak.jpg
@@ -599,3 +599,22 @@
     - {name: "twitter", link: "https://twitter.com/SzczerbickiP"}
     - {name: "github", link: "https://github.com/pawelszczerbicki"}
     - {name: "linkedin", link: "https://www.linkedin.com/in/szczerbicki-pawel/"}
+
+- id: 57
+  name: "Paweł"
+  surname: "Młynarczyk"
+  company: "Onwelo"
+  bio: "Programista od 10 lat nieustannie związany z Javą. Koduje, devopsuje i pomaga w rozwoju młodszym kolegom. Od czasu do czasu można go usłyszeć na konferencjach IT. Uczy się, kiedy tylko może. Prywatnie tata, miłośnik komiksu i czeskiego kina."
+  thumbnailUrl: pawel_mlynarczyk.jpg
+
+- id: 58
+  name: "Tomek"
+  surname: "Sułkowski"
+  company: "FrontEnd.Coach"
+  bio: "I am an experienced IT trainer specializing in browsers-related technologies.  My  main  area  of  focus  is Angular 2 framework and its ecosystem.
+  
+  In  the  last  3  years  I  have  worked  with  mulDple  medium  and large-sized  companies  to  help  their  developers  increase  their level of experDse in front-end technologies."
+  thumbnailUrl: "tomek_sulkowski.jpg"
+  social:
+    - {name: "site", link: "http://frontend.coach/"}
+    - {name: "linkedin", link: "https://www.linkedin.com/in/tsulkowski"}

@@ -43,7 +43,7 @@ public class ScheduleParserTest {
     @Test
     public void should_return_all_sessions() {
         Map<Integer, Session> sessions = parser.sessions(parser.speakers());
-        assertThat(sessions.values(), IsCollectionWithSize.hasSize(46));
+        assertThat(sessions.values(), IsCollectionWithSize.hasSize(49));
         assertThat(sessions.get(1).getTitle(), equalTo("JVM: przez dziurkę od klucza"));
         assertThat(sessions.get(1).getDescription(), notNullValue());
     }
@@ -51,7 +51,7 @@ public class ScheduleParserTest {
     @Test
     public void should_return_all_speakers() {
         Map<Integer, Speaker> speakers = parser.speakers();
-        assertThat(speakers.values(), IsCollectionWithSize.hasSize(52));
+        assertThat(speakers.values(), IsCollectionWithSize.hasSize(54));
     }
 
 }

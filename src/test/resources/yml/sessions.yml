@@ -135,7 +135,7 @@ list:
 
     Zastosujemy Event Storming Big Picture, Design Level oraz przyjrzymy się relacji modelu ES z kodem źródłowym."
     type: 0
-    capacity: 20
+    capacity: 25
     speakers: [7]
     tags: [Architektura, DDD]
     complexity: 1
@@ -329,7 +329,17 @@ list:
 
     Nie trzeba znać Scali, trzeba trochę znać Javę.
 
-    Kto chętny może zapoznać się z teorią : https://pawelwlodarski.gitbooks.io/workshops/content/"
+    Kto chętny może zapoznać się z teorią : https://pawelwlodarski.gitbooks.io/workshops/content/
+
+    <figure><figcaption>Przygotowanie środowisko</figcaption>
+      <ul>
+        <li> Wyciągnijcie kod : https://github.com/PawelWlodarski/workshops
+        <li> Zainstalujcie https://www.jetbrains.com/idea/ community edition (bezpłatne) i później w opcjach zainstalujcie plugin do scali.
+        <li> Zaimportujcie projekt (ten z wyciągniętego kodu) do IDE.
+        <li> Otwórzcie klaskę \"TestingJavaClassAnswer\" (2 razy Shift otwiera okno wyszukiwania) i odpalcie (ctrl+Shift+F10). Powinien pojawić się zielony pasek.
+      </ul>
+    </figure>
+    "
     prereq: {title: "Przed warsztatem warto przygotować środowisko", list: [
       "Wyciągnijcie kod : https://github.com/PawelWlodarski/workshops",
       "Zainstalujcie https://www.jetbrains.com/idea/ community edition (bezpłatne) i później w opcjach zainstalujcie plugin do scali.",
@@ -373,9 +383,9 @@ list:
       "Konsola użytkownika i podstawowa umiejętność jej obsługi w swoim systemie operacyjnym    "
     ]}
     type: 0
-    capacity: 20
+    capacity: 30
     tags: [Docker, DevOps, Microservices]
-    speakers: [9]
+    speakers: [9, 57]
     complexity: 1
 
   - id: 20
@@ -502,6 +512,7 @@ list:
     complexity: 0
 
   - id: 28
+    backup: true
     title: "Testy integracyjne przetwarzania danych z uzyciem RobotFramework"
     description: "Agenda
 
@@ -644,6 +655,7 @@ list:
 
 # Radmor 1
   - id: 37
+    backup: true
     title: "Jedna aplikacja - wiele odsłon, czyli modułowość w NetBeans Platform"
     description: "W proponowanym przez nas warsztacie nie chcemy się skupiać na zagadnienia tworzenia oprogramowania na różne platformy, ponieważ sama Java została stworzona już tym celu. To, co chcemy zaprezentować to możliwości środowiska NetBeans Platfrom w szybkim tworzeniu aplikacji spersonalizowanych pod różnych klientów, przy możliwie najkrótszym time to market. Środowisko NetBeans to nie tylko IDE do tworzenia innych programów, ale framework na bazie którego możemy przygotować nową aplikację. Dzięki temu developer nie musi implementować od podstaw całej aplikacji, przejmować się implementacją mechanizmów obsługi okien, obsługi plików, zarządzania modułami aplikacji oraz integracją z systemem okien OS. Wszystko to za niego robi silnik NetBeansPlatform dzięki temu zespół developerski może skupić się implementacji funkcjonalności stricte dot. wartości biznesowej aplikacji.
 
@@ -669,6 +681,7 @@ list:
 
 # Radmor 2
   - id: 38
+    backup: true
     title: "SDR for Dummies (SOA inside a modern military radio)"
     description: "<b>Problem (odwieczna kwestia niekompatybilności w łączności)</b>:
       <ul>
@@ -806,3 +819,57 @@ list:
     speakers: [19]
     tags: [Frontend, JavaScript]
     complexity: 0
+
+  - id: 48
+    title: "NgRx - czyli Redux w Angularze"
+    description: ""
+    type: 0
+    speakers: [58]
+    capacity: 20
+    tags: [Frontend, JavaScript]
+    complexity: 1
+
+  - id: 49
+    backup: true
+    title: "Implementacja OAuth 2.0 za pomocą Spring Boot (dodatkowa sesja)"
+    description: "W ramach warsztatu opiszę  na czym polega bardzo popularny framework OAuth 2.0  oraz pokażę jak wygląda jego implementacja w Spring Boot oraz jak  zabezpieczyć za jego pomocą system zbudowany w oparciu o mikroserwisy
+
+    Uczestnicy powinni umieć programować w Javie."
+    prereq: {title: "Środowisko", list: ["Laptop, z IDE (pref. Intellij)", "JDK 1.8"]}
+    type: 0
+    capacity: 20
+    speakers: [32]
+    tags: [Java, Microservices, Architektura, Security]
+    complexity: 1
+
+  - id: 50
+    backup: true
+    title: "Micro Services using Spring Boot 2.0 with Kotlin - krok po kroku (dodatkowa sesja)"
+    description: "Podczas warsztatu zaprezentujemy nasze podejście do architektury mikro serwisowej wytwarzanej w oparciu o Spring Cloud oraz rozwiązania firmy Netflix.
+
+    Dowiesz się krok po kroku w jaki sposób:
+      <ol>
+        <li> Umożliwić komunikację pomiędzy mikro serwisami za pomocą service discovery (Eureka).
+        <li> Zapobiegać propagacji błędów pomiędzy mikro serwisami z wykorzystaniem wzorca circuit breaker (Hystrix + Ribbon).
+        <li> Zarządzać konfiguracją aplikacji dla wielu środowisk w architekturze rozproszonej stosując Spring Cloud Config Server.
+        <li> Śledzić komunikację pomiędzy mikro serwisami wykorzystując biblioteki Sleuth i Zipkin.
+        <li> Dowiedzieć się czy aplikacja działa prawidłowo bazując na metrykach zebranych przez Prometheus i zaprezentowanych w Grafana.
+        <li> Prawidłowo udostępnić usługę zewnętrznym klientom poprzez Spring Cloud Gateway.
+        <li> Uruchomić produkcyjnie system rozproszony opierając się na konteneryzacji (Docker).
+      </ol>
+
+    Dodatkowo będziesz miał okazję zapoznać się z reaktywnym oraz funkcyjnym podejściem do wytwarzania oprogramowania z wykorzystaniem języka Kotlin.
+
+    Warto wiedzieć przed: podstawowa znajomość koncepcji architektury mikro serwisowej oraz umiejętność programowania w dowolnym języku."
+    prereq: {title: "Przygotowanie do warsztatu to laptop z zainstalowanym", list: [
+        "JDK 1.8",
+        "Ulubionym środowiskiem programistycznym z wtyczką do Kotlina np. IntelliJ IDEA",
+        "Git",
+        "Docker >=17.12",
+        "Docker Compose >= 1.18"
+      ]}
+    type: 0
+    capacity: 20
+    speakers: [44, 45]
+    tags: [Architektura, Microservices, Kotlin]
+    complexity: 1

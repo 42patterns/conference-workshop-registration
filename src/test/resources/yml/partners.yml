@@ -30,17 +30,24 @@
     - {
       name: "Travactory",
       description: "Travactory",
+      text: "Jesteśmy ekipą doświadczonych programistów, którzy tworzą magię stojąca m.in. za: tix.nl, flightix.pl czy gate1.com.sg. Jesteśmy produktowo w ponad 20 krajach, na 3 kontynentach, dlatego nie sposób wymienić wszystkiego.
+
+      Jako niezależny dział R&D, zaprzęgamy technologię do spełniania marzeń podróżniczych Klientów z całego świata. Zaczęliśmy od Holandii, dziś rozwijamy skrzydła i podbijamy przestworza całego globu.
+
+      Nasza siła napędowa to szukanie lepszych rozwiązań. Stawiamy na zaufanie i pracę zespołową. Wybaczamy sobie niewielkie potknięcia, ciągle się uczymy i rozwijamy. Dzięki takiemu podejściu, jesteśmy otwarci na nowe technologie, współdecydujemy o kształcie naszego produktu. Pracujemy w Springu, Kotlinie, RoR. Dockery i MongoDB mają się u nas dobrze. Masz pomysł co jeszcze może się na przydać? Dołącz do nas i zaproponuj co warto dodać do naszego stosu technologicznego!
+
+      BRING YOUR OWN STACK!",
       link: "http://www.travactory.com/#job-offer",
       imageUrl: "travactory.png"
-      }
+    }
 
 -
-  group: "Partner srebrny"
+  group: "Partner złoty"
   elements:
     - {
       name: "Radmor",
       description: "Radmor",
-      # text: "RADMOR to przedsiębiorstwo o długoletniej historii sięgających 1947 roku. Prowadzi działalność na potrzeby obronności i bezpieczeństwa państwa. To producent i dostawca nowoczesnych urządzeń łączności dla wojska, w tym radiostacji programowalnych SDR, i radiotelefonów dla służb cywilnych. Od 2011r RADMOR wchodzi w skład WB GROUP - największej prywatnej grupy kapitałowej w polskim przemyśle obronnym.
+      text: "RADMOR to przedsiębiorstwo o długoletniej historii sięgających 1947 roku. Prowadzi działalność na potrzeby obronności i bezpieczeństwa państwa. To producent i dostawca nowoczesnych urządzeń łączności dla wojska, w tym radiostacji programowalnych SDR, i radiotelefonów dla służb cywilnych. Od 2011r RADMOR wchodzi w skład WB GROUP - największej prywatnej grupy kapitałowej w polskim przemyśle obronnym.
 
       # RADMOR uczestniczy w europejskich programach badawczych. Między innymi bierze udział w europejskim programie ESSOR (European Secure Software defined Radio) mającym za zadanie opracowanie standardu europejskiego radia programowalnego, umożliwiającego współpracę systemów łączności wojsk różnych państw UE.
 
@@ -48,8 +55,13 @@
       link: "http://www.radmor.com.pl/pol/Praca",
       imageUrl: "WB_Radmor_logoRGB.jpg"
     }
-    - {name: "Alior Bank", description: "Alior Bank", link: "https://www.aliorbank.pl/dodatkowe-informacje/kariera/aktualne-oferty-pracy.html", imageUrl: "alior.png"}
-    - {name: "Software Development Academy", description: "Software Development Academy", link: "http://sdacademy.pl/zostan-trenerem-sda/", imageUrl: "sda.png"}
+
+
+-
+    group: "Partner srebrny"
+    elements:
+      - {name: "Alior Bank", description: "Alior Bank", link: "https://www.aliorbank.pl/dodatkowe-informacje/kariera/aktualne-oferty-pracy.html", imageUrl: "alior.png"}
+      - {name: "Software Development Academy", description: "Software Development Academy", link: "http://sdacademy.pl/zostan-trenerem-sda/", imageUrl: "sda.png"}
 
 -
   group: "Patronat honorowy"
