@@ -217,16 +217,18 @@ public class Application {
 
             RowMapper<String> mapper = (rs, ctx) ->
                     Arrays.asList(rs.getString("hash"),
-                            rs.getString("s1"), rs.getString("s2"),
-                            rs.getString("s3"), rs.getString("s4"),
+                            rs.getString("id_1"), rs.getString("id_2"),
+                            rs.getString("id_3"), rs.getString("id_4"),
+                            rs.getString("title_1"), rs.getString("title_2"),
+                            rs.getString("title_3"), rs.getString("title_4"),
                             rs.getString("insert_date")
-                    ).stream().collect(Collectors.joining(", "));
+                    ).stream().collect(Collectors.joining("##"));
 
             List<String> results = jdbi.withHandle(h -> h.createQuery("select ranked.* from " +
                     "(" +
                     "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
                     ") as ranked " +
-                    "where rank = 1 and hash != 'test")
+                    "where rank = 1 and hash != 'test'")
                     .map(mapper)
                     .collect(Collectors.toList())
             );
