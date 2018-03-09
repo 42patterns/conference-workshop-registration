@@ -23,6 +23,7 @@ public class ScheduleDay {
         String startTime;
         String  endTime;
         List<Session> workshops;
+        List<Session> deepdives;
     }
 
 }

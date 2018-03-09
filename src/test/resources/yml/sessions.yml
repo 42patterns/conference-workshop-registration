@@ -86,6 +86,7 @@ list:
 
     Podczas tej sesji postaram się pokazać dostępne narzędzia, magiczne przełączniki i dostępne rozwiązania potrzebne w pracy każdego \"kryminologa\" JVM. Sesja będzie przeznaczona dla osób, które zaczynają przygodę z optymalizacją JVM. Porozmawiamy o zapisywaniu zdarzeń z JVM, narzędziach ukrytych w JDK,w tym także Java Mission Control i Flight Recorder i zobaczymy jak Java płonie :). Nie zapomnimy też o narzędziach dostępnych w systemie operacyjnym Linux."
     type: 1
+    capacity: 99
     speakers: [3]
     tags: [Java, JVM, "Machine code", "Assembly", "Wydajność aplikacji"]
     complexity: 3
@@ -125,6 +126,7 @@ list:
     <li>Context Map
     </ul>"
     type: 1
+    capacity: 99
     speakers: [7]
     tags: [Architektura, DDD]
     complexity: 1
@@ -233,6 +235,7 @@ list:
     title: "Speed-up code evaluation by JIT compilation"
     description: "Podczas prezentacji chcialbym odpowiedziec na pytanie, dlaczego generowanie kodu ma sens, gdzie mozna je zastosowac i w jaki sposob zwieksza wydajnosc. Postaram sie takze omowic obecne trendy w tej dziedzinie. Zmierzajac do celu przedstawie budowe kompilatorow oraz opisze kolejne fazy kompilacji skupiajac sie na generowaniu kodu, poczynajac od frontentu, konczac na generowaniu kodu maszynowego."
     type: 1
+    capacity: 99
     speakers: [24, 25]
     tags: ["Java", "JVM", "C", "Machine code", "Assembly", "Wydajność aplikacji", "Application performance by Dynatrace"]
     complexity: 3
@@ -247,6 +250,7 @@ list:
 
     Sesja jest przeznaczona dla tych, którzy zaczynają przygodę z optymalizacją ElasticSearcha i zamiast polegać na metodzie na chybił-trafił, woleliby zanurkować głębiej, zrozumieć mechanikę działania i na tej podstawie wykonać kilka bardziej precyzyjnych ruchów."
     type: 1
+    capacity: 99
     speakers: [26, 42]
     tags: ["NoSQL", "Bazy danych", "Wydajność aplikacji", "Application performance by Dynatrace"]
     complexity: 2
@@ -315,6 +319,7 @@ list:
       <li>Extension API
       </ul></figure>"
     type: 1
+    capacity: 99
     speakers: [30, 31]
     tags: [Java, Testowanie]
     complexity: 0
@@ -456,6 +461,7 @@ list:
     title: "Datalog: Biting the Silver Bullet"
     description: "\"Databases, databases everywhere! Which one do I need?\" -- You need all of them; you need none of them; you're asking all the wrong questions! This workshop is dedicated to solving the data vs code impedance mismatch with a 1970's technology (chevron mustache is optional). This workshop assumes no previous knowledge of Datalog and applies to both client and server applications. If you are interested in data pipelines, GraphQL, event-sourcing, or building maintainable data systems, you will leave a better person* (some restrictions apply, promises are not legally binding)."
     type: 1
+    capacity: 99
     speakers: [34]
     tags: [NoSQL, "Bazy danych", "Wydajność aplikacji"]
     complexity: 1
@@ -727,6 +733,7 @@ list:
         <li> backpressure (po stronie klienta, producenta oraz sam protokół)
       </ul>"
     type: 1
+    capacity: 99
     speakers: [52]
     tags: [Java, Microservices, Architektura]
     complexity: 1
@@ -816,6 +823,7 @@ list:
 
     Przykłady będą głównie oparte o Node.js, React.js i Next.js, ale przedstawianie idee będą możliwie najbardziej uniwersalne i łatwe do przeniesienie na dowolne technologie."
     type: 1
+    capacity: 99
     speakers: [19]
     tags: [Frontend, JavaScript]
     complexity: 0

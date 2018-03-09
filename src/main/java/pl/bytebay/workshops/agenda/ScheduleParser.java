@@ -162,12 +162,20 @@ class TimeslotDeserializer extends StdDeserializer<ScheduleDay.Timeslot> {
         List<Integer> workshopIds = timeslotNode.has("workshopsIds")?
                 Utils.jsonArrayAsList(timeslotNode.get("workshopsIds")):Collections.emptyList();
 
+        List<Integer> deepdivesIds = timeslotNode.has("sessionIds")?
+                Utils.jsonArrayAsList(timeslotNode.get("sessionIds")):Collections.emptyList();
+
         return ScheduleDay.Timeslot.builder()
                 .startTime(timeslotNode.get("startTime").asText())
                 .endTime(timeslotNode.get("endTime").asText())
                 .workshops(this.sessions
                         .entrySet().stream()
                         .filter(e -> workshopIds.contains(e.getKey()))
+                        .map(Map.Entry::getValue)
+                        .collect(Collectors.toList()))
+                .deepdives(this.sessions
+                        .entrySet().stream()
+                        .filter(e -> deepdivesIds.contains(e.getKey()))
                         .map(Map.Entry::getValue)
                         .collect(Collectors.toList()))
                 .build();
