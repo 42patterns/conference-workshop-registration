@@ -128,6 +128,36 @@ public class Application {
         });
         http.get("/mostPopularWorkshops", (req, resp) -> popularityReport(), new JsonTransformer());
 
+        http.get("/:hash/myagenda", (req, resp) -> {
+            String hash = req.params("hash");
+
+            if (!usernameHashmap.containsKey(hash)) {
+                halt(401, "Invalid hash");
+            }
+
+            RowMapper<Map<String, Session>> mapper = (rs, statementContext) -> {
+                Map<String, Session> map = new LinkedHashMap<>();
+                map.put("Czwartek, 10:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_1"), null));
+                map.put("Czwartek, 14:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_2"), null));
+                map.put("Piątek, 9:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_3"), null));
+                map.put("Piątek, 12:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_4"), null));
+                return map;
+            };
+
+            Map<String, Session> agenda = jdbi.withHandle(h -> h
+                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
+                    .bind("hash", hash)
+                    .map(mapper)
+                    .findFirst()).orElse(Collections.emptyMap());
+
+            Map<String, Object> map = new HashMap();
+            map.put("hash", hash);
+            map.put("name", usernameHashmap.get(hash));
+            map.put("agenda", agenda);
+            return new ModelAndView(map, "myagenda.hbs");
+        }, new BytebayHandlebarEngine());
+
+
         http.get("/:hash", (req, resp) -> {
             String hash = req.params("hash");
 
