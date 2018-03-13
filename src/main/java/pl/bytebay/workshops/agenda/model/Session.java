@@ -14,6 +14,7 @@ public class Session {
     String title;
     Boolean service;
     String description;
+    String location;
     Integer capacity;
     List<Speaker> speakers;
     PreReq prerequisites;

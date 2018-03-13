@@ -137,6 +137,7 @@ class SessionDeserializer extends StdDeserializer<Session> {
                 .capacity(sessionNode.has("capacity")?sessionNode.get("capacity").asInt():0)
                 .description(sessionNode.has("description")?sessionNode.get("description").asText():"")
                 .service(sessionNode.has("service") ? true : false)
+                .location(sessionNode.has("location")?sessionNode.get("location").asText():"")
                 .sessionType(sessionNode.has("type") ? Session.SessionType.getSessionTypeById(sessionNode.get("type").asInt()) : Session.SessionType.SERVICE)
                 .prerequisites(sessionNode.has("prereq") ?
                         jp.getCodec().readValue(sessionNode.get("prereq").traverse(), Session.PreReq.class)
