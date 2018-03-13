@@ -16,6 +16,7 @@ public class Session {
     String description;
     Integer capacity;
     List<Speaker> speakers;
+    PreReq prerequisites;
     SessionType sessionType;
 
     public enum SessionType {
@@ -39,5 +40,14 @@ public class Session {
                     throw new IllegalStateException("Id not valid");
             }
         }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @ToString
+    public static class PreReq {
+        String title;
+        List<String> list;
     }
 }

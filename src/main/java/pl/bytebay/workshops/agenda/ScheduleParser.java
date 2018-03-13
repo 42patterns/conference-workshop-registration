@@ -138,6 +138,9 @@ class SessionDeserializer extends StdDeserializer<Session> {
                 .description(sessionNode.has("description")?sessionNode.get("description").asText():"")
                 .service(sessionNode.has("service") ? true : false)
                 .sessionType(sessionNode.has("type") ? Session.SessionType.getSessionTypeById(sessionNode.get("type").asInt()) : Session.SessionType.SERVICE)
+                .prerequisites(sessionNode.has("prereq") ?
+                        jp.getCodec().readValue(sessionNode.get("prereq").traverse(), Session.PreReq.class)
+                        : null)
                 .speakers(this.speakers
                         .entrySet().stream()
                         .filter(e -> speakerIds.contains(e.getKey()))

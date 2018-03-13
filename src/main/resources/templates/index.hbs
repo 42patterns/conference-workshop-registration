@@ -183,6 +183,18 @@
                                     </div>
                                     <h4>{{ title }}</h4>
                                     <p class="theme-description">{{ breaklines description }}</p>
+                                    {{#if prerequisites}}
+                                    <div>
+                                        <figure>
+                                            <figcaption>{{ prerequisites.title }}</figcaption>
+                                            <ul>
+                                                {{#each prerequisites.list }}
+                                                    <li> {{{ this }}}
+                                                {{/each}}
+                                            </ul>
+                                        </figure>
+                                    </div>
+                                    {{/if}}
                                     <hr>
                                     <div class="people-details">
                                         {{#each speakers}}
