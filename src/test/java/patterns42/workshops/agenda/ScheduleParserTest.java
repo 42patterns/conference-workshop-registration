@@ -1,12 +1,11 @@
-package pl.bytebay.workshops.agenda;
+package patterns42.workshops.agenda;
 
 import org.hamcrest.collection.IsCollectionWithSize;
 import org.junit.Before;
 import org.junit.Test;
-import pl.bytebay.workshops.agenda.model.Schedule;
-import pl.bytebay.workshops.agenda.model.ScheduleDay;
-import pl.bytebay.workshops.agenda.model.Session;
-import pl.bytebay.workshops.agenda.model.Speaker;
+import patterns42.workshops.agenda.model.Schedule;
+import patterns42.workshops.agenda.model.Session;
+import patterns42.workshops.agenda.model.Speaker;
 
 import java.net.URISyntaxException;
 import java.util.List;

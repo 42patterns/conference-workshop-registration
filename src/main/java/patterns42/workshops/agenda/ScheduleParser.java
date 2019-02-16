@@ -1,4 +1,4 @@
-package pl.bytebay.workshops.agenda;
+package patterns42.workshops.agenda;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,10 +12,10 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.bytebay.workshops.agenda.model.Schedule;
-import pl.bytebay.workshops.agenda.model.ScheduleDay;
-import pl.bytebay.workshops.agenda.model.Session;
-import pl.bytebay.workshops.agenda.model.Speaker;
+import patterns42.workshops.agenda.model.Schedule;
+import patterns42.workshops.agenda.model.ScheduleDay;
+import patterns42.workshops.agenda.model.Session;
+import patterns42.workshops.agenda.model.Speaker;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

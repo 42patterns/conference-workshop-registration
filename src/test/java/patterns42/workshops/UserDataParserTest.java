@@ -1,4 +1,4 @@
-package pl.bytebay.workshops;
+package patterns42.workshops;
 
 import org.junit.Test;
 

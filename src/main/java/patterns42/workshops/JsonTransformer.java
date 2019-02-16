@@ -1,4 +1,4 @@
-package pl.bytebay.workshops;
+package patterns42.workshops;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import spark.ResponseTransformer;

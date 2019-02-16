@@ -1,4 +1,4 @@
-package pl.bytebay.workshops.agenda.model;
+package patterns42.workshops.agenda.model;
 
 import lombok.Getter;
 

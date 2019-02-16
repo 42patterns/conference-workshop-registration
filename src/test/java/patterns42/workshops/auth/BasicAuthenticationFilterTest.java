@@ -1,4 +1,4 @@
-package pl.bytebay.workshops.auth;
+package patterns42.workshops.auth;
 
 import org.junit.Test;
 import spark.HaltException;

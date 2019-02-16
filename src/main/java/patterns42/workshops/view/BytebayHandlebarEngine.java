@@ -1,4 +1,4 @@
-package pl.bytebay.workshops.view;
+package patterns42.workshops.view;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;

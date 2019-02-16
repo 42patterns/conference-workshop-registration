@@ -1,4 +1,4 @@
-package pl.bytebay.workshops.auth;
+package patterns42.workshops.auth;
 
 import java.util.Objects;
 import java.util.Optional;

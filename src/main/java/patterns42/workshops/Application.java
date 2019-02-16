@@ -1,15 +1,15 @@
-package pl.bytebay.workshops;
+package patterns42.workshops;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.bytebay.workshops.agenda.ScheduleParser;
-import pl.bytebay.workshops.agenda.model.Schedule;
-import pl.bytebay.workshops.agenda.model.Session;
-import pl.bytebay.workshops.auth.AuthenticationDetails;
-import pl.bytebay.workshops.auth.BasicAuthenticationFilter;
-import pl.bytebay.workshops.view.BytebayHandlebarEngine;
+import patterns42.workshops.agenda.ScheduleParser;
+import patterns42.workshops.agenda.model.Schedule;
+import patterns42.workshops.agenda.model.Session;
+import patterns42.workshops.auth.AuthenticationDetails;
+import patterns42.workshops.auth.BasicAuthenticationFilter;
+import patterns42.workshops.view.BytebayHandlebarEngine;
 import spark.ModelAndView;
 import spark.Service;
 
