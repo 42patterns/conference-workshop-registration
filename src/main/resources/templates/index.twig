@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl-PL" class="js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SegFault University 2019 - rejestracja na warsztaty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Symentis Events">
+    <link rel="shortcut icon" href="//segfault.events/img/favicon.png">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sedgwick+Ave">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="//segfault.events/css/main.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//segfault.events/js/main.js"></script>
+
+</head>
+<body class="home">
+
+<div id="body" class="clearfix">
+    <!-- layout-container -->
+
+    {%  if (isTest) %}
+        <div class="p-3 font-weight-bold text-center text-danger">
+            <h3>To jest link testowy!!</h3>
+        </div>
+    {% endif %}
+
+
+    <div id="layout" class="pagewidth clearfix">
+        <!-- content -->
+        <div id="content">
+            <div class="d-flex flex-column flex-md-row" style="background-color: #0e2328">
+                <div id="topContent" class="col-12 col-md-6" style="padding: 10px !important;">
+                    <img src="//segfault.events/img/SFU-color-horizontal.png" alt="Logo Segfault">
+                    <h1 class="fancy-font white-text" id="mainWords">...wszyscy jesteśmy architektami</h1>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2 class="white-text">
+                        14-15 marca 2019, Gdański Park Naukowo-Technologiczny
+                    </h2>
+                    <h3 class="white-text pb-2">Rejestracja na warsztaty</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="schedule">
+        <div class="container">
+            <h2>Cześć {{ name }}, ułóż swoją agendę!</h2>
+            <form action="/{{ hash }}" method="post">
+                <div id="agenda" class="container-fluid">
+                    <div class="agenda-day">
+                        <div class="row header d-none d-md-flex">
+                            <div class="col-md-2">Godzina</div>
+                            <div class="col-md-10 text-center">Warsztat</div>
+                        </div>
+
+                        {% for hour, data in schedule.timeslots %}
+                        <div class="row">
+                            <div class="col-md-2 d-none d-md-block"> {{ hour }}</div>
+                            <div class="col-12 col-sm-12 d-md-none align-self-stretch mobile-hour lead"> {{ hour }}</div>
+
+                            <div class="col-12 col-md-10">
+                                {% for session in data %}
+                                    <div>
+                                        {% if (session.type == "WORKSHOP") %}
+                                            <label>
+                                                <input type="radio" name="session-{{ loop.parent.loop.index }}" value="{{ session.title }}">
+                                                {{ session.title }}
+                                            </label>
+                                        {% else %}
+                                            {{ session.title }}
+                                        {% endif %}
+                                    </div>
+                                    {% if (loop.last != true) %}
+                                    <div class="agenda-full-border"></div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="col-12 d-md-none mobile-track"></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-success">Wysyłam!!</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

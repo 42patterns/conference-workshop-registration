@@ -34,7 +34,7 @@ public class ScheduleParser {
 
     public ScheduleParser(Optional<String> maybeAgendaUrl) throws MalformedURLException {
         var url = maybeAgendaUrl.
-                orElse("http://segfault.events/sites/gdansk2019/agenda/index.yaml");
+                orElse("http://test.segfault.events/sites/gdansk2019/agenda/index.yaml");
         this.path = new URL(url);
     }
 
@@ -64,7 +64,7 @@ public class ScheduleParser {
 
     private InputStream getScheduleDataFromYml() throws IOException {
         try {
-            LOG.info("Opening resource {}", path);
+            LOG.info("Opening agenda from {}", path);
             return path.openStream();
         } catch (UnknownHostException e) {
             LOG.warn("Error resolving {}. Loading local file", path);

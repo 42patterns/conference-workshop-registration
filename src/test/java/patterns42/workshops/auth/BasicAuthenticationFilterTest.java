@@ -36,7 +36,7 @@
 //    private final Response response = mock(Response.class);
 //
 //    private final BasicAuthenticationFilter basicAuthenticationFilter =
-//            new BasicAuthenticationFilter(new AuthenticationDetails(Optional.of(CORRECT_USERNAME), Optional.of(CORRECT_PASSWORD)));
+//            new BasicAuthenticationFilter(new AdminAuthenticationDetails(Optional.of(CORRECT_USERNAME), Optional.of(CORRECT_PASSWORD)));
 //
 //    private static String generateBasicAuthenticationHeader(final String username, final String password) {
 //        return String.format("Basic %s", new String(Base64.getEncoder().encode(String.format("%s:%s", username, password).getBytes())));

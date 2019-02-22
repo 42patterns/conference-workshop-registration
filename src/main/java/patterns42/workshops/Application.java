@@ -1,15 +1,19 @@
 package patterns42.workshops;
 
+import io.javalin.ForbiddenResponse;
 import io.javalin.Javalin;
+import io.javalin.rendering.template.JavalinJtwig;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import patterns42.workshops.agenda.ScheduleParser;
 import patterns42.workshops.agenda.model.Schedule;
 import patterns42.workshops.agenda.model.Session;
-import patterns42.workshops.auth.AuthenticationDetails;
+import patterns42.workshops.auth.AdminAuthenticationDetails;
+import patterns42.workshops.dao.SessionDao;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -21,101 +25,66 @@ import java.util.stream.Collectors;
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
 import static java.util.Optional.ofNullable;
+import static java.util.function.Predicate.not;
 
 @Slf4j
 public class Application {
 
-    private final static String TEST_HASH_VALUE = "test-hash-123";
     private final static Logger LOG = LoggerFactory.getLogger(Application.class);
     private final int port;
-    private final AuthenticationDetails authenticationDetails;
+    private final AdminAuthenticationDetails authenticationDetails;
     private final Jdbi jdbi;
     private final Map<String, String> usernameHashmap;
     private final Schedule schedule;
 
-    public Application(Optional<String> maybePort,
-                       Jdbi jdbi,
-                       AuthenticationDetails authenticationDetails,
-                       Schedule schedule,
-                       Map<String, String> usernameHashmap) {
-        this.port = maybePort.filter(s -> s.matches("\\d+"))
+    public static void main(String[] args) throws MalformedURLException, URISyntaxException {
+        Integer port = ofNullable(getenv("PORT"))
+                .filter(s -> s.matches("\\d+"))
                 .map(Integer::valueOf)
                 .orElse(8080);
+
+        AdminAuthenticationDetails auth = new AdminAuthenticationDetails(ofNullable(getProperty("USERNAME")),
+                ofNullable(getProperty("PASSWORD")));
+        log.info("{}", auth);
+
+        ScheduleParser parser = new ScheduleParser(ofNullable(getProperty("AGENDA_URL")));
+        UserDataParser userdata = new UserDataParser();
+
+        Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
+                .orElseThrow(() -> new RuntimeException("No JDBC_DATABASE_URL found")));
+        jdbi.installPlugin(new SqlObjectPlugin());
+        jdbi.useExtension(SessionDao.class, dao -> dao.createTable());
+
+        new Application(port,
+                jdbi,
+                auth,
+                parser.schedule(),
+                userdata.parse()
+        ).run();
+    }
+
+    public Application(Integer port,
+                       Jdbi jdbi,
+                       AdminAuthenticationDetails authenticationDetails,
+                       Schedule schedule,
+                       Map<String, String> usernameHashmap) {
+        this.port = port;
         this.jdbi = jdbi;
         this.authenticationDetails = authenticationDetails;
         this.schedule = schedule;
         this.usernameHashmap = usernameHashmap;
     }
 
-    public static void main(String[] args) throws MalformedURLException, URISyntaxException {
-        AuthenticationDetails auth = new AuthenticationDetails(ofNullable(getProperty("USERNAME")),
-                ofNullable(getProperty("PASSWORD")));
-        ScheduleParser parser = new ScheduleParser(ofNullable(getProperty("AGENDA_URL")));
-        UserDataParser userdata = new UserDataParser();
-        Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
-                .orElseThrow(() -> new RuntimeException("No DATABASE_URL found")));
-
-        // migrations
-        jdbi.withHandle(h -> h.execute("CREATE TABLE IF NOT EXISTS sessions (" +
-                "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
-                "hash VARCHAR(40)," +
-                "id_1 SMALLINT," +
-                "title_1 VARCHAR(255)," +
-                "id_2 SMALLINT," +
-                "title_2 VARCHAR(255)," +
-                "id_3 SMALLINT," +
-                "title_3 VARCHAR(255)," +
-                "id_4 SMALLINT," +
-                "title_4 VARCHAR(255)," +
-                "insert_date TIMESTAMP DEFAULT now()" +
-                ");"));
-
-//        /* Migrating IDs */
-//        Schedule schedule = parser.schedule();
-//        jdbi.useHandle(h -> {
-//            List<Map<String, Object>> maps = h.createQuery("select * from sessions")
-//                    .mapToMap()
-//                    .list();
-//
-//            Function<Optional<String>, Optional<Integer>> getSessionId = maybeTitle -> maybeTitle
-//                    .map(title -> schedule
-//                            .getAllSessions().values().stream()
-//                            .filter(s -> s.getTitle().equals(title))
-//                            .findFirst()
-//                            .map(Session::getId).get()
-//                    );
-//
-//            Function<Object, Optional<String>> arg = o -> Optional.ofNullable(o)
-//                    .map(Object::toString);
-//
-//            for (Map<String,Object> map: maps) {
-//                h.createUpdate("update sessions set id_1=?, id_2=?,id_3=?,id_4=? where id=?")
-//                        .bind(0, getSessionId.apply(arg.apply(map.get("title_1"))))
-//                        .bind(1, getSessionId.apply(arg.apply(map.get("title_2"))))
-//                        .bind(2, getSessionId.apply(arg.apply(map.get("title_3"))))
-//                        .bind(3, getSessionId.apply(arg.apply(map.get("title_4"))))
-//                        .bind(4, map.get("id"))
-//                        .execute();
-//            }
-//        });
-
-        Application app = new Application(ofNullable(getenv("PORT")),
-                jdbi,
-                auth,
-                parser.schedule(),
-                userdata.parse());
-        app.run();
-    }
-
     private void run() {
-        Javalin http = Javalin.create();
+        Javalin http = Javalin.create()
+                .enableCorsForOrigin("*");
         http.port(this.port);
 
-        http.get("/mostPopularWorkshops", ctx -> ctx.contentType("application/json")
-                .header("Access-Control-Allow-Methods", "GET")
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,")
-                .header("Access-Control-Allow-Credentials", "true")
+        http.get("/", ctx -> ctx
+                .contentType("text/html;charset=UTF-8")
+                .html("<h1>Registration app for <a href=\"https://segfault.events/gdansk2019/\">Segfault University GDN 2019</a><h1>"));
+
+        http.get("/stats", ctx -> ctx.contentType("application/json")
                 .json(popularityReport()));
 
         http.get("/:hash/myagenda", handler -> {
@@ -134,11 +103,12 @@ public class Application {
                 return map;
             };
 
-            Map<String, Session> agenda = jdbi.withHandle(h -> h
-                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
-                    .bind("hash", hash)
-                    .map(mapper)
-                    .findFirst()).orElse(Collections.emptyMap());
+            Map<String, Session> agenda = Collections.emptyMap();
+//            jdbi.withHandle(h -> h
+//                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
+//                    .bind("hash", hash)
+//                    .map(mapper)
+//                    .findFirst()).orElse(Collections.emptyMap());
 
             Map<String, Object> map = new HashMap();
             map.put("hash", hash);
@@ -148,43 +118,53 @@ public class Application {
         });
 
 
-        http.get("/:hash", handler -> {
-            String hash = handler.pathParam("hash");
+        http.get("/:hash", ctx -> {
+            String hash = ctx.pathParam("hash");
 
-//            if (!usernameHashmap.containsKey(hash)) {
-//                halt(401, "Invalid hash");
-//            }
+            if (!usernameHashmap.containsKey(hash)) {
+                throw new ForbiddenResponse("Invalid hash");
+            }
 
             RowMapper<List<String>> mapper = (rs, statementContext) ->
                     Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
                             rs.getString("title_3"), rs.getString("title_4"));
 
-            Optional<List<String>> previous = jdbi.withHandle(h -> h
-                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
-                    .bind("hash", hash)
-                    .map(mapper)
-                    .findFirst());
+            Optional<List<String>> previous = Optional.of(Collections.emptyList());
+//            jdbi.withHandle(h -> h
+//                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
+//                    .bind("hash", hash)
+//                    .map(mapper)
+//                    .findFirst());
 
             LOG.info("Previous registration for [hash={}]: {}", hash, previous);
 
-            Map<String, Object> map = new HashMap();
-            map.put("hash", hash);
-            map.put("previous", previous.orElse(Collections.emptyList()));
-            map.put("popularity", popularityFlatten());
-            map.put("name", usernameHashmap.get(hash));
-            map.put("isTest", (TEST_HASH_VALUE.equals(handler.pathParam("hash"))?true:false));
-            map.put("schedule", schedule.getDays());
-//            return new ModelAndView(map, "index.hbs");
+            Map<String, Object> attrs = new HashMap();
+            attrs.put("hash", hash);
+            attrs.put("previous", previous.orElse(Collections.emptyList()));
+//            map.put("popularity", popularityFlatten());
+            attrs.put("name", usernameHashmap.get(hash));
+            attrs.put("isTest", (UserDataParser.TEST_HASH_VALUE.equals(ctx.pathParam("hash")) ? true : false));
+            attrs.put("schedule", schedule.getFirstDay());
+
+            ctx.render("/templates/index.twig", attrs);
         });
 
 
-        http.post("/:hash", handler -> {
+        http.post("/:hash", ctx -> {
 
-            String hash = handler.pathParam("hash");
-            List<String> keys = Arrays.asList("sessions-2018-03-15-10:30",
-                    "sessions-2018-03-15-14:00",
-                    "sessions-2018-03-16-9:00",
-                    "sessions-2018-03-16-12:30");
+            String hash = ctx.pathParam("hash");
+            String session2 = ctx.formParam("session-2");
+            String session4 = ctx.formParam("session-4");
+
+            List<SessionDao.SessionDTO> sessionDTOS = Arrays.asList(SessionDao.SessionDTO.builder()
+                            .sessionId(2)
+                            .title(session2)
+                            .build(),
+                    SessionDao.SessionDTO.builder()
+                            .sessionId(4)
+                            .title(session4)
+                            .build()
+            );
 
 //            Function<String, Session> sessionData = key -> Optional.ofNullable(req.queryMap().value(key))
 //                    .map(Integer::valueOf)
@@ -212,6 +192,8 @@ public class Application {
 //                map.put("title"+idx, sessions.get(idx-1).getTitle());
 //            });
 
+            int[] results = jdbi.withExtension(SessionDao.class, dao -> dao.insertSessions(hash, sessionDTOS));
+
 //            Integer i = jdbi.withHandle(h -> h
 //                    .createUpdate("INSERT INTO sessions (hash, " +
 //                            "   id_1, title_1, " +
@@ -225,9 +207,9 @@ public class Application {
 //                    .execute()
 //            );
 //
-//            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
+            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", results, hash, sessionDTOS);
 
-            handler.redirect("/" + handler.pathParam("hash"));
+            ctx.redirect("/" + ctx.pathParam("hash"));
         });
 
 //        http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
@@ -242,14 +224,14 @@ public class Application {
                             rs.getString("insert_date")
                     ).stream().collect(Collectors.joining("##"));
 
-            List<String> results = jdbi.withHandle(h -> h.createQuery("select ranked.* from " +
-                    "(" +
-                    "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
-                    ") as ranked " +
-                    "where rank = 1 and hash != 'test'")
-                    .map(mapper)
-                    .collect(Collectors.toList())
-            );
+//            List<String> results = jdbi.withHandle(h -> h.createQuery("select ranked.* from " +
+//                    "(" +
+//                    "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
+//                    ") as ranked " +
+//                    "where rank = 1 and hash != 'test'")
+//                    .map(mapper)
+//                    .collect(Collectors.toList())
+//            );
 
             handler.contentType("text/plain");
 
@@ -268,7 +250,7 @@ public class Application {
     private Map<String, Integer> popularityFlatten(String filter_out_hash) {
         return popularity(filter_out_hash)
                 .stream()
-                .collect(Collectors.toMap(m -> m.get("s").toString(), m->Integer.valueOf(m.get("count").toString())));
+                .collect(Collectors.toMap(m -> m.get("s").toString(), m -> Integer.valueOf(m.get("count").toString())));
     }
 
     private Map<Object, Map<String, Object>> popularityReport() {
@@ -283,18 +265,17 @@ public class Application {
                 .filter(not(String::isEmpty))
                 .map(s -> String.format("hash != '%s'", s))
                 .collect(Collectors.joining(" AND ", "where ", ""));
-
-        return jdbi.withHandle(h -> h.createQuery(String.format("select rank, s, id, count(*) from " +
-                "( " +
-                "select distinct hash, id_1 as id, title_1 as s, rank() over (partition by hash order by insert_date desc) as rank  from sessions %1$s  " +
-                "union all select distinct hash, id_2 as id, title_2 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s " +
-                "union all select distinct hash, id_3 as id, title_3 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s  " +
-                "union all select distinct hash, id_4 as id, title_4 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s) " +
-                "all_sessions where s!='' and rank=1 group by rank, id, s order by count desc;\n", whereClause))
-                .mapToMap()
-                .list()
-        );
+        return Collections.emptyList();
+//        return jdbi.withHandle(h -> h.createQuery(String.format("select rank, s, id, count(*) from " +
+//                "( " +
+//                "select distinct hash, id_1 as id, title_1 as s, rank() over (partition by hash order by insert_date desc) as rank  from sessions %1$s  " +
+//                "union all select distinct hash, id_2 as id, title_2 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s " +
+//                "union all select distinct hash, id_3 as id, title_3 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s  " +
+//                "union all select distinct hash, id_4 as id, title_4 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s) " +
+//                "all_sessions where s!='' and rank=1 group by rank, id, s order by count desc;\n", whereClause))
+//                .mapToMap()
+//                .list()
+//        );
     }
 
-    static <T> Predicate<T> not(Predicate<T> p) { return p.negate(); }
 }

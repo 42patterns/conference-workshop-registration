@@ -24,4 +24,8 @@ public class Schedule {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+    public ScheduleDay getFirstDay() {
+        return days.get(0);
+    }
 }

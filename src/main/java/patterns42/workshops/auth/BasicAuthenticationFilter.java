@@ -10,9 +10,9 @@
 //    private static final int NUMBER_OF_AUTHENTICATION_FIELDS = 2;
 //    private static final String ACCEPT_ALL_TYPES = "*";
 //
-//    private final AuthenticationDetails authenticationDetails;
+//    private final AdminAuthenticationDetails authenticationDetails;
 //
-//    public BasicAuthenticationFilter(final AuthenticationDetails authenticationDetails) {
+//    public BasicAuthenticationFilter(final AdminAuthenticationDetails authenticationDetails) {
 //        this.authenticationDetails = authenticationDetails;
 //    }
 //
@@ -41,7 +41,7 @@
 //                .map(String::new) //toString
 //                .map(s -> s.split(":")) //split username and password
 //                .filter(sa -> sa.length == NUMBER_OF_AUTHENTICATION_FIELDS) //check if valid
-//                .map(sa -> new AuthenticationDetails(sa)) //to tuple
+//                .map(sa -> new AdminAuthenticationDetails(sa)) //to tuple
 //                .map(c -> authenticationDetails.username.equals(c.username)
 //                        && authenticationDetails.password.equals(c.password)) //verify
 //                .orElse(false);
