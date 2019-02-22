@@ -1,29 +1,22 @@
 package patterns42.workshops.agenda.model;
 
-import lombok.*;
+import lombok.Value;
 
-import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Value
 public class ScheduleDay {
-    LocalDate date;
-    List<Timeslot> timeslots;
+    final Map<String, List<Session>> timeslots;
 
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @ToString
-    @Builder
-    public static class Timeslot {
-        String startTime;
-        String  endTime;
-        List<Session> workshops;
-        List<Session> deepdives;
+    public List<Session> getAllSessions() {
+        return timeslots.values().stream()
+                .flatMap(Collection::stream)
+                .filter(Predicate.not(Session::isService))
+                .collect(Collectors.toList());
     }
 
 }

@@ -1,8 +1,0 @@
--
-  group: "Organizatorzy"
-  elements:
-    - {name: "Monika Wańkowicz", caption: "Opiekun klienta", phone: "+48 536 710 157", description: "Bingo HR", link: "mailto:mwankowicz@bingohr.pl", imageUrl: "photo-monika.jpg"}
-    - {name: "Jola Spodzieja", caption: "Organizacja", phone: "+48 508 790 094", description: "Bingo HR", link: "mailto:j.spodzieja@bingohr.pl", imageUrl: "photo-jola.jpg"}
-    - {name: "Jakub Marchwicki", caption: "Organizacja, program", phone: "+48 607 183 320", description: "Trójmiasto JUG", link: "http://jakub.marchwicki.pl", imageUrl: "photo-jakub.jpg"}
-    - {name: "Krzysztof Miszewski", caption: "Rada programowa", phone: "<br />", description: "Travactory", link: "http://travactory.com", imageUrl: "photo-krzysiek_miszewski.png"}
-    - {name: "Katarzyna Smoła", caption: "Media / PR", phone: "+48 509 210 029", imageUrl: "photo-kasia.jpg"}

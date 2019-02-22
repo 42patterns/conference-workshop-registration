@@ -1,54 +1,63 @@
 package patterns42.workshops.agenda.model;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-@Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data @NoArgsConstructor
 public class Session {
-    Integer id;
     String title;
-    Boolean service;
+
+    @JsonProperty("abstract")
     String description;
-    String location;
-    Integer capacity;
-    List<Speaker> speakers;
-    PreReq prerequisites;
-    SessionType sessionType;
+    Integer seats;
+    List<Speaker> speakers = Collections.emptyList();
+
+    @JsonProperty("session")
+    SessionType type;
+
+    public static boolean isWorkshop(Session session) {
+        return SessionType.WORKSHOP.equals(session.type);
+    }
+
+    public static boolean isService(Session session) {
+        return SessionType.SERVICE.equals(session.type);
+    }
 
     public enum SessionType {
-        WORKSHOP("workshop"), DEEP_DIVE("deep dive"), KEYNOTE("keynote"), SERVICE("service");
+        WORKSHOP("Warsztat"), PRESENTATION("Prezentacja"), SERVICE("Serwis");
 
-        public final String name;
+        private static final Map<String, SessionType> lookup;
 
+        static {
+            lookup = Stream.of(SessionType.values())
+                    .collect(Collectors.toMap(
+                            SessionType::getName,
+                            Function.identity()
+                    ));
+        }
+
+        private final String name;
         SessionType(String workshop) {
             this.name = workshop;
         }
 
-        public static SessionType getSessionTypeById(Integer id) {
-            switch (id) {
-                case 0:
-                    return SessionType.WORKSHOP;
-                case 1:
-                    return SessionType.DEEP_DIVE;
-                case 2:
-                    return SessionType.KEYNOTE;
-                default:
-                    throw new IllegalStateException("Id not valid");
-            }
+        public String getName() {
+            return name;
+        }
+
+        @JsonCreator
+        public static SessionType fromString(String value) {
+            return lookup.getOrDefault(value, SERVICE);
         }
     }
 
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @ToString
-    public static class PreReq {
-        String title;
-        List<String> list;
-    }
 }

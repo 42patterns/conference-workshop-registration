@@ -1,7 +1,7 @@
 package patterns42.workshops.agenda;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,46 +15,36 @@ import org.slf4j.LoggerFactory;
 import patterns42.workshops.agenda.model.Schedule;
 import patterns42.workshops.agenda.model.ScheduleDay;
 import patterns42.workshops.agenda.model.Session;
-import patterns42.workshops.agenda.model.Speaker;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class ScheduleParser {
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleParser.class);
-    private final String SPEAKERS_FILE = "speakers.yml";
-    private final String SESSIONS_FILE = "sessions.yml";
-    private final String SCHEDULE_FILE = "schedule.yml";
-    private final URI root;
+    private static final String LOCAL_SCHEDULE = "";
+    private final URL path;
 
-    public ScheduleParser(URI rootLocation) {
-        this.root = rootLocation;
+    public ScheduleParser(Optional<String> maybeAgendaUrl) throws MalformedURLException {
+        var url = maybeAgendaUrl.
+                orElse("http://segfault.events/sites/gdansk2019/agenda/index.yaml");
+        this.path = new URL(url);
     }
 
-    public static <T> Predicate<T> not(Predicate<T> t) {
-        return t.negate();
+    public ScheduleParser(URL rootLocation) {
+        this.path = rootLocation;
     }
 
     public Schedule schedule() {
-        return schedule(sessions(speakers()));
-    }
-
-    public Schedule schedule(Map<Integer, Session> sessions) {
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(ScheduleDay.Timeslot.class, new TimeslotDeserializer(sessions));
+        module.addDeserializer(ScheduleDay.class, new ScheduleDayDeserializer());
 
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory())
                 .registerModule(new JavaTimeModule())
@@ -62,127 +52,37 @@ public class ScheduleParser {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-            ScheduleDay[] scheduleDays = mapper.readValue(getFile(SCHEDULE_FILE), ScheduleDay[].class);
+            JsonNode days = mapper.readTree(getScheduleDataFromYml())
+                    .at("/agenda");
+            ScheduleDay[] scheduleDays = mapper.treeToValue(days, ScheduleDay[].class);
             return new Schedule(scheduleDays);
         } catch (IOException e) {
-            LOG.warn("Error parsing {}", SPEAKERS_FILE, e);
-            return new Schedule();
+            LOG.warn("Error parsing Schedule {}", path, e);
+            throw new RuntimeException(e);
         }
     }
 
-    public Map<Integer, Session> sessions(Map<Integer, Speaker> speakers) {
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(Session.class, new SessionDeserializer(speakers));
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory())
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                .registerModule(module);
-
+    private InputStream getScheduleDataFromYml() throws IOException {
         try {
-
-            JsonNode sessionsNode = mapper.readTree(getFile(SESSIONS_FILE))
-                    .at("/list");
-            Session[] sessions = mapper.treeToValue(sessionsNode, Session[].class);
-            return Arrays.stream(sessions)
-                    .filter(not(Session::getService))
-                    .collect(Collectors.toMap(Session::getId, Function.identity()));
-        } catch (IOException e) {
-            LOG.warn("Error parsing {}", SESSIONS_FILE, e);
-            return Collections.emptyMap();
-        }
-    }
-
-    public Map<Integer, Speaker> speakers() {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory())
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try {
-            Speaker[] speakers = mapper.readValue(getFile(SPEAKERS_FILE), Speaker[].class);
-            return Arrays.stream(speakers)
-                    .collect(Collectors.toMap(Speaker::getId, Function.identity()));
-        } catch (IOException e) {
-            LOG.warn("Error parsing {}", SPEAKERS_FILE, e);
-            return Collections.emptyMap();
-        }
-    }
-
-    private InputStream getFile(String file) throws IOException {
-        try {
-            LOG.info("Opening resource {}", root.resolve(file));
-            return root.resolve(file).toURL().openStream();
+            LOG.info("Opening resource {}", path);
+            return path.openStream();
         } catch (UnknownHostException e) {
-            LOG.warn("Error resolving {}. Loading local file", root.resolve(file));
-            return getClass().getResourceAsStream("/session-data/" + file);
+            LOG.warn("Error resolving {}. Loading local file", path);
+            return getClass().getResourceAsStream("/session-data/" + LOCAL_SCHEDULE);
         }
     }
 }
 
-class SessionDeserializer extends StdDeserializer<Session> {
+class ScheduleDayDeserializer extends StdDeserializer<ScheduleDay> {
 
-    private final Map<Integer, Speaker> speakers;
-
-    public SessionDeserializer(Map<Integer, Speaker> speakers) {
-        super(Session.class);
-        this.speakers = speakers;
+    public ScheduleDayDeserializer() {
+        super(ScheduleDay.class);
     }
 
     @Override
-    public Session deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException {
-        JsonNode sessionNode = jp.getCodec().readTree(jp);
-
-        List<Integer> speakerIds = sessionNode.has("speakers") ?
-                Utils.jsonArrayAsList(sessionNode.get("speakers")) : Collections.emptyList();
-
-        return Session.builder()
-                .id(sessionNode.get("id").asInt())
-                .title(sessionNode.get("title").asText())
-                .capacity(sessionNode.has("capacity")?sessionNode.get("capacity").asInt():0)
-                .description(sessionNode.has("description")?sessionNode.get("description").asText():"")
-                .service(sessionNode.has("service") ? true : false)
-                .location(sessionNode.has("location")?sessionNode.get("location").asText():"")
-                .sessionType(sessionNode.has("type") ? Session.SessionType.getSessionTypeById(sessionNode.get("type").asInt()) : Session.SessionType.SERVICE)
-                .prerequisites(sessionNode.has("prereq") ?
-                        jp.getCodec().readValue(sessionNode.get("prereq").traverse(), Session.PreReq.class)
-                        : null)
-                .speakers(this.speakers
-                        .entrySet().stream()
-                        .filter(e -> speakerIds.contains(e.getKey()))
-                        .map(Map.Entry::getValue)
-                        .collect(Collectors.toList()))
-                .build();
-    }
-}
-
-class TimeslotDeserializer extends StdDeserializer<ScheduleDay.Timeslot> {
-    private final Map<Integer, Session> sessions;
-
-    public TimeslotDeserializer(Map<Integer, Session> sessions) {
-        super(ScheduleDay.Timeslot.class);
-        this.sessions = sessions;
-    }
-
-    @Override
-    public ScheduleDay.Timeslot deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-        JsonNode timeslotNode = p.getCodec().readTree(p);
-
-        List<Integer> workshopIds = timeslotNode.has("workshopsIds")?
-                Utils.jsonArrayAsList(timeslotNode.get("workshopsIds")):Collections.emptyList();
-
-        List<Integer> deepdivesIds = timeslotNode.has("sessionIds")?
-                Utils.jsonArrayAsList(timeslotNode.get("sessionIds")):Collections.emptyList();
-
-        return ScheduleDay.Timeslot.builder()
-                .startTime(timeslotNode.get("startTime").asText())
-                .endTime(timeslotNode.get("endTime").asText())
-                .workshops(this.sessions
-                        .entrySet().stream()
-                        .filter(e -> workshopIds.contains(e.getKey()))
-                        .map(Map.Entry::getValue)
-                        .collect(Collectors.toList()))
-                .deepdives(this.sessions
-                        .entrySet().stream()
-                        .filter(e -> deepdivesIds.contains(e.getKey()))
-                        .map(Map.Entry::getValue)
-                        .collect(Collectors.toList()))
-                .build();
+    public ScheduleDay deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        Map<String, List<Session>> sessions = p.readValueAs(new TypeReference<Map<String, List<Session>>>() {});
+        return new ScheduleDay(sessions);
     }
 }
 

@@ -1,5 +1,7 @@
 package patterns42.workshops;
 
+import io.javalin.Javalin;
+import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.slf4j.Logger;
@@ -8,29 +10,23 @@ import patterns42.workshops.agenda.ScheduleParser;
 import patterns42.workshops.agenda.model.Schedule;
 import patterns42.workshops.agenda.model.Session;
 import patterns42.workshops.auth.AuthenticationDetails;
-import patterns42.workshops.auth.BasicAuthenticationFilter;
-import patterns42.workshops.view.BytebayHandlebarEngine;
-import spark.ModelAndView;
-import spark.Service;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
 import static java.util.Optional.ofNullable;
-import static spark.Spark.halt;
 
+@Slf4j
 public class Application {
 
+    private final static String TEST_HASH_VALUE = "test-hash-123";
     private final static Logger LOG = LoggerFactory.getLogger(Application.class);
-    private static String GITHUB_URL = "https://raw.githubusercontent.com/42patterns/bytebay-website/master/_data/";
     private final int port;
     private final AuthenticationDetails authenticationDetails;
     private final Jdbi jdbi;
@@ -52,9 +48,9 @@ public class Application {
     }
 
     public static void main(String[] args) throws MalformedURLException, URISyntaxException {
-        AuthenticationDetails auth = new AuthenticationDetails(ofNullable(getProperty("username")),
-                ofNullable(getProperty("password")));
-        ScheduleParser parser = new ScheduleParser(new URL(GITHUB_URL).toURI());
+        AuthenticationDetails auth = new AuthenticationDetails(ofNullable(getProperty("USERNAME")),
+                ofNullable(getProperty("PASSWORD")));
+        ScheduleParser parser = new ScheduleParser(ofNullable(getProperty("AGENDA_URL")));
         UserDataParser userdata = new UserDataParser();
         Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
                 .orElseThrow(() -> new RuntimeException("No DATABASE_URL found")));
@@ -112,35 +108,29 @@ public class Application {
     }
 
     private void run() {
-        Service http = Service.ignite();
+        Javalin http = Javalin.create();
         http.port(this.port);
 
-        http.after("/mostPopularWorkshops", (request, response) -> {
-            final HashMap<String, String> corsHeaders = new HashMap<>();
+        http.get("/mostPopularWorkshops", ctx -> ctx.contentType("application/json")
+                .header("Access-Control-Allow-Methods", "GET")
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,")
+                .header("Access-Control-Allow-Credentials", "true")
+                .json(popularityReport()));
 
-            corsHeaders.put("Access-Control-Allow-Methods", "GET");
-            corsHeaders.put("Access-Control-Allow-Origin", "*");
-            corsHeaders.put("Access-Control-Allow-Headers", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,");
-            corsHeaders.put("Access-Control-Allow-Credentials", "true");
-            corsHeaders.forEach((key, value) -> {
-                response.header(key, value);
-            });
-        });
-        http.get("/mostPopularWorkshops", (req, resp) -> popularityReport(), new JsonTransformer());
+        http.get("/:hash/myagenda", handler -> {
+            String hash = handler.pathParam("hash");
 
-        http.get("/:hash/myagenda", (req, resp) -> {
-            String hash = req.params("hash");
-
-            if (!usernameHashmap.containsKey(hash)) {
-                halt(401, "Invalid hash");
-            }
+//            if (!usernameHashmap.containsKey(hash)) {
+//                handler.(401, "Invalid hash");
+//            }
 
             RowMapper<Map<String, Session>> mapper = (rs, statementContext) -> {
                 Map<String, Session> map = new LinkedHashMap<>();
-                map.put("Czwartek, 10:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_1"), null));
-                map.put("Czwartek, 14:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_2"), null));
-                map.put("Piątek, 9:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_3"), null));
-                map.put("Piątek, 12:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_4"), null));
+//                map.put("Czwartek, 10:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_1"), null));
+//                map.put("Czwartek, 14:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_2"), null));
+//                map.put("Piątek, 9:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_3"), null));
+//                map.put("Piątek, 12:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_4"), null));
                 return map;
             };
 
@@ -154,17 +144,16 @@ public class Application {
             map.put("hash", hash);
             map.put("name", usernameHashmap.get(hash));
             map.put("agenda", agenda);
-            return new ModelAndView(map, "myagenda.hbs");
-        }, new BytebayHandlebarEngine());
+//            return new ModelAndView(map, "myagenda.hbs");
+        });
 
 
-        http.get("/:hash", (req, resp) -> {
-            String hash = req.params("hash");
+        http.get("/:hash", handler -> {
+            String hash = handler.pathParam("hash");
 
-            if (!usernameHashmap.containsKey(hash)) {
-                halt(401, "Invalid hash");
-            }
-
+//            if (!usernameHashmap.containsKey(hash)) {
+//                halt(401, "Invalid hash");
+//            }
 
             RowMapper<List<String>> mapper = (rs, statementContext) ->
                     Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
@@ -183,67 +172,66 @@ public class Application {
             map.put("previous", previous.orElse(Collections.emptyList()));
             map.put("popularity", popularityFlatten());
             map.put("name", usernameHashmap.get(hash));
-            map.put("isTest", ("test".equals(req.params("hash"))?true:false));
+            map.put("isTest", (TEST_HASH_VALUE.equals(handler.pathParam("hash"))?true:false));
             map.put("schedule", schedule.getDays());
-            return new ModelAndView(map, "index.hbs");
-        }, new BytebayHandlebarEngine());
+//            return new ModelAndView(map, "index.hbs");
+        });
 
 
-        http.post("/:hash", (req, resp) -> {
+        http.post("/:hash", handler -> {
 
-            String hash = req.params("hash");
+            String hash = handler.pathParam("hash");
             List<String> keys = Arrays.asList("sessions-2018-03-15-10:30",
                     "sessions-2018-03-15-14:00",
                     "sessions-2018-03-16-9:00",
                     "sessions-2018-03-16-12:30");
 
-            Function<String, Session> sessionData = key -> Optional.ofNullable(req.queryMap().value(key))
-                    .map(Integer::valueOf)
-                    .map(id -> schedule.getAllSessions().get(id))
-                    .orElse(new Session());
+//            Function<String, Session> sessionData = key -> Optional.ofNullable(req.queryMap().value(key))
+//                    .map(Integer::valueOf)
+//                    .map(id -> schedule.getAllSessions().get(id))
+//                    .orElse(new Session());
+//
+//            List<Session> sessions = keys.stream()
+//                    .map(sessionData)
+//                    .collect(Collectors.toList());
+//
+//            validation
+//            Map<String, Integer> popularity = popularityFlatten(hash);
+//            if (sessions.stream()
+//                    .filter(s -> Objects.nonNull(s.getId()))
+//                    .filter(s -> ((popularity.getOrDefault(s.getTitle(), 0) + 1) > s.getCapacity()))
+//                    .count() > 0) {
+//                halt(400, "Invalid sessions data. Try again");
+//                return null;
+//            }
 
-            List<Session> sessions = keys.stream()
-                    .map(sessionData)
-                    .collect(Collectors.toList());
 
-            //validation
-            Map<String, Integer> popularity = popularityFlatten(hash);
-            if (sessions.stream()
-                    .filter(s -> Objects.nonNull(s.getId()))
-                    .filter(s -> ((popularity.getOrDefault(s.getTitle(), 0) + 1) > s.getCapacity()))
-                    .count() > 0) {
-                halt(400, "Invalid sessions data. Try again");
-                return null;
-            }
+//            final Map<String,Object> map = new HashMap<>();
+//            IntStream.rangeClosed(1, sessions.size()).forEach(idx -> {
+//                map.put("id"+idx, sessions.get(idx-1).getId());
+//                map.put("title"+idx, sessions.get(idx-1).getTitle());
+//            });
 
+//            Integer i = jdbi.withHandle(h -> h
+//                    .createUpdate("INSERT INTO sessions (hash, " +
+//                            "   id_1, title_1, " +
+//                            "   id_2, title_2, " +
+//                            "   id_3, title_3, " +
+//                            "   id_4, title_4 " +
+//                            ") " +
+//                            "VALUES(:hash, :id1, :title1, :id2, :title2, :id3, :title3, :id4, :title4)")
+//                    .bind("hash", hash)
+//                    .bindMap(map)
+//                    .execute()
+//            );
+//
+//            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
 
-            final Map<String,Object> map = new HashMap<>();
-            IntStream.rangeClosed(1, sessions.size()).forEach(idx -> {
-                map.put("id"+idx, sessions.get(idx-1).getId());
-                map.put("title"+idx, sessions.get(idx-1).getTitle());
-            });
-
-            Integer i = jdbi.withHandle(h -> h
-                    .createUpdate("INSERT INTO sessions (hash, " +
-                            "   id_1, title_1, " +
-                            "   id_2, title_2, " +
-                            "   id_3, title_3, " +
-                            "   id_4, title_4 " +
-                            ") " +
-                            "VALUES(:hash, :id1, :title1, :id2, :title2, :id3, :title3, :id4, :title4)")
-                    .bind("hash", hash)
-                    .bindMap(map)
-                    .execute()
-            );
-
-            LOG.info("Insert successful [rowCount={}, hash={}, data={}]", i, hash, map);
-
-            resp.redirect("/" + req.params("hash"));
-            return null;
+            handler.redirect("/" + handler.pathParam("hash"));
         });
 
-        http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
-        http.get("/admin/registrations", (req, resp) -> {
+//        http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
+        http.get("/admin/registrations", handler -> {
 
             RowMapper<String> mapper = (rs, ctx) ->
                     Arrays.asList(rs.getString("hash"),
@@ -263,10 +251,12 @@ public class Application {
                     .collect(Collectors.toList())
             );
 
-            resp.type("text/plain");
+            handler.contentType("text/plain");
 
-            return results.stream().collect(Collectors.joining("\n"));
+//            return results.stream().collect(Collectors.joining("\n"));
         });
+
+        http.start();
 
     }
 

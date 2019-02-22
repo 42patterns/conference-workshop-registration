@@ -1,22 +1,23 @@
 package patterns42.workshops.auth;
 
-import java.util.Objects;
+import lombok.ToString;
+
 import java.util.Optional;
 
+@ToString
 public class AuthenticationDetails {
     public final String username;
     public final String password;
 
     public AuthenticationDetails(Optional<String> maybeUsername, Optional<String> maybePassword) {
         this.username = maybeUsername
-                .orElseThrow(() -> new RuntimeException("Empty username"));
+                .orElse("admin");
         this.password = maybePassword
-                .orElseThrow(() -> new RuntimeException("Empty password"));
+                .orElseGet(() -> generatePassword());
     }
 
-    public AuthenticationDetails(String[] credentials) {
-        Objects.requireNonNull(credentials, "Credentials cannot be null");
-        this.username = credentials[0];
-        this.password = credentials[1];
+    private String generatePassword() {
+        return null; //TODO: generate random password
     }
+
 }

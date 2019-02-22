@@ -1,34 +1,27 @@
 package patterns42.workshops.agenda.model;
 
-import lombok.Getter;
+import lombok.Value;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-
-@Getter
+@Value
 public class Schedule {
 
-    List<ScheduleDay> days;
-
-    public Schedule() {
-        this.days = Collections.emptyList();
-    }
+    final List<ScheduleDay> days;
 
     public Schedule(ScheduleDay[] scheduleDays) {
         this.days = Arrays.asList(scheduleDays);
     }
 
-    public Map<Integer, Session> getAllSessions() {
+    public List<Speaker> getAllSpeakers() {
         return days.stream()
-                .flatMap(day -> day.getTimeslots()
-                        .stream()
-                        .flatMap(t -> Stream.of(t.getWorkshops(), t.getDeepdives())
-                                .flatMap(Collection::stream))
-                )
-                .collect(Collectors.toMap(Session::getId, Function.identity()));
+                .flatMap(day -> day.getTimeslots().values().stream())
+                .flatMap(Collection::stream)
+                .flatMap(session -> session.getSpeakers().stream())
+                .distinct()
+                .collect(Collectors.toList());
     }
-
 }
