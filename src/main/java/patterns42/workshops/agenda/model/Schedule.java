@@ -1,12 +1,10 @@
 package patterns42.workshops.agenda.model;
 
-import com.google.common.base.Functions;
 import lombok.Value;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 

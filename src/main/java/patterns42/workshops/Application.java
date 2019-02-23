@@ -18,7 +18,6 @@ import patterns42.workshops.auth.AdminAuthenticationDetails;
 import patterns42.workshops.dao.SessionDao;
 
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
