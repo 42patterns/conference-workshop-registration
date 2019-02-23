@@ -70,7 +70,11 @@
                                     <div>
                                         {% if (session.type == "WORKSHOP") %}
                                             <label>
-                                                <input type="radio" name="session-{{ loop.parent.loop.index }}" value="{{ session.title }}">
+                                                <input type="radio"
+                                                       name="session-{{ loop.parent.loop.index }}"
+                                                       value="{{ session.title }}"
+                                                       {% if (session.title in previous) %} checked {% endif %}
+                                                >
                                                 {{ session.title }}
                                             </label>
                                         {% else %}

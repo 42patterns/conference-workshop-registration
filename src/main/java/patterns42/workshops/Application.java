@@ -129,18 +129,12 @@ public class Application {
                     Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
                             rs.getString("title_3"), rs.getString("title_4"));
 
-            Optional<List<String>> previous = Optional.of(Collections.emptyList());
-//            jdbi.withHandle(h -> h
-//                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
-//                    .bind("hash", hash)
-//                    .map(mapper)
-//                    .findFirst());
-
+            List<String> previous = jdbi.withExtension(SessionDao.class, dao -> dao.previousSessions(hash));
             LOG.info("Previous registration for [hash={}]: {}", hash, previous);
 
             Map<String, Object> attrs = new HashMap();
             attrs.put("hash", hash);
-            attrs.put("previous", previous.orElse(Collections.emptyList()));
+            attrs.put("previous", previous);
 //            map.put("popularity", popularityFlatten());
             attrs.put("name", usernameHashmap.get(hash));
             attrs.put("isTest", (UserDataParser.TEST_HASH_VALUE.equals(ctx.pathParam("hash")) ? true : false));
