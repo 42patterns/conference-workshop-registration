@@ -62,16 +62,18 @@
                                 {% for session in data %}
                                     <div>
                                         {% if (session.type == "WORKSHOP") %}
+                                            {% set maxCapacity = popularity[session.title].max %}
                                             <label>
                                                 <input type="radio"
                                                        name="session-{{ loop.parent.loop.index }}"
                                                        value="{{ session.title }}"
+                                                       {% if (popularity[session.title].current >= maxCapacity) %} readonly {% endif %}
                                                        {% if (session.title in previous) %} checked {% endif %}
                                                 >
                                                 {{ session.title }}
 
                                                 <span class="text-nowrap">
-                                                    {{ popularity[session.title].current }} / {{ popularity[session.title].max }}
+                                                    {{ popularity[session.title].current }} / {{ maxCapacity }}
                                                 </span>
                                             </label>
                                         {% else %}

@@ -1,5 +1,6 @@
 package patterns42.workshops;
 
+import io.javalin.BadRequestResponse;
 import io.javalin.ForbiddenResponse;
 import io.javalin.Javalin;
 import lombok.Builder;
@@ -20,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.lang.System.getProperty;
@@ -36,7 +38,7 @@ public class Application {
     private final Map<String, String> usernameHashmap;
     private final Schedule schedule;
 
-    public static void main(String[] args) throws MalformedURLException, URISyntaxException {
+    public static void main(String[] args) throws MalformedURLException {
         Integer port = ofNullable(getenv("PORT"))
                 .filter(s -> s.matches("\\d+"))
                 .map(Integer::valueOf)
@@ -86,47 +88,12 @@ public class Application {
         http.get("/stats", ctx -> ctx.contentType("application/json")
                 .json(popularity()));
 
-        http.get("/:hash/myagenda", handler -> {
-            String hash = handler.pathParam("hash");
-
-//            if (!usernameHashmap.containsKey(hash)) {
-//                handler.(401, "Invalid hash");
-//            }
-
-            RowMapper<Map<String, Session>> mapper = (rs, statementContext) -> {
-                Map<String, Session> map = new LinkedHashMap<>();
-//                map.put("Czwartek, 10:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_1"), null));
-//                map.put("Czwartek, 14:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_2"), null));
-//                map.put("Piątek, 9:00", schedule.getAllSessions().getOrDefault(rs.getInt("id_3"), null));
-//                map.put("Piątek, 12:30", schedule.getAllSessions().getOrDefault(rs.getInt("id_4"), null));
-                return map;
-            };
-
-            Map<String, Session> agenda = Collections.emptyMap();
-//            jdbi.withHandle(h -> h
-//                    .createQuery("SELECT * FROM sessions WHERE hash=:hash ORDER BY insert_date DESC LIMIT 1")
-//                    .bind("hash", hash)
-//                    .map(mapper)
-//                    .findFirst()).orElse(Collections.emptyMap());
-
-            Map<String, Object> map = new HashMap();
-            map.put("hash", hash);
-            map.put("name", usernameHashmap.get(hash));
-            map.put("agenda", agenda);
-//            return new ModelAndView(map, "myagenda.hbs");
-        });
-
-
         http.get("/:hash", ctx -> {
             String hash = ctx.pathParam("hash");
 
             if (!usernameHashmap.containsKey(hash)) {
                 throw new ForbiddenResponse("Invalid hash");
             }
-
-            RowMapper<List<String>> mapper = (rs, statementContext) ->
-                    Arrays.asList(rs.getString("title_1"), rs.getString("title_2"),
-                            rs.getString("title_3"), rs.getString("title_4"));
 
             List<String> previous = jdbi.withExtension(SessionDao.class, dao -> dao.previousSessions(hash));
             LOG.info("Previous registration for [hash={}]: {}", hash, previous);
@@ -146,6 +113,10 @@ public class Application {
         http.post("/:hash", ctx -> {
 
             String hash = ctx.pathParam("hash");
+            if (!usernameHashmap.containsKey(hash)) {
+                throw new ForbiddenResponse("Invalid hash");
+            }
+
             String session2 = ctx.formParam("session-2");
             String session4 = ctx.formParam("session-4");
 
@@ -159,47 +130,22 @@ public class Application {
                             .build()
             );
 
-//            Function<String, Session> sessionData = key -> Optional.ofNullable(req.queryMap().value(key))
-//                    .map(Integer::valueOf)
-//                    .map(id -> schedule.getAllSessions().get(id))
-//                    .orElse(new Session());
-//
-//            List<Session> sessions = keys.stream()
-//                    .map(sessionData)
-//                    .collect(Collectors.toList());
-//
-//            validation
-//            Map<String, Integer> popularity = popularityFlatten(hash);
-//            if (sessions.stream()
-//                    .filter(s -> Objects.nonNull(s.getId()))
-//                    .filter(s -> ((popularity.getOrDefault(s.getTitle(), 0) + 1) > s.getCapacity()))
-//                    .count() > 0) {
-//                halt(400, "Invalid sessions data. Try again");
-//                return null;
-//            }
+            //validation
+            Map<String, SessionCapacity> sessionCapacityMap = sessionsPopularityWithCapacity(hash);
+            Predicate<SessionDao.SessionDTO> isAboveCapacity = dto -> {
+                SessionCapacity sessionCapacity = sessionCapacityMap.get(dto.getTitle());
+                return (sessionCapacity.getCurrent() + 1 > sessionCapacity.getMax());
+            };
 
 
-//            final Map<String,Object> map = new HashMap<>();
-//            IntStream.rangeClosed(1, sessions.size()).forEach(idx -> {
-//                map.put("id"+idx, sessions.get(idx-1).getId());
-//                map.put("title"+idx, sessions.get(idx-1).getTitle());
-//            });
+            if (sessionDTOS.stream()
+                    .filter(isAboveCapacity)
+                    .count() > 0) {
+                throw new BadRequestResponse("Invalid data. Some sessions might already got full");
+            }
 
             int[] results = jdbi.withExtension(SessionDao.class, dao -> dao.insertSessions(hash, sessionDTOS));
 
-//            Integer i = jdbi.withHandle(h -> h
-//                    .createUpdate("INSERT INTO sessions (hash, " +
-//                            "   id_1, title_1, " +
-//                            "   id_2, title_2, " +
-//                            "   id_3, title_3, " +
-//                            "   id_4, title_4 " +
-//                            ") " +
-//                            "VALUES(:hash, :id1, :title1, :id2, :title2, :id3, :title3, :id4, :title4)")
-//                    .bind("hash", hash)
-//                    .bindMap(map)
-//                    .execute()
-//            );
-//
             LOG.info("Insert successful [rowCount={}, hash={}, data={}]", results, hash, sessionDTOS);
 
             ctx.redirect("/" + ctx.pathParam("hash"));
