@@ -1,5 +1,8 @@
 package patterns42.workshops.auth;
 
+import io.javalin.BasicAuthCredentials;
+import io.javalin.UnauthorizedResponse;
+import io.javalin.security.Role;
 import lombok.ToString;
 
 import java.security.SecureRandom;
@@ -10,6 +13,9 @@ import java.util.Random;
 
 @ToString
 public class AdminAuthenticationDetails {
+    public enum Authed implements Role {
+        ADMIN
+    }
     public final String username;
     public final String password;
 
@@ -19,6 +25,14 @@ public class AdminAuthenticationDetails {
                 .orElse("admin");
         this.password = maybePassword
                 .orElseGet(() -> random.nextString());
+    }
+
+    public boolean authorize(BasicAuthCredentials basicAuthCredentials) {
+        if (Objects.isNull(basicAuthCredentials)) {
+            throw new UnauthorizedResponse("Unauthorized");
+        }
+
+        return username.equals(basicAuthCredentials.getUsername()) && password.equals(basicAuthCredentials.getPassword());
     }
 }
 

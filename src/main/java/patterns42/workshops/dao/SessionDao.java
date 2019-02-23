@@ -11,6 +11,8 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlScript;
 
 import java.beans.ConstructorProperties;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SessionDao {
@@ -29,7 +31,7 @@ public interface SessionDao {
                 "(hash, sessionid, title) " +
             "values " +
                 "(:hash, :sessionId, :title)")
-    int[] insertSessions(@Bind("hash") String hash, @BindBean Iterable<SessionDTO> sessions);
+    int[] insertSessions(@Bind("hash") String hash, @BindBean Iterable<SessionDto> sessions);
 
     @SqlQuery("select ranked.title from (" +
                 "select " +
@@ -41,10 +43,30 @@ public interface SessionDao {
     @SqlQuery("select popularity.title, count(*) as count from (" +
                 "select " +
                     "sessionid, title, rank() over (partition by hash, sessionid order by insert_date desc) as rank " +
-                "from sessions where hash not in (<hashes>)" +
+                "from sessions where hash not in (<exclusions>)" +
             ") as popularity where rank=1 group by title order by count desc")
     @RegisterConstructorMapper(PopularityRank.class)
-    List<PopularityRank> sessionsPopularity(@BindList("hashes") List<String> hashes);
+    List<PopularityRank> sessionsPopularity(@BindList("exclusions") List<String> exclusions);
+
+    @SqlQuery("select ranked.hash, title, insert_date from (" +
+                "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions where hash not in (<exclusions>)" +
+            ") as ranked where rank=1")
+    @RegisterConstructorMapper(RegistrationDto.class)
+    List<RegistrationDto> allRegistrations(@BindList("exclusions") List<String> exclusions);
+
+    @Value
+    class RegistrationDto {
+        final String hash;
+        final String title;
+        final LocalDateTime date;
+
+        @ConstructorProperties({"hash", "title", "insert_date"})
+        public RegistrationDto(String hash, String title, LocalDateTime date) {
+            this.hash = hash;
+            this.title = title;
+            this.date = date;
+        }
+    }
 
     @Value
     class PopularityRank {
@@ -59,7 +81,7 @@ public interface SessionDao {
     }
 
     @Value @Builder
-    class SessionDTO {
+    class SessionDto {
         final Integer sessionId;
         final String title;
     }

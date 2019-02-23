@@ -3,11 +3,11 @@ package patterns42.workshops;
 import io.javalin.BadRequestResponse;
 import io.javalin.ForbiddenResponse;
 import io.javalin.Javalin;
+import io.javalin.UnauthorizedResponse;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +18,7 @@ import patterns42.workshops.auth.AdminAuthenticationDetails;
 import patterns42.workshops.dao.SessionDao;
 
 import java.net.MalformedURLException;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -79,6 +80,14 @@ public class Application {
         Javalin http = Javalin.create()
                 .enableCorsForOrigin("*");
         http.port(this.port);
+        http.accessManager((handler, ctx, permittedRoles) -> {
+            if (permittedRoles.isEmpty() ||
+                (!permittedRoles.isEmpty() && this.authenticationDetails.authorize(ctx.basicAuthCredentials()))) {
+                handler.handle(ctx);
+            } else {
+                throw new UnauthorizedResponse("Unauthorized");
+            }
+        });
 
         http.get("/", ctx -> ctx
                 .contentType("text/html;charset=UTF-8")
@@ -119,11 +128,11 @@ public class Application {
             String session2 = ctx.formParam("session-2");
             String session4 = ctx.formParam("session-4");
 
-            List<SessionDao.SessionDTO> sessionDTOS = Arrays.asList(SessionDao.SessionDTO.builder()
+            List<SessionDao.SessionDto> sessionDTOS = Arrays.asList(SessionDao.SessionDto.builder()
                             .sessionId(2)
                             .title(session2)
                             .build(),
-                    SessionDao.SessionDTO.builder()
+                    SessionDao.SessionDto.builder()
                             .sessionId(4)
                             .title(session4)
                             .build()
@@ -131,7 +140,7 @@ public class Application {
 
             //validation
             Map<String, SessionCapacity> sessionCapacityMap = sessionsPopularityWithCapacity(hash);
-            Predicate<SessionDao.SessionDTO> isAboveCapacity = dto -> {
+            Predicate<SessionDao.SessionDto> isAboveCapacity = dto -> {
                 SessionCapacity sessionCapacity = sessionCapacityMap.get(dto.getTitle());
                 return (sessionCapacity.getCurrent() + 1 > sessionCapacity.getMax());
             };
@@ -150,31 +159,14 @@ public class Application {
             ctx.redirect("/" + ctx.pathParam("hash"));
         });
 
-//        http.before("/admin/*", new BasicAuthenticationFilter(authenticationDetails));
-        http.get("/admin/registrations", handler -> {
+        http.get("/admin/registrations", ctx -> {
+            List<SessionDao.RegistrationDto> registrationDtos = jdbi.withExtension(SessionDao.class, dao -> dao.allRegistrations(List.of(UserDataParser.TEST_HASH_VALUE)));
 
-            RowMapper<String> mapper = (rs, ctx) ->
-                    Arrays.asList(rs.getString("hash"),
-                            rs.getString("id_1"), rs.getString("id_2"),
-                            rs.getString("id_3"), rs.getString("id_4"),
-                            rs.getString("title_1"), rs.getString("title_2"),
-                            rs.getString("title_3"), rs.getString("title_4"),
-                            rs.getString("insert_date")
-                    ).stream().collect(Collectors.joining("##"));
-
-//            List<String> results = jdbi.withHandle(h -> h.createQuery("select ranked.* from " +
-//                    "(" +
-//                    "select *, rank() over (partition by hash order by insert_date desc) as rank from sessions" +
-//                    ") as ranked " +
-//                    "where rank = 1 and hash != 'test'")
-//                    .map(mapper)
-//                    .collect(Collectors.toList())
-//            );
-
-            handler.contentType("text/plain");
-
-//            return results.stream().collect(Collectors.joining("\n"));
-        });
+            ctx.contentType("text/plain")
+                .result(registrationDtos.stream()
+                            .map(dto -> String.join("###", dto.getHash(), dto.getTitle(), dto.getDate().format(DateTimeFormatter.ISO_DATE_TIME)))
+                            .reduce("", (l, r) -> String.join("\n", l, r)));
+        }, Set.of(AdminAuthenticationDetails.Authed.ADMIN));
 
         http.start();
 
