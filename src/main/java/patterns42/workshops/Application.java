@@ -44,11 +44,11 @@ public class Application {
                 .map(Integer::valueOf)
                 .orElse(8080);
 
-        AdminAuthenticationDetails auth = new AdminAuthenticationDetails(ofNullable(getProperty("USERNAME")),
-                ofNullable(getProperty("PASSWORD")));
+        AdminAuthenticationDetails auth = new AdminAuthenticationDetails(ofNullable(getenv("USERNAME")),
+                ofNullable(getenv("PASSWORD")));
         log.info("{}", auth);
 
-        ScheduleParser parser = new ScheduleParser(ofNullable(getProperty("AGENDA_URL")));
+        ScheduleParser parser = new ScheduleParser(ofNullable(getenv("AGENDA_URL")));
         UserDataParser userdata = new UserDataParser();
 
         Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
