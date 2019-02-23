@@ -2,7 +2,8 @@ package patterns42.workshops;
 
 import io.javalin.ForbiddenResponse;
 import io.javalin.Javalin;
-import io.javalin.rendering.template.JavalinJtwig;
+import lombok.Builder;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
@@ -19,13 +20,11 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.lang.System.getProperty;
 import static java.lang.System.getenv;
 import static java.util.Optional.ofNullable;
-import static java.util.function.Predicate.not;
 
 @Slf4j
 public class Application {
@@ -85,7 +84,7 @@ public class Application {
                 .html("<h1>Registration app for <a href=\"https://segfault.events/gdansk2019/\">Segfault University GDN 2019</a><h1>"));
 
         http.get("/stats", ctx -> ctx.contentType("application/json")
-                .json(popularityReport()));
+                .json(popularity()));
 
         http.get("/:hash/myagenda", handler -> {
             String hash = handler.pathParam("hash");
@@ -135,7 +134,7 @@ public class Application {
             Map<String, Object> attrs = new HashMap();
             attrs.put("hash", hash);
             attrs.put("previous", previous);
-//            map.put("popularity", popularityFlatten());
+            attrs.put("popularity", sessionsPopularityWithCapacity());
             attrs.put("name", usernameHashmap.get(hash));
             attrs.put("isTest", (UserDataParser.TEST_HASH_VALUE.equals(ctx.pathParam("hash")) ? true : false));
             attrs.put("schedule", schedule.getFirstDay());
@@ -236,40 +235,38 @@ public class Application {
 
     }
 
-    private Map<String, Integer> popularityFlatten() {
-        return popularityFlatten("");
+    private Map<String, SessionCapacity> sessionsPopularityWithCapacity(String... filter_out_hash) {
+        Map<String, SessionDao.PopularityRank> popularity = popularity(filter_out_hash).stream()
+                .collect(Collectors.toMap(
+                        SessionDao.PopularityRank::getTitle,
+                        Function.identity()
+                ));
+
+        return schedule.getAllSessions().stream()
+                .collect(Collectors.toMap(
+                    Session::getTitle,
+                    session -> {
+                        SessionDao.PopularityRank popularityRank = popularity.getOrDefault(
+                                session.getTitle(),
+                                new SessionDao.PopularityRank(session.getTitle(), 0)
+                        );
+
+                        return SessionCapacity.builder().current(popularityRank.getCount()).max(session.getSeats()).build();
+                    }
+            ));
     }
 
+    private List<SessionDao.PopularityRank> popularity(String... filter_out_hash) {
+        List<String> filtered_out_hashes = new ArrayList<>(List.of(filter_out_hash));
+        filtered_out_hashes.add(UserDataParser.TEST_HASH_VALUE);
 
-    private Map<String, Integer> popularityFlatten(String filter_out_hash) {
-        return popularity(filter_out_hash)
-                .stream()
-                .collect(Collectors.toMap(m -> m.get("s").toString(), m -> Integer.valueOf(m.get("count").toString())));
+        return jdbi.withExtension(SessionDao.class, dao -> dao.sessionsPopularity(filtered_out_hashes));
     }
 
-    private Map<Object, Map<String, Object>> popularityReport() {
-        return popularity("")
-                .stream().collect(Collectors.toMap(m -> m.get("id"), Function.identity()));
-    }
+}
 
-    private List<Map<String, Object>> popularity(String filter_out_hash) {
-
-        String whereClause = Arrays.asList("test", filter_out_hash)
-                .stream()
-                .filter(not(String::isEmpty))
-                .map(s -> String.format("hash != '%s'", s))
-                .collect(Collectors.joining(" AND ", "where ", ""));
-        return Collections.emptyList();
-//        return jdbi.withHandle(h -> h.createQuery(String.format("select rank, s, id, count(*) from " +
-//                "( " +
-//                "select distinct hash, id_1 as id, title_1 as s, rank() over (partition by hash order by insert_date desc) as rank  from sessions %1$s  " +
-//                "union all select distinct hash, id_2 as id, title_2 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s " +
-//                "union all select distinct hash, id_3 as id, title_3 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s  " +
-//                "union all select distinct hash, id_4 as id, title_4 as s, rank() over (partition by hash order by insert_date desc) as rank from sessions %1$s) " +
-//                "all_sessions where s!='' and rank=1 group by rank, id, s order by count desc;\n", whereClause))
-//                .mapToMap()
-//                .list()
-//        );
-    }
-
+@Value @Builder
+class SessionCapacity {
+    final Integer current;
+    final Integer max;
 }

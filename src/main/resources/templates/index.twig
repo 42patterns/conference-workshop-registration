@@ -21,15 +21,8 @@
 </head>
 <body class="home">
 
-<div id="body" class="clearfix">
+<div id="body" class="clearfix" {%  if (isTest) %} style="background-color: thistle" {% endif %}>
     <!-- layout-container -->
-
-    {%  if (isTest) %}
-        <div class="p-3 font-weight-bold text-center text-danger">
-            <h3>To jest link testowy!!</h3>
-        </div>
-    {% endif %}
-
 
     <div id="layout" class="pagewidth clearfix">
         <!-- content -->
@@ -76,6 +69,10 @@
                                                        {% if (session.title in previous) %} checked {% endif %}
                                                 >
                                                 {{ session.title }}
+
+                                                <span class="text-nowrap">
+                                                    {{ popularity[session.title].current }} / {{ popularity[session.title].max }}
+                                                </span>
                                             </label>
                                         {% else %}
                                             {{ session.title }}
