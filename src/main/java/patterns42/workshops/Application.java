@@ -125,7 +125,7 @@ class Controllers {
         attrs.put("hash", hash.getHash());
         attrs.put("previous", previous);
         attrs.put("popularity", sessionsPopularityWithCapacity());
-        attrs.put("name", usernameHashmap.get(hash));
+        attrs.put("name", usernameHashmap.get(hash).getUsername());
         attrs.put("isTest", (UserDataParser.TEST_HASH.equals(hash) ? true : false));
         attrs.put("schedule", schedule.getFirstDay());
 
