@@ -11,7 +11,6 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlScript;
 
 import java.beans.ConstructorProperties;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

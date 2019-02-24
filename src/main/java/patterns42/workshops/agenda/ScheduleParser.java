@@ -10,8 +10,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import patterns42.workshops.agenda.model.Schedule;
 import patterns42.workshops.agenda.model.ScheduleDay;
 import patterns42.workshops.agenda.model.Session;
@@ -24,11 +23,9 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+@Slf4j
 public class ScheduleParser {
-    private static final Logger LOG = LoggerFactory.getLogger(ScheduleParser.class);
     private static final String LOCAL_SCHEDULE = "";
     private final URL path;
 
@@ -57,17 +54,17 @@ public class ScheduleParser {
             ScheduleDay[] scheduleDays = mapper.treeToValue(days, ScheduleDay[].class);
             return new Schedule(scheduleDays);
         } catch (IOException e) {
-            LOG.warn("Error parsing Schedule {}", path, e);
+            log.warn("Error parsing Schedule {}", path, e);
             throw new RuntimeException(e);
         }
     }
 
     private InputStream getScheduleDataFromYml() throws IOException {
         try {
-            LOG.info("Opening agenda from {}", path);
+            log.info("Opening agenda from {}", path);
             return path.openStream();
         } catch (UnknownHostException e) {
-            LOG.warn("Error resolving {}. Loading local file", path);
+            log.warn("Error resolving {}. Loading local file", path);
             return getClass().getResourceAsStream("/session-data/" + LOCAL_SCHEDULE);
         }
     }
@@ -83,14 +80,5 @@ class ScheduleDayDeserializer extends StdDeserializer<ScheduleDay> {
     public ScheduleDay deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         Map<String, List<Session>> sessions = p.readValueAs(new TypeReference<Map<String, List<Session>>>() {});
         return new ScheduleDay(sessions);
-    }
-}
-
-class Utils {
-    public static List<Integer> jsonArrayAsList(JsonNode node) {
-        Iterable<JsonNode> i = () -> node.elements();
-        return StreamSupport.stream(i.spliterator(), false)
-                .map(JsonNode::asInt)
-                .collect(Collectors.toList());
     }
 }

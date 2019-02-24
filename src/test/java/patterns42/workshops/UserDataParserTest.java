@@ -1,9 +1,5 @@
 package patterns42.workshops;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.collection.IsCollectionWithSize;
-import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -11,11 +7,12 @@ import java.io.StringReader;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.collection.IsCollectionWithSize.*;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
-import static org.hamcrest.core.IsCollectionContaining.*;
+import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.assertThat;
-import static patterns42.workshops.UserDataParser.*;
+import static patterns42.workshops.UserDataParser.Hash;
+import static patterns42.workshops.UserDataParser.Username;
 
 public class UserDataParserTest {
 

@@ -4,6 +4,7 @@ import io.javalin.BasicAuthCredentials;
 import io.javalin.UnauthorizedResponse;
 import io.javalin.security.Role;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -11,20 +12,22 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
+@Slf4j
 @ToString
 public class AdminAuthenticationDetails {
     public enum Authed implements Role {
         ADMIN
     }
+
     public final String username;
     public final String password;
 
     public AdminAuthenticationDetails(Optional<String> maybeUsername, Optional<String> maybePassword) {
-        RandomString random = new RandomString(21);
         this.username = maybeUsername
                 .orElse("admin");
         this.password = maybePassword
-                .orElseGet(() -> random.nextString());
+                .orElseGet(() -> new RandomString(21).nextString());
+        log.info("Set {}", this);
     }
 
     public boolean authorize(BasicAuthCredentials basicAuthCredentials) {
