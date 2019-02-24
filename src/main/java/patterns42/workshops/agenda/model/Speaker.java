@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 public class Speaker {
     String name;
     String bio;
-//    String thumbnailUrl;
+    String photo;
 }

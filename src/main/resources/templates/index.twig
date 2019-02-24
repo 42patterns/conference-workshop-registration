@@ -70,7 +70,15 @@
                                                        {% if (popularity[session.title].current >= maxCapacity) %} readonly {% endif %}
                                                        {% if (session.title in previous) %} checked {% endif %}
                                                 >
-                                                {{ session.title }}
+                                                <span class="strong">
+                                                    {{ session.title }}
+                                                </span>
+
+                                                <span class="speakers">
+                                                    <small>
+                                                    ({% for speaker in session.speakers %}<span class="speaker">{{ speaker.name }}</span>{% if not (loop.last) %} / {% endif %}{% endfor %})
+                                                    </small>
+                                                </span>
 
                                                 <span class="text-nowrap">
                                                     {{ popularity[session.title].current }} / {{ maxCapacity }}

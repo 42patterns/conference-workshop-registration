@@ -4,6 +4,7 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsCollectionWithSize;
+import org.hamcrest.text.IsEmptyString;
 import org.junit.Before;
 import org.junit.Test;
 import patterns42.workshops.agenda.model.Schedule;
@@ -16,6 +17,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.text.IsEmptyString.isEmptyString;
 import static org.junit.Assert.assertThat;
 
 public class ScheduleParserTest {
@@ -62,6 +65,9 @@ public class ScheduleParserTest {
         Schedule schedule = parser.schedule();
         List<Speaker> allSpeakers = schedule.getAllSpeakers();
         assertThat(allSpeakers, IsCollectionWithSize.hasSize(26));
+
+        assertThat(allSpeakers.get(0).getName(), not(isEmptyString()));
+        assertThat(allSpeakers.get(0).getPhoto(), not(isEmptyString()));
     }
 
     private Matcher<Session> withTitle(String title) {

@@ -1,57 +1,63 @@
 
 
-agenda: 
-    - 
-        "9:00":
-            - title: "Rejestracja uczestników"
-              session: "Serwis"
-              seats: 20
-              abstract: "" 
-        "10:00":
-            - title: "Docker kontra developer"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Warsztat dla tych którzy uruchomili w swoim życiu “docker run”, ale nie mieli okazji, żeby zrobić coś więcej. Postawiłeś już kontener? Masz w projekcie automagicznie budujący się Dockerfile? Ze wspaniałym entrypointem stworzonym przez kolegę który postanowił realizować cele biznesowe gdzieś indziej? Niby wszystko gra, ale jeżeli masz cokolwiek w swoim obrazie zmienić to jednak trochę się cykasz? Na warsztacie pobawimy się kontenerami jak na developerów przystało. Będziemy ściągać, odpalać, tagować, wypychać, zmieniać. Zaprzyjaźnimy się z docker-compose.&lt;/p&gt;
+agenda:
+  -
+    "9:00":
+      - title: "Rejestracja uczestników"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+    "10:00":
+      - title: "Docker kontra developer"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Warsztat dla tych którzy uruchomili w swoim życiu “docker run”, ale nie mieli okazji, żeby zrobić coś więcej. Postawiłeś już kontener? Masz w projekcie automagicznie budujący się Dockerfile? Ze wspaniałym entrypointem stworzonym przez kolegę który postanowił realizować cele biznesowe gdzieś indziej? Niby wszystko gra, ale jeżeli masz cokolwiek w swoim obrazie zmienić to jednak trochę się cykasz? Na warsztacie pobawimy się kontenerami jak na developerów przystało. Będziemy ściągać, odpalać, tagować, wypychać, zmieniać. Zaprzyjaźnimy się z docker-compose.&lt;/p&gt;
 
 &lt;p&gt;Warunek wejściowy to Ubuntu 18.04 z zainstalowaną paczką “docker.io” (może być maszyna wirtualna) oraz wiedza z prezentacji “Docker dla początkujących” - &lt;a href=&#34;https://youtu.be/kSzd40CeUr8&#34;&gt;https://youtu.be/kSzd40CeUr8&lt;/a&gt;
 Zapraszam!&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Stożek"
-                      bio: "&lt;p&gt;Za dnia jestem programistą i devopsem, po nocach czytam co słychać na Hacker News. Wierny fan pracy zdalnej. Brałem udział w wielu projektach z różnych dziedzin, od bezpieczeństwa w kolejkach po Hadoopa, od monolitu do mikroserwisów.
+        speakers:
+          - name: "Marcin Stożek"
+            bio: "&lt;p&gt;Za dnia jestem programistą i devopsem, po nocach czytam co słychać na Hacker News. Wierny fan pracy zdalnej. Brałem udział w wielu projektach z różnych dziedzin, od bezpieczeństwa w kolejkach po Hadoopa, od monolitu do mikroserwisów.
 Wyznaję automatyzację oraz wierzę, że Linux to najlepsza rzecz pod słońcem. No, może druga w kolejności zaraz po Vim ;)&lt;/p&gt;
 "
-            - title: "Podstawy uczenia maszynowego dla programistów"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Machine Learning staje się ważnym elementem dzisiejszego świata. Jeśli chcesz zrozumieć w jaki sposób autonomiczne pojazdy &amp;ldquo;widzą&amp;rdquo;, a wirtualny asystent rozumie co do niego mówisz - te warsztaty Ci na to nie odpowiedzą ;-) W czasie warsztatów w sposób praktyczny przeprowadzimy uczestników przez podstawowe zagadnienia wizualnej eksploracji danych, opowiemy kiedy MLa nie ma sensu stosować i wreszcie pokażemy modele które sprawdzą się w bardzo szerokim zakresie problemów. Pokażemy również jak model można umieścić w &amp;ldquo;produkcyjnej&amp;rdquo; usłudze.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/marcin-stozek/marcin.stozek.jpg"
+      - title: "Podstawy uczenia maszynowego dla programistów"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Machine Learning staje się ważnym elementem dzisiejszego świata. Jeśli chcesz zrozumieć w jaki sposób autonomiczne pojazdy &amp;ldquo;widzą&amp;rdquo;, a wirtualny asystent rozumie co do niego mówisz - te warsztaty Ci na to nie odpowiedzą ;-) W czasie warsztatów w sposób praktyczny przeprowadzimy uczestników przez podstawowe zagadnienia wizualnej eksploracji danych, opowiemy kiedy MLa nie ma sensu stosować i wreszcie pokażemy modele które sprawdzą się w bardzo szerokim zakresie problemów. Pokażemy również jak model można umieścić w &amp;ldquo;produkcyjnej&amp;rdquo; usłudze.&lt;/p&gt;
 
 &lt;p&gt;Wymagana podstawowa znajomości Pythona i trochę matematycznej odwagi. Większość przykładów oparta będzie o sklearn. Do realizacji zadań potrzebny jest python3 oraz skonfigurowany menedżer pakietów Conda (np. Miniconda, Anaconda). Uczestnicy warsztatów otrzymają również listę pakietów które muszą zostać zainstalowane.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Adam Dudczak"
-                      bio: "&lt;p&gt;Team manager w Allegro, doświadczony deweloper, zainteresowany tematyką wyszukiwania (oraz odnajdywania) informacji, od dłuższego czasu pracujący nad rozwojem największej ecomersowej wyszukiwarki w Polsce. Prywatnie ojciec, mąż i król suchego dowcipu.&lt;/p&gt;
+        speakers:
+          - name: "Adam Dudczak"
+            bio: "&lt;p&gt;Team manager w Allegro, doświadczony deweloper, zainteresowany tematyką wyszukiwania (oraz odnajdywania) informacji, od dłuższego czasu pracujący nad rozwojem największej ecomersowej wyszukiwarki w Polsce. Prywatnie ojciec, mąż i król suchego dowcipu.&lt;/p&gt;
 "
-                    - name: "Jakub Pokrywka"
-                      bio: "&lt;p&gt;Data scientist w Allegro i doktorant na Uniwersytecie im. Adama Mickiewicza w Poznaniu. Pracując przy allegrowej wyszukiwarce rozwiązania problemów opiera o dane. Realizuje to w oparciu o statystykę oraz metody uczenia maszynowego. W szczególności interesuje się przetwarzaniem języka naturalnego.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/adam-dudczak/adamdudczak.png"
+          - name: "Jakub Pokrywka"
+            bio: "&lt;p&gt;Data scientist w Allegro i doktorant na Uniwersytecie im. Adama Mickiewicza w Poznaniu. Pracując przy allegrowej wyszukiwarce rozwiązania problemów opiera o dane. Realizuje to w oparciu o statystykę oraz metody uczenia maszynowego. W szczególności interesuje się przetwarzaniem języka naturalnego.&lt;/p&gt;
 "
-            - title: "Jak wgryźć się w elementy programowania funkcyjnego podczas refaktoryzacji kodu w Javie?"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Krzysztof Borowa"
-                      bio: "&lt;p&gt;Od ponad 10 lat adept wszystkiego co związane z Java. Wielki fan jakości, testów i podejścia funkcyjnego. Pomiędzy sesjami związanymi z kodowaniem w korporacji, uwielbia spędzać czas na spotkaniach, meetingach i innych “fascynujących agile-owych” wydarzeniach. Przy szklaneczce dobrej whisky lubi nadrobić zaległości konferencyjne na YouTubie. Nie stroni też od spędzania wolnego czasu nad testowaniem nowych planszówek.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/jakub-pokrywka/pokrywka-zdjecie.jpg"
+      - title: "Jak wgryźć się w elementy programowania funkcyjnego podczas refaktoryzacji kodu w Javie?"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;TBA&lt;/p&gt;
 "
-                    - name: "Michał Jonko"
-                      bio: "&lt;p&gt;Software Engineer od ponad 10 lat, skupiony głównie (jak nie jedynie) na pracy z JVM. Pasjonat optymalizacji, walki z wydajnością,  automatyzacji, identyfikacji procesów i systemów decyzyjnych. Niestety również wymagający maruda i wielki “wielbiciel” Agile, czciciel czytelnego i łatwego w utrzymaniu kodu - najlepiej funkcyjnego. Swoje zawodowe pasje dzieli z zespołem LogAnalytics w gdańskim oddziale Dynatrace.&lt;/p&gt;
+        speakers:
+          - name: "Krzysztof Borowa"
+            bio: "&lt;p&gt;Od ponad 10 lat adept wszystkiego co związane z Java. Wielki fan jakości, testów i podejścia funkcyjnego. Pomiędzy sesjami związanymi z kodowaniem w korporacji, uwielbia spędzać czas na spotkaniach, meetingach i innych “fascynujących agile-owych” wydarzeniach. Przy szklaneczce dobrej whisky lubi nadrobić zaległości konferencyjne na YouTubie. Nie stroni też od spędzania wolnego czasu nad testowaniem nowych planszówek.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/krzysztof-borowa/krzysztof-borowa.jpg"
+          - name: "Michał Jonko"
+            bio: "&lt;p&gt;Software Engineer od ponad 10 lat, skupiony głównie (jak nie jedynie) na pracy z JVM. Pasjonat optymalizacji, walki z wydajnością,  automatyzacji, identyfikacji procesów i systemów decyzyjnych. Niestety również wymagający maruda i wielki “wielbiciel” Agile, czciciel czytelnego i łatwego w utrzymaniu kodu - najlepiej funkcyjnego. Swoje zawodowe pasje dzieli z zespołem LogAnalytics w gdańskim oddziale Dynatrace.&lt;/p&gt;
 
 &lt;p&gt;Wolny czas spędza najchętniej za kierownicą samochodu, chociaż czasami lepiej sprawdza się jako dobry ojciec 3 córek.&lt;/p&gt;
 "
-            - title: "Continuous Delivery w OSS z użyciem Shipkita"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Czy wiesz jak wygląda Continuous Delivery bibliotek Javowych w Open Source? Czy wypuszczenie nowego release’a zawsze musi odbywać się dużym nakładem pracy? Czy zawsze ręcznie tworzysz release notes i uwzględniasz kontrybutorów? A jak wersjonujesz? Czy stosujesz semantic versioning?&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/michal-jonko/michal-jonko.jpg"
+      - title: "Continuous Delivery w OSS z użyciem Shipkita"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Czy wiesz jak wygląda Continuous Delivery bibliotek Javowych w Open Source? Czy wypuszczenie nowego release’a zawsze musi odbywać się dużym nakładem pracy? Czy zawsze ręcznie tworzysz release notes i uwzględniasz kontrybutorów? A jak wersjonujesz? Czy stosujesz semantic versioning?&lt;/p&gt;
 
 &lt;p&gt;W trakcie tego warsztatu dowiesz się i przećwiczysz, jak zapewnić swojej bibliotece Continuous Delivery i już nigdy się nie męczyć z wydawaniem nowej wersji. Będziemy korzystać z narzędzi: GitHub, TravisCI, Bintray, Maven Central, a wszystko to ze sobą połączy: Shipkit.org - projekt który wyrósł z Mockito (i ciągle go dostarcza). Dodatkowo nauczysz się SemVer.&lt;/p&gt;
 
@@ -59,71 +65,78 @@ Wyznaję automatyzację oraz wierzę, że Linux to najlepsza rzecz pod słońcem
 
 &lt;p&gt;Przed warsztatem jest wymagane posiadania konta na GitHubie oraz znajomość podstaw Javy i Gradle&amp;rsquo;a.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Stachniuk"
-                      bio: "&lt;p&gt;Jestem inżynierem oprogramowania głównie skoncentrowany na Javie i technologiach działających na JVM. Na co dzień piszę czysty kod, najchętniej korzystając z TDD. Lubię zwinne metodyki (bo to jedyne co działa) jak i automatyzację powtarzalnych czynności. Wierzę w rozwiązania NoSQL, odpowiednio dobierane pod konkretne problemy. Recenzowałem książkę practicalunittesting.com Tomka Kaczanowskiego. Jestem liderem Wrocław Java User Group wroclaw.jug.pl. Prezentuję na konferencjach mstachniuk.github.io/talks, trenuję ludzi na bootcampach, kommituję do Open Source’a m.in: shipkit.org. Aktualnie pracuję w firmie Collibra.&lt;/p&gt;
+        speakers:
+          - name: "Marcin Stachniuk"
+            bio: "&lt;p&gt;Jestem inżynierem oprogramowania głównie skoncentrowany na Javie i technologiach działających na JVM. Na co dzień piszę czysty kod, najchętniej korzystając z TDD. Lubię zwinne metodyki (bo to jedyne co działa) jak i automatyzację powtarzalnych czynności. Wierzę w rozwiązania NoSQL, odpowiednio dobierane pod konkretne problemy. Recenzowałem książkę practicalunittesting.com Tomka Kaczanowskiego. Jestem liderem Wrocław Java User Group wroclaw.jug.pl. Prezentuję na konferencjach mstachniuk.github.io/talks, trenuję ludzi na bootcampach, kommituję do Open Source’a m.in: shipkit.org. Aktualnie pracuję w firmie Collibra.&lt;/p&gt;
 
 &lt;p&gt;W wolnej chwili jeżdżę na snowboardzie, splitboardzie, wakeboardzie  i czasem na deskorolce. Lubię również jazdę na rowerze, hip-hop, podróże i morsowanie.&lt;/p&gt;
 
 &lt;p&gt;Twitter: @MarcinStachniuk&lt;/p&gt;
 "
-            - title: "Kotlin for Java developers"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;What&amp;rsquo;s all the fuss about Kotlin? On this workshop, you will discover it yourself. It will cover the most important Kotlin features. Show null-safety, extension functions and why collection processing in Kotlin is so good.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/marcin-stachniuk/marcin_stachniuk.jpg"
+      - title: "Kotlin for Java developers"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;What&amp;rsquo;s all the fuss about Kotlin? On this workshop, you will discover it yourself. It will cover the most important Kotlin features. Show null-safety, extension functions and why collection processing in Kotlin is so good.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Moskala"
-                      bio: "&lt;p&gt;Marcin Moskala is an experienced Android developer, teacher, and &lt;a href=&#34;https://www.jetbrains.com/company/partners/#countries=Poland&amp;profession=TrainingPartner&amp;speciality=Kotlin&amp;technologies=Kotlin&#34;&gt;an official Jetbrains&amp;rsquo; Kotlin training partner&lt;/a&gt;. He is the founder of &lt;a href=&#34;http://kt.academy/&#34;&gt;Kt. Academy&lt;/a&gt;, author of the book &amp;ldquo;&lt;a href=&#34;https://www.packtpub.com/application-development/android-development-kotlin&#34;&gt;Android Development with Kotlin&lt;/a&gt;&amp;rdquo;, and an active programming community member. He is also the main author on the biggest &lt;a href=&#34;http://blog.kotlin-academy.com/&#34;&gt;medium publication about Kotlin&lt;/a&gt; and a speaker invited to many programming conferences.&lt;/p&gt;
+        speakers:
+          - name: "Marcin Moskala"
+            bio: "&lt;p&gt;Marcin Moskala is an experienced Android developer, teacher, and &lt;a href=&#34;https://www.jetbrains.com/company/partners/#countries=Poland&amp;profession=TrainingPartner&amp;speciality=Kotlin&amp;technologies=Kotlin&#34;&gt;an official Jetbrains&amp;rsquo; Kotlin training partner&lt;/a&gt;. He is the founder of &lt;a href=&#34;http://kt.academy/&#34;&gt;Kt. Academy&lt;/a&gt;, author of the book &amp;ldquo;&lt;a href=&#34;https://www.packtpub.com/application-development/android-development-kotlin&#34;&gt;Android Development with Kotlin&lt;/a&gt;&amp;rdquo;, and an active programming community member. He is also the main author on the biggest &lt;a href=&#34;http://blog.kotlin-academy.com/&#34;&gt;medium publication about Kotlin&lt;/a&gt; and a speaker invited to many programming conferences.&lt;/p&gt;
 "
-            - title: "Frameworkless JavaScript"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Podczas tego wykładu pokażę, jak stworzyć bez użycia zewnętrznych bibliotek lub frameworków aplikację JavaScript która będzie działać na NodeJS i przeglądarce.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/marcin-moskala/Marcin_Moskala.jpg"
+      - title: "Frameworkless JavaScript"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Podczas tego wykładu pokażę, jak stworzyć bez użycia zewnętrznych bibliotek lub frameworków aplikację JavaScript która będzie działać na NodeJS i przeglądarce.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Łukasz Łuczak"
-                      bio: "&lt;p&gt;Inżynier rozwiązujący problemy z wykorzystaniem zdobyczy techniki informacyjnej. Pasjonat nauki i techniki. Wierny wyznawca filozofi TQM oraz Lean. Praktyk zwinnych metodyk oraz pretendent Software Craftmanship.
+        speakers:
+          - name: "Łukasz Łuczak"
+            bio: "&lt;p&gt;Inżynier rozwiązujący problemy z wykorzystaniem zdobyczy techniki informacyjnej. Pasjonat nauki i techniki. Wierny wyznawca filozofi TQM oraz Lean. Praktyk zwinnych metodyk oraz pretendent Software Craftmanship.
 Współzałożyciel i lider działu badawczo-rozwojowego &lt;a href=&#34;https://inn4.tech/&#34;&gt;Inn4Tech&lt;/a&gt;. Trener w &lt;a href=&#34;http://symentis.pl/&#34;&gt;symentis.pl&lt;/a&gt;&lt;/p&gt;
 "
-            - title: "Warsztat Event Storming"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Arkadiusz Kondas"
-                      bio: "&lt;p&gt;Zawodowy programista. Entuzjasta uczenia maszynowego. Wierzy w ideę Software Craftsmanship. Miłośnik open source. W wolnych chwilach rozwija swoje projekty na githubie, bloguje i biega ultramaratony.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/lukasz-luczak/lukasz_luczak.jpg"
+      - title: "Warsztat Event Storming"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;TBA&lt;/p&gt;
 "
-                    - name: "Wojtek Ptak"
-                      bio: "&lt;p&gt;Freeride biker, snowboarder and skier by heart. Massive supporter of transformations towards the culture of data-driven organizations. Focused on building the team which constantly evolves towards using the full potential of concepts like evolutionary or event-driven architectures, planned together with all stakeholders in mind (yes, the “Business” as well).&lt;/p&gt;
+        speakers:
+          - name: "Arkadiusz Kondas"
+            bio: "&lt;p&gt;Zawodowy programista. Entuzjasta uczenia maszynowego. Wierzy w ideę Software Craftsmanship. Miłośnik open source. W wolnych chwilach rozwija swoje projekty na githubie, bloguje i biega ultramaratony.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/arkadiusz-kondas/arkadiusz-kondas.jpg"
+          - name: "Wojtek Ptak"
+            bio: "&lt;p&gt;Freeride biker, snowboarder and skier by heart. Massive supporter of transformations towards the culture of data-driven organizations. Focused on building the team which constantly evolves towards using the full potential of concepts like evolutionary or event-driven architectures, planned together with all stakeholders in mind (yes, the “Business” as well).&lt;/p&gt;
 
 &lt;p&gt;Wojtek is a co-founder of AI experts boutique Intelligene as well as a CTO of FreshMail, where he focuses on developing the team and baking business solutions based on large-scale data integration and analysis systems pouring them with some Machine Learning and AI sweet chili sauce.&lt;/p&gt;
 
 &lt;p&gt;There, together with the team, he works on transforming and developing product’s architecture in a complex system with a dose of legacy code on a proper scale which enables the right kind of challenges. While doing so, they put the primary emphasis on a deep understanding of the business needs that combine the perspectives of different stakeholders interests in the project expressed with thousands of orange sticky notes.&lt;/p&gt;
 
 &lt;p&gt;Wojtek is also one of the Avanscoperta Event Storming Summit 2018 members (together with Mariusz Gil).&lt;/p&gt;
-" 
-        "12:30":
-            - title: "Przerwa lunchowa"
-              session: "Serwis"
-              seats: 20
-              abstract: "" 
-        "13:30":
-            - title: "Kubernetes 101"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Kubernetes - musisz wiedzieć co to jest i z czym się to je jeśli chcesz być programistą w 2019 roku. Warsztat przeznaczony jest dla osób, które nie miały do tej pory za dużo do czynienia z k8s i ma formułę „from zero to hero” - czyli zakłada, że na początku nie umiesz nic a pod koniec potrafisz tego używać i nawet coś na tym uruchomić. Zastanowimy się również czy to tylko moda czy rzeczywiście nowa rewolucja.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/wojtek-ptak/wojtek_ptak.jpg"
+    "12:30":
+      - title: "Przerwa lunchowa"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+    "13:30":
+      - title: "Kubernetes 101"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Kubernetes - musisz wiedzieć co to jest i z czym się to je jeśli chcesz być programistą w 2019 roku. Warsztat przeznaczony jest dla osób, które nie miały do tej pory za dużo do czynienia z k8s i ma formułę „from zero to hero” - czyli zakłada, że na początku nie umiesz nic a pod koniec potrafisz tego używać i nawet coś na tym uruchomić. Zastanowimy się również czy to tylko moda czy rzeczywiście nowa rewolucja.&lt;/p&gt;
 
 &lt;p&gt;Potrzebny będzie laptop z zainstalowanym minikube: &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/install-minikube/&#34;&gt;https://kubernetes.io/docs/tasks/tools/install-minikube/&lt;/a&gt;&lt;/p&gt;
 "
-              speakers:
-                    - name: "Grzegorz Kocur"
-                      bio: "&lt;p&gt;Senior DevOps Engineer w firmie Softwaremill. Wierzy, że nie ma jednego dobrego rozwiązania a kluczem do sukcesu jest dobór właściwego narzędzia do konkretnych potrzeb. Na co dzień zajmuje się systemami CI/CD, automatyzacją i orkiestracją. Prywatnie — mąż, ojciec, wielbiciel gór, wspinaczki.&lt;/p&gt;
+        speakers:
+          - name: "Grzegorz Kocur"
+            bio: "&lt;p&gt;Senior DevOps Engineer w firmie Softwaremill. Wierzy, że nie ma jednego dobrego rozwiązania a kluczem do sukcesu jest dobór właściwego narzędzia do konkretnych potrzeb. Na co dzień zajmuje się systemami CI/CD, automatyzacją i orkiestracją. Prywatnie — mąż, ojciec, wielbiciel gór, wspinaczki.&lt;/p&gt;
 "
-            - title: "Deep Learning w (świadomych) zastosowaniach"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Nikt nie wie, kiedy powstanie ogólna, samodzielna sztuczna inteligencja. Może się to wydarzyć wkrótce, może kiedyś, może nigdy. Jednak już teraz wiadomo, że maszyny nauczą się prowadzić, gotować i programować. Jeśli chcesz zrozumieć w jaki sposób autonomiczne pojazdy &amp;ldquo;widzą&amp;rdquo;, a wirtualny asystent rozumie co do niego mówisz - to warsztat dla Ciebie!&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/grzegorz-kocur/grzegorz_kocur.jpg"
+      - title: "Deep Learning w (świadomych) zastosowaniach"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Nikt nie wie, kiedy powstanie ogólna, samodzielna sztuczna inteligencja. Może się to wydarzyć wkrótce, może kiedyś, może nigdy. Jednak już teraz wiadomo, że maszyny nauczą się prowadzić, gotować i programować. Jeśli chcesz zrozumieć w jaki sposób autonomiczne pojazdy &amp;ldquo;widzą&amp;rdquo;, a wirtualny asystent rozumie co do niego mówisz - to warsztat dla Ciebie!&lt;/p&gt;
 
 &lt;p&gt;Podczas warsztatu:&lt;/p&gt;
 
@@ -135,42 +148,47 @@ Współzałożyciel i lider działu badawczo-rozwojowego &lt;a href=&#34;https:/
 
 &lt;p&gt;Do aktywnego uczestnictwa w warsztacie potrzebna jest podstawowa znajomość pythona oraz krótkie przygotowanie środowiska (git, python3 64-bit with pip, numpy, scipy, opencv-python, matplotlib, tensorflow, keras and pillow). Przed warsztatem, osoby zapisane otrzymają link do warsztatowego repozytorium git.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Krzysztof Kudryński"
-                      bio: "&lt;p&gt;Krzysztof Kudryński - Senior Deep Learning Engineer w NVIDIA&lt;/p&gt;
+        speakers:
+          - name: "Krzysztof Kudryński"
+            bio: "&lt;p&gt;Krzysztof Kudryński - Senior Deep Learning Engineer w NVIDIA&lt;/p&gt;
 
 &lt;p&gt;Krzysztof bardzo chciałby swobodnie rozmawiać z komputerem, na zakupy wysyłać robota, jeździć autonomicznym samochodem. Marzeniom trzeba pomagać. Krzysztof od ponad 10 lat pracuje jako inżynier algorytmów analizy danych, sztucznej inteligencji i robotyki. Krzysztof wierzy, że będzie dobrze.&lt;/p&gt;
 "
-            - title: "Transakcyjne przetwarzanie w Java Persistence API (JPA)"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Transakcyjne przetwarzanie w Java Persistence Api  - Co w tym może być trudnego? Wystarczy to tu, to tam dać &amp;lsquo;REQUIRED&amp;rsquo;, a jak mamy odrobinę więcej fantazji to może i &amp;lsquo;REQUIRES_NEW&amp;rsquo; prawda? Będzie działać&amp;hellip; przez większość czasu. W ramach sesji warsztatowej poznamy kilka typowych haczyków, które czekają na nieświadomych niebezpieczeństw programistów zachłyśniętych łatwością pracy z JPA w środowisku transakcyjnym. W ramach wykonywanych ćwiczeń przeanalizujemy te problematyczne sytuacje by z większą świadomością zmagać się z nimi w naszych rzeczywistych systemach.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/krzysztof-kudrynski/kudrynski.jpeg"
+      - title: "Transakcyjne przetwarzanie w Java Persistence API (JPA)"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Transakcyjne przetwarzanie w Java Persistence Api  - Co w tym może być trudnego? Wystarczy to tu, to tam dać &amp;lsquo;REQUIRED&amp;rsquo;, a jak mamy odrobinę więcej fantazji to może i &amp;lsquo;REQUIRES_NEW&amp;rsquo; prawda? Będzie działać&amp;hellip; przez większość czasu. W ramach sesji warsztatowej poznamy kilka typowych haczyków, które czekają na nieświadomych niebezpieczeństw programistów zachłyśniętych łatwością pracy z JPA w środowisku transakcyjnym. W ramach wykonywanych ćwiczeń przeanalizujemy te problematyczne sytuacje by z większą świadomością zmagać się z nimi w naszych rzeczywistych systemach.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Wojciech Oczkowski"
-                      bio: "&lt;p&gt;Specjalista do spraw trudnych, zawodowo rozwiązuje problemy związane z projektowaniem architektury systemów, integracją, wydajnością i jakością kodu. Znajduje obsesyjną wręcz przyjemność w wynajdowaniu sensu w cudzym kodzie. Prywatnie rozwiązuje problemy związane z wychowaniem 2 dzieciaków i znajdowaniem czasu na żeglowanie i czytanie literatury fantastycznej. Jeden z liderów i założycieli Bydgoszcz JUG. Z mozołem buduje swoją małą potęgę informatyczną o nazwie IT Kontekst.&lt;/p&gt;
+        speakers:
+          - name: "Wojciech Oczkowski"
+            bio: "&lt;p&gt;Specjalista do spraw trudnych, zawodowo rozwiązuje problemy związane z projektowaniem architektury systemów, integracją, wydajnością i jakością kodu. Znajduje obsesyjną wręcz przyjemność w wynajdowaniu sensu w cudzym kodzie. Prywatnie rozwiązuje problemy związane z wychowaniem 2 dzieciaków i znajdowaniem czasu na żeglowanie i czytanie literatury fantastycznej. Jeden z liderów i założycieli Bydgoszcz JUG. Z mozołem buduje swoją małą potęgę informatyczną o nazwie IT Kontekst.&lt;/p&gt;
 "
-            - title: "Continuous Delivery: jak, z czym i dlaczego?"
-              session: "Warsztat"
-              seats: 20
-              abstract: "&lt;p&gt;Aplikacja, środowisko, frameworki, narzędzia, workflow, ludzie – to tylko część elementów, od których zależy proces CI/CD. Na warsztatach omówimy najlepsze praktyki implementacji Continuous Delivery w procesie developerskim na przykładzie konkretnych przykładów i najczęstszych błędów. Czysta DevOpsowa polędwica, nie parówki z Biedronki&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/wojciech-oczkowski/wojtek_oczkowski.jpg"
+      - title: "Continuous Delivery: jak, z czym i dlaczego?"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Aplikacja, środowisko, frameworki, narzędzia, workflow, ludzie – to tylko część elementów, od których zależy proces CI/CD. Na warsztatach omówimy najlepsze praktyki implementacji Continuous Delivery w procesie developerskim na przykładzie konkretnych przykładów i najczęstszych błędów. Czysta DevOpsowa polędwica, nie parówki z Biedronki&lt;/p&gt;
 "
-              speakers:
-                    - name: "Rafał Sztwiorok"
-                      bio: "&lt;p&gt;Ewangelista Continuous Delivery. W branży IT od 15 lat, od 10 lat Project Manager aplikacji typu SaaS, od 3 lat CTO w Buddy, narzędziu do automatyzacji procesów developerskich. Współtwórca Springloops (2007), jednego z pierwszych narzędzi do kontroli wersji i deploymentu. Prywatnie ojciec trójki dzieci i urodzony napastnik.&lt;/p&gt;
+        speakers:
+          - name: "Rafał Sztwiorok"
+            bio: "&lt;p&gt;Ewangelista Continuous Delivery. W branży IT od 15 lat, od 10 lat Project Manager aplikacji typu SaaS, od 3 lat CTO w Buddy, narzędziu do automatyzacji procesów developerskich. Współtwórca Springloops (2007), jednego z pierwszych narzędzi do kontroli wersji i deploymentu. Prywatnie ojciec trójki dzieci i urodzony napastnik.&lt;/p&gt;
 "
-            - title: "Kotlin plus Spring minus Adnotacje"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Paweł Włodarski"
-                      bio: "&lt;p&gt;Od kilku lat w ramach łódzkiego JUGa (czyli grupy miłośników technologii już nie tylko okołojavowywch) organizuję wykłady, warsztaty i ćwiczenia – tak zwana praca u podstaw społeczności IT. Co roku także trochę pomagam przy organizacji chyba największej w Łodzi konferencji skupiającej się na technologiach mobilnych – &amp;ldquo;Mobilization&amp;rdquo;. Komercyjnie już od ponad 10 lat programuję w Javie a ostatnio doszła do tego i Scala.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/rafal-sztwiorok/Raf.png"
+      - title: "Kotlin plus Spring minus Adnotacje"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;TBA&lt;/p&gt;
 "
-            - title: "Kickstart your performance testing"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Do you test performance when your team develops new feature? Why not? Performance testing is often found as difficult and omitted by developers.&lt;/p&gt;
+        speakers:
+          - name: "Paweł Włodarski"
+            bio: "&lt;p&gt;Od kilku lat w ramach łódzkiego JUGa (czyli grupy miłośników technologii już nie tylko okołojavowywch) organizuję wykłady, warsztaty i ćwiczenia – tak zwana praca u podstaw społeczności IT. Co roku także trochę pomagam przy organizacji chyba największej w Łodzi konferencji skupiającej się na technologiach mobilnych – &amp;ldquo;Mobilization&amp;rdquo;. Komercyjnie już od ponad 10 lat programuję w Javie a ostatnio doszła do tego i Scala.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/pawel-wlodarski/pawel_wlodarski.jpg"
+      - title: "Kickstart your performance testing"
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;Do you test performance when your team develops new feature? Why not? Performance testing is often found as difficult and omitted by developers.&lt;/p&gt;
 
 &lt;p&gt;I’d like to take you on a pragmatic trip through web application performance testing. We’ll start with low-effort activities taking rough assumptions to get immediate results. Then we’ll learn what drawbacks and trade-offs we’ve made and try to improve accuracy of our measurements.&lt;/p&gt;
 
@@ -197,60 +215,65 @@ After each example you’ll be tasked to execute similar exercise during our wor
 &lt;li&gt;Learn portfolio of tools that will help you test performance.&lt;/li&gt;
 &lt;/ul&gt;
 "
-              speakers:
-                    - name: "Konrad Marszałek"
-                      bio: "&lt;p&gt;I have 10-years of experience in software quality assurance divided by 2 cities (Kraków and Gdańsk) and 3 companies. I had pleasure to work for successful startup, middle-sized company with cloud product, and large company with product used by 30k customers. I like to implement simple solutions that make a difference. My motto is “Make work productive and enjoyable for myself and others, especially by means of automation.”&lt;/p&gt;
+        speakers:
+          - name: "Konrad Marszałek"
+            bio: "&lt;p&gt;I have 10-years of experience in software quality assurance divided by 2 cities (Kraków and Gdańsk) and 3 companies. I had pleasure to work for successful startup, middle-sized company with cloud product, and large company with product used by 30k customers. I like to implement simple solutions that make a difference. My motto is “Make work productive and enjoyable for myself and others, especially by means of automation.”&lt;/p&gt;
 "
-            - title: "Z Event Stormingu do Walking Skeleton."
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Jakub Pilimon"
-                      bio: "&lt;p&gt;Programista, Trener, Konsultant. Aktualnie pracuję na stanowisku Principal Technologist w firmie Pivotal oraz jako konsultant w Bottega IT Minds. Interesuję się modelowaniem, architekturą, Domain-Driven Design i skracaniem dystansu pomiędzy światem biznesu a IT. Jestem wielkim fanem Event Stormingu oraz wytwarzania oprogramowania sterowanego testami.&lt;/p&gt;
-" 
-        "20:00":
-            - title: "After / before party"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-    - 
-        "8:30":
-            - title: "Rejestracja uczestników"
-              session: "Serwis"
-              seats: 20
-              abstract: "" 
-        "9:30":
-            - title: "Deep Learning in Computer Vision"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Gdy patrzymy na świat, nasz mózg natychmiast zamienia postrzegane przez nas obrazy w informacje, intuicję i odczucia. Czyni to z ogromnym wysiłkiem obliczeniowym, wykorzystując olbrzymią sieć z niezbadaną dotąd architekturą. Nie jesteśmy nawet bliscy stworzenia maszyny o porównywalnych możliwościach, ale krok po kroku, usprawniając zarówno sprzęt, jak i podejście algorytmiczne, sprawiamy, że maszyny coraz lepiej rozumieją obrazy, które widzą.
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/konrad-marszalek/konrad-marszalek.jpg"
+      - title: "Z Event Stormingu do Walking Skeleton."
+        session: "Warsztat"
+        seats: 16
+        abstract: "&lt;p&gt;TBA&lt;/p&gt;
+"
+        speakers:
+          - name: "Jakub Pilimon"
+            bio: "&lt;p&gt;Programista, Trener, Konsultant. Aktualnie pracuję na stanowisku Principal Technologist w firmie Pivotal oraz jako konsultant w Bottega IT Minds. Interesuję się modelowaniem, architekturą, Domain-Driven Design i skracaniem dystansu pomiędzy światem biznesu a IT. Jestem wielkim fanem Event Stormingu oraz wytwarzania oprogramowania sterowanego testami.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/jakub-pilimon/jakub-pilimon.jpg"
+    "20:00":
+      - title: "After / before party"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+  -
+    "8:30":
+      - title: "Rejestracja uczestników"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+    "9:30":
+      - title: "Deep Learning in Computer Vision"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Gdy patrzymy na świat, nasz mózg natychmiast zamienia postrzegane przez nas obrazy w informacje, intuicję i odczucia. Czyni to z ogromnym wysiłkiem obliczeniowym, wykorzystując olbrzymią sieć z niezbadaną dotąd architekturą. Nie jesteśmy nawet bliscy stworzenia maszyny o porównywalnych możliwościach, ale krok po kroku, usprawniając zarówno sprzęt, jak i podejście algorytmiczne, sprawiamy, że maszyny coraz lepiej rozumieją obrazy, które widzą.
 Ten wykład będzie właśnie o tym, jak to działa. Przejdziemy od podstaw działania konwolucyjnych sieci neuronowych, poprzez zaawansowane, praktyczne wskazówki, aż po zastosowanie najnowocześniejszych architektur w praktyce. Zobaczysz przykłady, jak szalenie skomplikowane problemy można rozwiązać za pomocą komputera przenośnego. W międzyczasie zrozumiesz, co się dzieje, dlaczego nowe warstwy są dodawane, dlaczego wprowadzane są  nowe koncepcje. Choć prezentacja skierowana jest głównie do osób początkujących lub systematyzujących swoją wiedzę, dosyć płynnie przejdziemy do projektów dotykająch zagadnień zaawansowanych. Zapraszam wszystkich!&lt;/p&gt;
 "
-              speakers:
-                    - name: "Krzysztof Kudryński"
-                      bio: "&lt;p&gt;Krzysztof Kudryński - Senior Deep Learning Engineer w NVIDIA&lt;/p&gt;
+        speakers:
+          - name: "Krzysztof Kudryński"
+            bio: "&lt;p&gt;Krzysztof Kudryński - Senior Deep Learning Engineer w NVIDIA&lt;/p&gt;
 
 &lt;p&gt;Krzysztof bardzo chciałby swobodnie rozmawiać z komputerem, na zakupy wysyłać robota, jeździć autonomicznym samochodem. Marzeniom trzeba pomagać. Krzysztof od ponad 10 lat pracuje jako inżynier algorytmów analizy danych, sztucznej inteligencji i robotyki. Krzysztof wierzy, że będzie dobrze.&lt;/p&gt;
-" 
-        "10:30":
-            - title: "Serverless oczami bezpiecznika"
-              session: "Prezentacja"
-              seats: 20
-              abstract: "&lt;p&gt;Programiści uwielbiają platformy serverless. AWS Lambda i Azure Functions są tanie, wygodne i pomagają skupić się bezpośrednio użytkownikach i rozwiązywaniu ich problemów. Inżynierowie zajmujący się bezpieczeństwem aplikacji muszę zmierzyć się z tym trendem i nauczyć poruszać się w świecie bez firewalli i systemów wykrywania włamań.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/krzysztof-kudrynski/kudrynski.jpeg"
+    "10:30":
+      - title: "Serverless oczami bezpiecznika"
+        session: "Prezentacja"
+        seats: 16
+        abstract: "&lt;p&gt;Programiści uwielbiają platformy serverless. AWS Lambda i Azure Functions są tanie, wygodne i pomagają skupić się bezpośrednio użytkownikach i rozwiązywaniu ich problemów. Inżynierowie zajmujący się bezpieczeństwem aplikacji muszę zmierzyć się z tym trendem i nauczyć poruszać się w świecie bez firewalli i systemów wykrywania włamań.&lt;/p&gt;
 
 &lt;p&gt;Czy OAuth 2.0 może zastąpić iptables? Czy przetwarzanie plików XML może być groźne? Czy w chmurze można bezpiecznie przechowywać klucze i inne wrażliwe dane?&lt;/p&gt;
 
 &lt;p&gt;W trzech praktycznych przykładach Marcin pokaże wam, że bezpieczeństwo aplikacji serverless wymaga świeżego podejścia, kilku nowych umiejętności i zdrowej dawki podstaw.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Hoppe"
-                      bio: "&lt;p&gt;Programista z zawodu i powołania, po latach służby został bezpiecznikiem. Pasjonat tworzenia softu odpornego na ataki. Za dnia odpowiada za bezpieczeństwo produktu w Auth0, nocą udziela się w Node.js Foundation i OWASP.&lt;/p&gt;
+        speakers:
+          - name: "Marcin Hoppe"
+            bio: "&lt;p&gt;Programista z zawodu i powołania, po latach służby został bezpiecznikiem. Pasjonat tworzenia softu odpornego na ataki. Za dnia odpowiada za bezpieczeństwo produktu w Auth0, nocą udziela się w Node.js Foundation i OWASP.&lt;/p&gt;
 "
-            - title: "Jak wytresować Basha?"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Czy zdarzyło Ci się złapać za głowę, gdy otwarty do edycji skrypt w Bashu miał 3000 linii i zacinał IDE?&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/marcin-hoppe/marcin_hoppe.png"
+      - title: "Jak wytresować Basha?"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Czy zdarzyło Ci się złapać za głowę, gdy otwarty do edycji skrypt w Bashu miał 3000 linii i zacinał IDE?&lt;/p&gt;
 
 &lt;p&gt;Mnie tak. Do dzisiaj miewam koszmary. Różne wtedy przychodzą myśli. Jedni chcą do mamy, inni chcą w Bieszczady.&lt;/p&gt;
 
@@ -259,66 +282,72 @@ Ten wykład będzie właśnie o tym, jak to działa. Przejdziemy od podstaw dzia
 &lt;p&gt;Ba, da się nawet - nie bójmy się użyć tego słowa - programować! Jak się uprzeć to i funkcyjnie.
 Po co ci więcej siwych włosów? Chodź zobacz jak wytresować Basha.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Stożek"
-                      bio: "&lt;p&gt;Za dnia jestem programistą i devopsem, po nocach czytam co słychać na Hacker News. Wierny fan pracy zdalnej. Brałem udział w wielu projektach z różnych dziedzin, od bezpieczeństwa w kolejkach po Hadoopa, od monolitu do mikroserwisów.
+        speakers:
+          - name: "Marcin Stożek"
+            bio: "&lt;p&gt;Za dnia jestem programistą i devopsem, po nocach czytam co słychać na Hacker News. Wierny fan pracy zdalnej. Brałem udział w wielu projektach z różnych dziedzin, od bezpieczeństwa w kolejkach po Hadoopa, od monolitu do mikroserwisów.
 Wyznaję automatyzację oraz wierzę, że Linux to najlepsza rzecz pod słońcem. No, może druga w kolejności zaraz po Vim ;)&lt;/p&gt;
-" 
-        "11:30":
-            - title: "How to live in a post-Spring-Cloud-Netflix world?"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Zuul? Gateway? Should we get rid of Ribbon? What is going on with Hystrix? If you have ever faced those questions, come and listen to this talk. In December 2018, Netflix decided to move a number of their popular OSS projects, like Hystrix and Ribbon into maintenance mode and to make newer, backward incompatible versions of some others, like Zuul and Archaius. The Spring Cloud team moved some of the corresponding Spring-Cloud-Netflix projects into maintenance mode as well and proposed a newer, more modern Spring Cloud stack that could be used instead. During this talk, we would like to show how to move over to these newer solutions. We will discuss possible approaches, show a code demo and speak about potential issues and solutions.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Marcin Grzejszczak"
-                      bio: "&lt;p&gt;&lt;b&gt;Marcin Grzejszczak&lt;/b&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/marcin-stozek/marcin.stozek.jpg"
+    "11:30":
+      - title: "How to live in a post-Spring-Cloud-Netflix world?"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Zuul? Gateway? Should we get rid of Ribbon? What is going on with Hystrix? If you have ever faced those questions, come and listen to this talk. In December 2018, Netflix decided to move a number of their popular OSS projects, like Hystrix and Ribbon into maintenance mode and to make newer, backward incompatible versions of some others, like Zuul and Archaius. The Spring Cloud team moved some of the corresponding Spring-Cloud-Netflix projects into maintenance mode as well and proposed a newer, more modern Spring Cloud stack that could be used instead. During this talk, we would like to show how to move over to these newer solutions. We will discuss possible approaches, show a code demo and speak about potential issues and solutions.&lt;/p&gt;
+"
+        speakers:
+          - name: "Marcin Grzejszczak"
+            bio: "&lt;p&gt;&lt;b&gt;Marcin Grzejszczak&lt;/b&gt;
 Author of &amp;ldquo;Mockito Instant&amp;rdquo; and &amp;ldquo;Mockito Cookbook&amp;rdquo; books. OSS Contributor. Co-founder of the Warsaw Groovy User Group and Warsaw Cloud Native Meetup.&lt;/p&gt;
 
 &lt;p&gt;Lead of Spring Cloud Sleuth, Spring Cloud Contract and Spring Cloud Pipelines projects at Pivotal&lt;/p&gt;
 
 &lt;p&gt;Contributed to Groovy, Mockito, Rest-assured, Drools, Moco. Author of Uptodate Gradle plugin, Spock subjects-collaborators extension, gradle-test-profiler, JSONAssert and XMLAssert open source projects.&lt;/p&gt;
 "
-                    - name: "Olga Maciaszek-Sharma"
-                      bio: "&lt;p&gt;&lt;b&gt;Olga Maciaszek-Sharma&lt;/b&gt; is a Java and Groovy Developer. She has gained experience while working with microservices where cutting-edge solutions were used as well as with complex legacy systems, implementing both new business features and solutions aimed at improving the process of continuous deployment and setup of applications. Olga is also a contributor to various OSS projects: Spring Cloud Contract (formerly: Accurest), JFairy, Jenkins Pipeline Plugin, Jenkins Stash Pull Request Builder Plugin, and others. Before switching to development, she worked for more than 3 years as a Quality Assurance Engineer, specialized in test automation&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/macin-grzejszczak/marcin_grzejszczak.jpeg"
+          - name: "Olga Maciaszek-Sharma"
+            bio: "&lt;p&gt;&lt;b&gt;Olga Maciaszek-Sharma&lt;/b&gt; is a Java and Groovy Developer. She has gained experience while working with microservices where cutting-edge solutions were used as well as with complex legacy systems, implementing both new business features and solutions aimed at improving the process of continuous deployment and setup of applications. Olga is also a contributor to various OSS projects: Spring Cloud Contract (formerly: Accurest), JFairy, Jenkins Pipeline Plugin, Jenkins Stash Pull Request Builder Plugin, and others. Before switching to development, she worked for more than 3 years as a Quality Assurance Engineer, specialized in test automation&lt;/p&gt;
 "
-            - title: "Machine Learning - jak zacząć uczyć maszynę"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Arkadiusz Kondas"
-                      bio: "&lt;p&gt;Zawodowy programista. Entuzjasta uczenia maszynowego. Wierzy w ideę Software Craftsmanship. Miłośnik open source. W wolnych chwilach rozwija swoje projekty na githubie, bloguje i biega ultramaratony.&lt;/p&gt;
-" 
-        "12:15":
-            - title: "Przerwa lunchowa"
-              session: "Serwis"
-              seats: 20
-              abstract: "" 
-        "13:00":
-            - title: "Kiedy od softu zależy ludzkie życie - o systemach safety-critical"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Większość programistów rozwija aplikacje webowe, mobilne czy desktopowe. Jednak w dzisiejszych czasach software jest wszędzie. Również samolotach, sondach kosmicznych, sprzęcie medycznym czy elektrowniach atomowych. Czym rozwijanie systemów safety-critical różni się od pracy nad standardowymi aplikacjami? Jak wygląda praca, kiedy programistom narzucane są szczegółowe normy? Podczas prezentacji postaram się odpowiedzieć na te pytania bazując zarówno na własnym doświadczeniu, jak i na dodatkowych materiałach opisujących np. wytwarzanie oprogramowania w NASA. Nie zabraknie również analizy kilku błędów skutkujących śmiercią ludzi, czy zniszczeniem sprzętu wartego miliony. Prezentację kieruję do każdego programisty. Być może część z omawianych praktyk pomoże również Tobie tworzyć lepsze i bardziej niezawodne systemy.&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/olga-maciaszek-sharma/olgamaciaszek.jpg"
+      - title: "Machine Learning - jak zacząć uczyć maszynę"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+        speakers:
+          - name: "Arkadiusz Kondas"
+            bio: "&lt;p&gt;Zawodowy programista. Entuzjasta uczenia maszynowego. Wierzy w ideę Software Craftsmanship. Miłośnik open source. W wolnych chwilach rozwija swoje projekty na githubie, bloguje i biega ultramaratony.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Maciej Gajdzica"
-                      bio: "&lt;p&gt;Programista systemów embedded z sześcioletnim doświadczeniem. Pracuje w firmie Solwit, gdzie specjalizuje się w systemach safety-critical. Przez dwa lata pracował nad systemem sterującym ruchem pociągów, a ostatnio rozwija oprogramowanie dla branży medycznej. Propagator dobrych praktyk - szczególnie TDD - w branży embedded. W wolnych chwilach konstruuje robota Micromouse odnajdującego drogę w labiryncie i opisuje ten proces na swoim blogu &lt;a href=&#34;http://ucgosu.pl/&#34;&gt;http://ucgosu.pl/&lt;/a&gt;&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/arkadiusz-kondas/arkadiusz-kondas.jpg"
+    "12:15":
+      - title: "Przerwa lunchowa"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
+    "13:00":
+      - title: "Kiedy od softu zależy ludzkie życie - o systemach safety-critical"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Większość programistów rozwija aplikacje webowe, mobilne czy desktopowe. Jednak w dzisiejszych czasach software jest wszędzie. Również samolotach, sondach kosmicznych, sprzęcie medycznym czy elektrowniach atomowych. Czym rozwijanie systemów safety-critical różni się od pracy nad standardowymi aplikacjami? Jak wygląda praca, kiedy programistom narzucane są szczegółowe normy? Podczas prezentacji postaram się odpowiedzieć na te pytania bazując zarówno na własnym doświadczeniu, jak i na dodatkowych materiałach opisujących np. wytwarzanie oprogramowania w NASA. Nie zabraknie również analizy kilku błędów skutkujących śmiercią ludzi, czy zniszczeniem sprzętu wartego miliony. Prezentację kieruję do każdego programisty. Być może część z omawianych praktyk pomoże również Tobie tworzyć lepsze i bardziej niezawodne systemy.&lt;/p&gt;
 "
-            - title: "Docker, DevOps, Kubernetes. Instrukcja obsługi"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Jakie korzyści daje Docker i dlaczego tak się przyjął? Skąd wynika rosnąca popularność Kubernetesa w firmach? Jakie są plusy i minusy tych technologii i czy faktycznie warto w nie inwestować?&lt;/p&gt;
+        speakers:
+          - name: "Maciej Gajdzica"
+            bio: "&lt;p&gt;Programista systemów embedded z sześcioletnim doświadczeniem. Pracuje w firmie Solwit, gdzie specjalizuje się w systemach safety-critical. Przez dwa lata pracował nad systemem sterującym ruchem pociągów, a ostatnio rozwija oprogramowanie dla branży medycznej. Propagator dobrych praktyk - szczególnie TDD - w branży embedded. W wolnych chwilach konstruuje robota Micromouse odnajdującego drogę w labiryncie i opisuje ten proces na swoim blogu &lt;a href=&#34;http://ucgosu.pl/&#34;&gt;http://ucgosu.pl/&lt;/a&gt;&lt;/p&gt;
 "
-              speakers:
-                    - name: "Piotr Struzik"
-                      bio: "&lt;p&gt;Entuzjasta wszystkiego co cloudowe, linuxowe a ostatnio związane z Blockchain. Ponad 10 lat w branży IT: od korporacji po startupy. Aktualnie Head of Cloud and DevOps w Buddy. Prywatnie fan latania dronami oraz dobrego jedzenia.&lt;/p&gt;
-" 
-        "14:00":
-            - title: "Charbusters - 10 mitów o Unicode"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;ul&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/maciej-gajdzica/maciej_gajdzica.jpg"
+      - title: "Docker, DevOps, Kubernetes. Instrukcja obsługi"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Jakie korzyści daje Docker i dlaczego tak się przyjął? Skąd wynika rosnąca popularność Kubernetesa w firmach? Jakie są plusy i minusy tych technologii i czy faktycznie warto w nie inwestować?&lt;/p&gt;
+"
+        speakers:
+          - name: "Piotr Struzik"
+            bio: "&lt;p&gt;Entuzjasta wszystkiego co cloudowe, linuxowe a ostatnio związane z Blockchain. Ponad 10 lat w branży IT: od korporacji po startupy. Aktualnie Head of Cloud and DevOps w Buddy. Prywatnie fan latania dronami oraz dobrego jedzenia.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/piotr-struzik/Peter.jpg"
+    "14:00":
+      - title: "Charbusters - 10 mitów o Unicode"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;ul&gt;
 &lt;li&gt;Jeśli wydaje Ci się, że w Javie do zapisu liter najlepiej użyć typu char - zapraszam!&lt;/li&gt;
 &lt;li&gt;Jeśli kiedykolwiek użyłeś metody String.length() do policzenia długości stringa i wydaje Ci się, że zwraca ona liczbę znaków - wyprowadzę cię z błędu&lt;/li&gt;
 &lt;li&gt;Jeśli nie chcesz, by przez błąd w obsłudze Unicode w twojej aplikacji zginęli ludzie, zapraszam tym bardziej. Tak, nieznajomość Unicode zabija. Dosłownie.&lt;/li&gt;
@@ -332,14 +361,15 @@ Ile pułapek kryje się w specyfikacji oraz jej implementacji w Javie.
 Na przykład czy wiedzieliście, że jeden symbol w UTF-32 może zajmować nawet&amp;hellip; 28 bajtów?
 Nie mówiąc już o słowie roku 2015 wg Oxford English Dictionary, czyli&amp;hellip; &amp;lsquo;😂&amp;rsquo; (tak, emoji, o nich też będzie).&lt;/p&gt;
 "
-              speakers:
-                    - name: "Tomek Nurkiewicz"
-                      bio: "&lt;p&gt;Java Champion. Spędził połowę życia na programowaniu, przez ostatnią dekadę w okolicach Javy. Uwielbia back-end i wizualizację danych. Zainteresowany alternatywnymi językami na JVM. Rozczarowany jakością oprogramowania tworzonego w dzisiejszych czasach (także przez siebie!), nie znosi długich metod i ukrytych efektów ubocznych. Zainteresowany analizą danych i programowaniem reaktywnym. Wierzy, że komputery stworzono, żeby programiści mogli automatyzować nudne i powtarzalne zadania. Także własne. Na co dzień pracuje w Allegro. Związany z open-source, DZone’s Most Valuable Blogger, kiedyś bardzo aktywny na StackOverflow. Autor, trener, prelegent, recenzent techniczny wielu książek, biegacz. Twierdzi, że kod pozbawiony testów jednostkowych to nie „feature” tylko plotka. Napisał książkę o RxJavie dla O’Reilly.&lt;/p&gt;
+        speakers:
+          - name: "Tomek Nurkiewicz"
+            bio: "&lt;p&gt;Java Champion. Spędził połowę życia na programowaniu, przez ostatnią dekadę w okolicach Javy. Uwielbia back-end i wizualizację danych. Zainteresowany alternatywnymi językami na JVM. Rozczarowany jakością oprogramowania tworzonego w dzisiejszych czasach (także przez siebie!), nie znosi długich metod i ukrytych efektów ubocznych. Zainteresowany analizą danych i programowaniem reaktywnym. Wierzy, że komputery stworzono, żeby programiści mogli automatyzować nudne i powtarzalne zadania. Także własne. Na co dzień pracuje w Allegro. Związany z open-source, DZone’s Most Valuable Blogger, kiedyś bardzo aktywny na StackOverflow. Autor, trener, prelegent, recenzent techniczny wielu książek, biegacz. Twierdzi, że kod pozbawiony testów jednostkowych to nie „feature” tylko plotka. Napisał książkę o RxJavie dla O’Reilly.&lt;/p&gt;
 "
-            - title: "Głębokie problemy głębokiego uczenia"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;Historia głębokiego uczenia (deep learning) ma swoje korzenie przynajmniej kilka dekad temu.
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/tomek-nurkiewicz/tomek-nurkiewicz.jpg"
+      - title: "Głębokie problemy głębokiego uczenia"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Historia głębokiego uczenia (deep learning) ma swoje korzenie przynajmniej kilka dekad temu.
 Rozważając wyłącznie sieci konwolucyjne jako jeden z przykładów, ich początki można
 odnaleźć w pracach Kunihiko Fukushimy (lata 80), który wprowadził pojęcie warstwy
 konwolucyjnej, i w pracach Yann LeCuna (koniec lat 90), który zastosował algorytm propagacji
@@ -350,32 +380,40 @@ czy jesteśmy na początku rewolucji, która w najbliższych latach całkowicie 
 sztucznej inteligencji, czy może głębokie uczenie ma problemy, które uniemożliwiają
 zastosowanie tej technologii w dużo szerszym zakresie niż do tej pory?&lt;/p&gt;
 "
-              speakers:
-                    - name: "Mariusz Domżalski"
-                      bio: "&lt;p&gt;Head of DataScience in DataMass, PhD in estimation theory/data fusion. Architect and developer of data processing systems in the industry. Linux fan and a Math geek.&lt;/p&gt;
-" 
-        "15:00":
-            - title: "High Availability w chmurze, czyli jak wymienić cały hardware bez downtime&#39;u aplikacji"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
-              speakers:
-                    - name: "Karol Łyskawinski"
-                      bio: "&lt;p&gt;Team leader i programista w firmie Dynatrace. Od początku kariery zawodowej związany z Javą i chmurą AWS. Pasjonat czystego kodu, chmurowych rozwiązań i automatyzacji czego tylko się da. Prywatnie entuzjasta nowych technologii i książek science-fiction.&lt;/p&gt;
+        speakers:
+          - name: "Mariusz Domżalski"
+            bio: "&lt;p&gt;Head of DataScience in DataMass, PhD in estimation theory/data fusion. Architect and developer of data processing systems in the industry. Linux fan and a Math geek.&lt;/p&gt;
 "
-            - title: "Docker internals"
-              session: "Serwis"
-              seats: 20
-              abstract: "&lt;p&gt;What you will learn: How docker layered filesystem worksHow container images are built? What Linux kernel syscalls and mechanisms are used by docker containers?&lt;/p&gt;
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/mariusz-domzalski/generic-avatar.jpg"
+    "15:00":
+      - title: "High Availability w chmurze, czyli jak wymienić cały hardware bez downtime&#39;u aplikacji"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;Gdy aplikacje naszych klientów nie działają, pierwszą rzeczą, którą robią jest sprawdzenie monitoringu. A co jeśli monitoring ma akurat przerwę techniczną?&lt;/p&gt;
+
+&lt;p&gt;Jednym z wymagań stawianych w Dynatrace jest zapewnienie wysokiej dostępności naszego rozwiązania. Wiąże się to z wieloma wyzwaniami. Jak wymienić niedziałający węzeł klastra lub zmienić rozmiar dysku nie powodując downtime&amp;rsquo;u? Jak to osiągnąć wykorzystując AWS? Co zrobić gdy stanowość aplikacji lub dodatkowe wymagania utrudniają korzystanie z gotowych serwisów AWS? Jak kultura NoOps wpływa na rozwiązywanie tych problemów?&lt;/p&gt;
+
+&lt;p&gt;W prezentacji opowiem jak radzimy sobie z powyższymi wyzwaniami w Dynatrace.&lt;/p&gt;
+"
+        speakers:
+          - name: "Karol Łyskawinski"
+            bio: "&lt;p&gt;Team leader i programista w firmie Dynatrace. Od początku kariery zawodowej związany z Javą i chmurą AWS. Pasjonat czystego kodu, chmurowych rozwiązań i automatyzacji czego tylko się da. Prywatnie entuzjasta nowych technologii i książek science-fiction.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/karol-lyskawinski/klyskawi.jpg"
+      - title: "Docker internals"
+        session: "Serwis"
+        seats: 16
+        abstract: "&lt;p&gt;What you will learn: How docker layered filesystem worksHow container images are built? What Linux kernel syscalls and mechanisms are used by docker containers?&lt;/p&gt;
 
 &lt;p&gt;What is the benefit? Practical orientation: Containerization is and will be one of top technologies used in every IT company, including yours. Learning about its internals will give you knowledge for what you can use containers and when this technology might not be a good fit.&lt;/p&gt;
 "
-              speakers:
-                    - name: "Michał Gryko"
-                      bio: "&lt;p&gt;Od dziecka zainteresowany elektroniką. Często rozkładałem rzeczy na części aby sprawdzić jak działają. Absolwent Elektroniki na Politechnice Gdańskiej, od 12 lat pracuję jako &amp;hellip; (tu wstaw aktualny buzzword określający sysadmina). Obecnie zatrudniony jako senior Site Reliability Engineer w Nordea Trading Technology.&lt;/p&gt;
-" 
-        "16:00":
-            - title: "Prezentacja zamykająca / Closing keynote - TBA"
-              session: "Serwis"
-              seats: 20
-              abstract: ""
+        speakers:
+          - name: "Michał Gryko"
+            bio: "&lt;p&gt;Od dziecka zainteresowany elektroniką. Często rozkładałem rzeczy na części aby sprawdzić jak działają. Absolwent Elektroniki na Politechnice Gdańskiej, od 12 lat pracuję jako &amp;hellip; (tu wstaw aktualny buzzword określający sysadmina). Obecnie zatrudniony jako senior Site Reliability Engineer w Nordea Trading Technology.&lt;/p&gt;
+"
+            photo: "http://test.segfault.events/sites/gdansk2019/speakers/michal-gryko/michal_gryko.jpg"
+    "16:00":
+      - title: "Prezentacja zamykająca / Closing keynote - TBA"
+        session: "Serwis"
+        seats: 16
+        abstract: ""
