@@ -17,6 +17,8 @@ import patterns42.workshops.agenda.model.Session;
 import patterns42.workshops.auth.AdminAuthenticationDetails;
 import patterns42.workshops.dao.SessionDao;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,7 +37,7 @@ public class Application {
     private final int port;
     private final AdminAuthenticationDetails authenticationDetails;
     private final Jdbi jdbi;
-    private final Map<String, String> usernameHashmap;
+    private final Map<UserDataParser.Hash, UserDataParser.Username> usernameHashmap;
     private final Schedule schedule;
 
     public static void main(String[] args) throws MalformedURLException {
@@ -49,7 +51,10 @@ public class Application {
         log.info("{}", auth);
 
         ScheduleParser parser = new ScheduleParser(ofNullable(getenv("AGENDA_URL")));
-        UserDataParser userdata = new UserDataParser();
+
+        InputStreamReader reader = new InputStreamReader(Application.class.getResourceAsStream("/userdata.csv"));
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        UserDataParser userdata = new UserDataParser(bufferedReader);
 
         Jdbi jdbi = Jdbi.create(ofNullable(getenv("JDBC_DATABASE_URL"))
                 .orElseThrow(() -> new RuntimeException("No JDBC_DATABASE_URL found")));
@@ -68,7 +73,7 @@ public class Application {
                        Jdbi jdbi,
                        AdminAuthenticationDetails authenticationDetails,
                        Schedule schedule,
-                       Map<String, String> usernameHashmap) {
+                       Map<UserDataParser.Hash, UserDataParser.Username> usernameHashmap) {
         this.port = port;
         this.jdbi = jdbi;
         this.authenticationDetails = authenticationDetails;
@@ -97,21 +102,20 @@ public class Application {
                 .json(popularity()));
 
         http.get("/:hash", ctx -> {
-            String hash = ctx.pathParam("hash");
-
+            UserDataParser.Hash hash = UserDataParser.Hash.of(ctx.pathParam("hash"));
             if (!usernameHashmap.containsKey(hash)) {
                 throw new ForbiddenResponse("Invalid hash");
             }
 
-            List<String> previous = jdbi.withExtension(SessionDao.class, dao -> dao.previousSessions(hash));
+            List<String> previous = jdbi.withExtension(SessionDao.class, dao -> dao.previousSessions(hash.getHash()));
             LOG.info("Previous registration for [hash={}]: {}", hash, previous);
 
             Map<String, Object> attrs = new HashMap();
-            attrs.put("hash", hash);
+            attrs.put("hash", hash.getHash());
             attrs.put("previous", previous);
             attrs.put("popularity", sessionsPopularityWithCapacity());
             attrs.put("name", usernameHashmap.get(hash));
-            attrs.put("isTest", (UserDataParser.TEST_HASH_VALUE.equals(ctx.pathParam("hash")) ? true : false));
+            attrs.put("isTest", (UserDataParser.TEST_HASH.equals(hash) ? true : false));
             attrs.put("schedule", schedule.getFirstDay());
 
             ctx.render("/templates/index.twig", attrs);
@@ -120,7 +124,7 @@ public class Application {
 
         http.post("/:hash", ctx -> {
 
-            String hash = ctx.pathParam("hash");
+            UserDataParser.Hash hash = UserDataParser.Hash.of(ctx.pathParam("hash"));
             if (!usernameHashmap.containsKey(hash)) {
                 throw new ForbiddenResponse("Invalid hash");
             }
@@ -139,7 +143,7 @@ public class Application {
             );
 
             //validation
-            Map<String, SessionCapacity> sessionCapacityMap = sessionsPopularityWithCapacity(hash);
+            Map<String, SessionCapacity> sessionCapacityMap = sessionsPopularityWithCapacity(hash.getHash());
             Predicate<SessionDao.SessionDto> isAboveCapacity = dto -> {
                 SessionCapacity sessionCapacity = sessionCapacityMap.get(dto.getTitle());
                 return (sessionCapacity.getCurrent() + 1 > sessionCapacity.getMax());
@@ -152,7 +156,7 @@ public class Application {
                 throw new BadRequestResponse("Invalid data. Some sessions might already got full");
             }
 
-            int[] results = jdbi.withExtension(SessionDao.class, dao -> dao.insertSessions(hash, sessionDTOS));
+            int[] results = jdbi.withExtension(SessionDao.class, dao -> dao.insertSessions(hash.getHash(), sessionDTOS));
 
             LOG.info("Insert successful [rowCount={}, hash={}, data={}]", results, hash, sessionDTOS);
 
@@ -160,7 +164,8 @@ public class Application {
         });
 
         http.get("/admin/registrations", ctx -> {
-            List<SessionDao.RegistrationDto> registrationDtos = jdbi.withExtension(SessionDao.class, dao -> dao.allRegistrations(List.of(UserDataParser.TEST_HASH_VALUE)));
+            List<SessionDao.RegistrationDto> registrationDtos = jdbi.withExtension(SessionDao.class,
+                    dao -> dao.allRegistrations(List.of(UserDataParser.TEST_HASH.getHash())));
 
             ctx.contentType("text/plain")
                 .result(registrationDtos.stream()
@@ -195,7 +200,7 @@ public class Application {
 
     private List<SessionDao.PopularityRank> popularity(String... filter_out_hash) {
         List<String> filtered_out_hashes = new ArrayList<>(List.of(filter_out_hash));
-        filtered_out_hashes.add(UserDataParser.TEST_HASH_VALUE);
+        filtered_out_hashes.add(UserDataParser.TEST_HASH.getHash());
 
         return jdbi.withExtension(SessionDao.class, dao -> dao.sessionsPopularity(filtered_out_hashes));
     }

@@ -1,31 +1,53 @@
 package patterns42.workshops;
 
+import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.function.Predicate.not;
+
 public class UserDataParser {
 
-    public final static String TEST_HASH_VALUE = "test-hash-123";
     private final static Logger LOG = LoggerFactory.getLogger(UserDataParser.class);
-    public Map<String, String> parse() {
+    private final static String TEST_HASH_VALUE = "test-hash-123";
+    public final static Hash TEST_HASH = Hash.of(TEST_HASH_VALUE);
+    public final static Username TEST_USERNAME = Username.of("Testowy Użyszkodnik");
 
-        InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/userdata.csv"));
-        BufferedReader bufferedReader = new BufferedReader(reader);
+    private final BufferedReader bufferedReader;
 
-        Map<String, String> collect = bufferedReader.lines()
+    public UserDataParser(BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
+    }
+
+    public Map<Hash, Username> parse() {
+
+        Map<Hash, Username> collect = bufferedReader.lines()
+                .map(String::strip)
+                .filter(not(String::isBlank))
                 .map(l -> l.split("\t"))
-                .map(a -> new AbstractMap.SimpleEntry<>(a[1], a[0]))
+                .map(a -> new AbstractMap.SimpleEntry<>(Hash.of(a[1]), Username.of(a[0])))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        collect.put(TEST_HASH_VALUE, "Testowy Użyszkodnik");
+        collect.put(TEST_HASH, TEST_USERNAME);
 
-        LOG.info("Loaded {} users and particiants (including test account)", collect.size());
+        LOG.info("Loaded {} users and particiants (including test account {}, {})",
+                collect.size(), TEST_HASH, TEST_USERNAME);
         return collect;
+    }
+
+    @Value @RequiredArgsConstructor(staticName = "of")
+    public static class Hash {
+        final String hash;
+    }
+
+    @Value @RequiredArgsConstructor(staticName = "of")
+    public static class Username {
+        final String username;
     }
 }
