@@ -14,7 +14,7 @@ import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface SessionDao {
+public interface SessionsDao {
 
     @SqlScript("CREATE TABLE IF NOT EXISTS sessions (" +
             "id SERIAL CONSTRAINT firstkey PRIMARY KEY, " +
@@ -23,7 +23,7 @@ public interface SessionDao {
             "title VARCHAR(255)," +
             "insert_date TIMESTAMP DEFAULT now()" +
         ")")
-    void createTable();
+    void createSessionsTable();
 
     @SqlBatch("insert into " +
             "sessions " +
