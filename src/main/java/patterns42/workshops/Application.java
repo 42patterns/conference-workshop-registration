@@ -193,7 +193,9 @@ class Controllers {
         int[] rowCount = jdbi.withExtension(UsersDao.class, dao -> dao.insertUserHash(userList));
         log.info("Insert successful users.size()={}", rowCount.length);
 
-        ctx.status(201);
+        ctx.status(201).json(Map.of(
+                "posted", rowCount.length,
+                "total", jdbi.withExtension(UsersDao.class, dao -> dao.allUsers().size())));
     }
 
     private Map<String, SessionCapacity> sessionsPopularityWithCapacity(String... filter_out_hash) {
