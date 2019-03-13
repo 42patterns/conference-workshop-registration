@@ -14,9 +14,6 @@ import patterns42.workshops.auth.AdminAuthenticationDetails;
 import patterns42.workshops.dao.SessionsDao;
 import patterns42.workshops.dao.UsersDao;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -183,6 +180,11 @@ class Controllers {
         ctx.contentType("text/plain")
                 .result(registrationDtos.stream()
                         .map(dto -> String.join("###", dto.getHash(), dto.getTitle(), dto.getDate().format(DateTimeFormatter.ISO_DATE_TIME)))
+                        .map(str -> new StringBuilder()
+                                        .append("=SPLIT(\"").append(str)
+                                .append("\"; \"###\"; TRUE; TRUE)")
+                                .toString()
+                        )
                         .reduce("", (l, r) -> String.join("\n", l, r)));
     }
 
