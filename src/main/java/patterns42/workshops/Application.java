@@ -1,6 +1,11 @@
 package patterns42.workshops;
 
-import io.javalin.*;
+import io.javalin.BadRequestResponse;
+import io.javalin.Context;
+import io.javalin.ForbiddenResponse;
+import io.javalin.Handler;
+import io.javalin.Javalin;
+import io.javalin.UnauthorizedResponse;
 import io.javalin.security.Role;
 import lombok.Builder;
 import lombok.Value;
@@ -16,7 +21,13 @@ import patterns42.workshops.dao.UsersDao;
 
 import java.net.MalformedURLException;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
