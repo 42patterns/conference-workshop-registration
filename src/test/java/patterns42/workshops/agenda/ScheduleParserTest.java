@@ -39,16 +39,16 @@ public class ScheduleParserTest {
     }
 
     @Test
-    public void should_collect_workshops_of_day_one() throws Exception {
+    public void should_collect_workshops_of_day_two() throws Exception {
         Schedule schedule = parser.schedule();
 
-        ScheduleDay dayone = schedule.getDays().get(0);
-        assertThat(dayone.getAllSessions(), IsCollectionWithSize.hasSize(14));
+        ScheduleDay secondDay = schedule.getDays().get(1);
+        assertThat(secondDay.getAllSessions(), IsCollectionWithSize.hasSize(11));
 
-        List<Session> sessions = dayone.getAllSessions();
+        List<Session> sessions = secondDay.getAllSessions();
         assertThat(sessions, hasItems(
-                withTitle("Docker kontra developer"),
-                withTitle("Podstawy uczenia maszynowego dla programistów")
+                withTitle("Co robi twoja aplikacja, kiedy rodziców nie ma w domu. Kilka słów o Elastic APM"),
+                withTitle("Data First: Building a board game")
         ));
     }
 
@@ -56,15 +56,15 @@ public class ScheduleParserTest {
     public void should_return_all_sessions() {
         Schedule schedule = parser.schedule();
 
-        List<Session> sessions = schedule.getDays().get(0).getAllSessions();
-        assertThat(sessions, IsCollectionWithSize.hasSize(14));
+        List<Session> sessions = schedule.getAllSessions();
+        assertThat(sessions, IsCollectionWithSize.hasSize(22));
     }
 
     @Test
     public void should_return_all_speakers() {
         Schedule schedule = parser.schedule();
         List<Speaker> allSpeakers = schedule.getAllSpeakers();
-        assertThat(allSpeakers, IsCollectionWithSize.hasSize(26));
+        assertThat(allSpeakers, IsCollectionWithSize.hasSize(23));
 
         assertThat(allSpeakers.get(0).getName(), not(isEmptyString()));
         assertThat(allSpeakers.get(0).getPhoto(), not(isEmptyString()));
