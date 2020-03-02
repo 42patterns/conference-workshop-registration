@@ -28,7 +28,7 @@ import java.util.Optional;
 
 @Slf4j
 public class ScheduleParser {
-    private static final String LOCAL_SCHEDULE = "";
+    private static final String LOCAL_SCHEDULE = "schedule.yml";
     private final URL path;
 
     public ScheduleParser(Optional<String> maybeAgendaUrl) throws MalformedURLException {
@@ -47,6 +47,7 @@ public class ScheduleParser {
             return getScheduleFrom(path.openStream());
         } catch (IOException e) {
             log.warn("Error parsing Schedule {}", path, e);
+            log.info("Parsing local schedule copy {}", getClass().getResource("/session-data/" + LOCAL_SCHEDULE).toURI());
             return getScheduleFrom(getClass().getResourceAsStream("/session-data/" + LOCAL_SCHEDULE));
         }
     }

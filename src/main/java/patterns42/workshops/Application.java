@@ -138,7 +138,7 @@ class Controllers {
         attrs.put("popularity", sessionsPopularityWithCapacity());
         attrs.put("name", user.getName());
         attrs.put("isTest", (UserDataParser.TEST_USER.equals(user) ? true : false));
-        attrs.put("schedule", schedule.getFirstDay());
+        attrs.put("schedule", schedule.getSecondDay());
 
         ctx.render("/templates/index.twig", attrs);
     }
@@ -219,6 +219,7 @@ class Controllers {
                 ));
 
         return schedule.getAllSessions().stream()
+                .filter(Session::isWorkshop)
                 .collect(Collectors.toMap(
                         Session::getTitle,
                         session -> {
@@ -228,7 +229,8 @@ class Controllers {
                             );
 
                             return SessionCapacity.builder().current(popularityRank.getCount()).max(session.getSeats()).build();
-                        }
+                        },
+                        (s1, s2) -> s1
                 ));
     }
 

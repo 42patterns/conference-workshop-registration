@@ -37,4 +37,8 @@ public class Schedule {
     public ScheduleDay getFirstDay() {
         return days.get(0);
     }
+
+    public ScheduleDay getSecondDay() {
+        return days.get(1);
+    }
 }
