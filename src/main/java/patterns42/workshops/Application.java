@@ -116,7 +116,7 @@ class Controllers {
 
     public void rootPath(Context ctx) {
         ctx.contentType("text/html;charset=UTF-8")
-                .html("<h1>Registration app for <a href=\"https://segfault.events/gdansk2019/\">Segfault University GDN 2019</a><h1>");
+                .html("<h1>Registration app for <a href=\"https://segfault.events/warszawa2020/\">Segfault University Warszawa 2020</a><h1>");
     }
 
     public void statistics(Context context) {

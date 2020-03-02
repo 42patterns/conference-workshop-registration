@@ -10,7 +10,9 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import patterns42.workshops.agenda.model.Schedule;
 import patterns42.workshops.agenda.model.ScheduleDay;
 import patterns42.workshops.agenda.model.Session;
@@ -31,7 +33,7 @@ public class ScheduleParser {
 
     public ScheduleParser(Optional<String> maybeAgendaUrl) throws MalformedURLException {
         var url = maybeAgendaUrl.
-                orElse("http://test.segfault.events/sites/gdansk2019/agenda/index.yaml");
+                orElse("http://test.segfault.events/sites/warszawa2020/agenda/index.yaml");
         this.path = new URL(url);
     }
 
@@ -39,7 +41,17 @@ public class ScheduleParser {
         this.path = rootLocation;
     }
 
+    @SneakyThrows
     public Schedule schedule() {
+        try {
+            return getScheduleFrom(path.openStream());
+        } catch (IOException e) {
+            log.warn("Error parsing Schedule {}", path, e);
+            return getScheduleFrom(getClass().getResourceAsStream("/session-data/" + LOCAL_SCHEDULE));
+        }
+    }
+
+    private Schedule getScheduleFrom(InputStream stream) throws IOException {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(ScheduleDay.class, new ScheduleDayDeserializer());
 
@@ -48,25 +60,10 @@ public class ScheduleParser {
                 .registerModule(module)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        try {
-            JsonNode days = mapper.readTree(getScheduleDataFromYml())
-                    .at("/agenda");
-            ScheduleDay[] scheduleDays = mapper.treeToValue(days, ScheduleDay[].class);
-            return new Schedule(scheduleDays);
-        } catch (IOException e) {
-            log.warn("Error parsing Schedule {}", path, e);
-            throw new RuntimeException(e);
-        }
-    }
-
-    private InputStream getScheduleDataFromYml() throws IOException {
-        try {
-            log.info("Opening agenda from {}", path);
-            return path.openStream();
-        } catch (UnknownHostException e) {
-            log.warn("Error resolving {}. Loading local file", path);
-            return getClass().getResourceAsStream("/session-data/" + LOCAL_SCHEDULE);
-        }
+        JsonNode days = mapper.readTree(stream)
+                .at("/agenda");
+        ScheduleDay[] scheduleDays = mapper.treeToValue(days, ScheduleDay[].class);
+        return new Schedule(scheduleDays);
     }
 }
 
