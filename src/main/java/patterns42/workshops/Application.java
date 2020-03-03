@@ -151,6 +151,13 @@ class Controllers {
         String session2 = ctx.formParam("session-2");
         String session4 = ctx.formParam("session-4");
 
+        //when one of the chosen session is both morning and afternoon - override the choice with it
+        if (sessionMoreThanOnce(session2)) {
+            session4 = session2;
+        } else if (sessionMoreThanOnce(session4)) {
+            session2 = session4;
+        }
+
         List<SessionsDao.SessionDto> sessionDTOS = Arrays.asList(SessionsDao.SessionDto.builder()
                         .sessionId(2)
                         .title(session2)
@@ -182,7 +189,9 @@ class Controllers {
         ctx.redirect("/" + ctx.pathParam("hash"));
     }
 
-
+    private boolean sessionMoreThanOnce(String sessionTitle) {
+        return schedule.getSecondDay().getAllSessions().stream().filter(s -> sessionTitle.equals(s.getTitle())).count() > 1;
+    }
 
     public void getAllRegistrations(Context ctx) {
         List<SessionsDao.RegistrationDto> registrationDtos = jdbi.withExtension(SessionsDao.class,
