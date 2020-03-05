@@ -39,11 +39,11 @@ public interface SessionsDao {
             ") as ranked where hash=:hash and rank=1")
     List<String> previousSessions(@Bind("hash") String hash);
 
-    @SqlQuery("select popularity.title, count(*) as count from (" +
+    @SqlQuery("select distinct popularity.title, count(*) as count from (" +
                 "select " +
                     "sessionid, title, rank() over (partition by hash, sessionid order by insert_date desc) as rank " +
                 "from sessions where hash not in (<exclusions>)" +
-            ") as popularity where rank=1 group by title order by count desc")
+            ") as popularity where rank=1 group by sessionid, title order by count desc")
     @RegisterConstructorMapper(PopularityRank.class)
     List<PopularityRank> sessionsPopularity(@BindList("exclusions") List<String> exclusions);
 
